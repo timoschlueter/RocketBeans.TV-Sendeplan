@@ -34,6 +34,11 @@
                         <action selector="startStreamButtonClicked:" target="Voe-Tx-rLC" id="jUj-k1-fYb"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Google Kalender öffnen" keyEquivalent="2" id="vnN-x5-Df2">
+                    <connections>
+                        <action selector="openGoogleCalendarButtonClicked:" target="Voe-Tx-rLC" id="shW-W8-dRy"/>
+                    </connections>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" id="ift-CW-0fP"/>
                 <menuItem title="&lt;supportView&gt;" id="y34-dA-Mie">
                     <modifierMask key="keyEquivalentModifierMask"/>
