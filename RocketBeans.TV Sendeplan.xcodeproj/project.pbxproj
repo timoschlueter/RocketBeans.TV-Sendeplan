@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		220E68401A73FE47002BCF12 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220E683E1A73FE35002BCF12 /* SystemConfiguration.framework */; };
+		22309E2A1A74030F006382A3 /* transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 22309E291A74030F006382A3 /* transparent.png */; };
 		250AC09B1A6D9BA5002D2C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250AC09A1A6D9BA5002D2C2E /* AppDelegate.swift */; };
 		250AC09D1A6D9BA5002D2C2E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 250AC09C1A6D9BA5002D2C2E /* Images.xcassets */; };
 		250AC0A01A6D9BA5002D2C2E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 250AC09E1A6D9BA5002D2C2E /* MainMenu.xib */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		220E683E1A73FE35002BCF12 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		22309E291A74030F006382A3 /* transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparent.png; sourceTree = "<group>"; };
 		250AC0951A6D9BA5002D2C2E /* RocketBeans.TV Sendeplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RocketBeans.TV Sendeplan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		250AC0991A6D9BA5002D2C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		250AC09A1A6D9BA5002D2C2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				220E68401A73FE47002BCF12 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +92,7 @@
 		250AC08C1A6D9BA5002D2C2E = {
 			isa = PBXGroup;
 			children = (
+				220E683E1A73FE35002BCF12 /* SystemConfiguration.framework */,
 				250AC0971A6D9BA5002D2C2E /* RocketBeansTV Status */,
 				250AC0A81A6D9BA6002D2C2E /* RocketBeansTV StatusTests */,
 				250AC0961A6D9BA5002D2C2E /* Products */,
@@ -132,6 +138,7 @@
 				258A29971A6F76CF004246D8 /* g2a.png */,
 				258A29951A6F75DD004246D8 /* rbshop.png */,
 				258A29931A6F751F004246D8 /* amazon_logo_SPOT.png */,
+				22309E291A74030F006382A3 /* transparent.png */,
 				250AC0991A6D9BA5002D2C2E /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -248,6 +255,7 @@
 				258A29941A6F751F004246D8 /* amazon_logo_SPOT.png in Resources */,
 				256E92E91A72D04200FD7FFB /* 1422060769_facebook-128.png in Resources */,
 				256E92CF1A7290E900FD7FFB /* beans_default.png in Resources */,
+				22309E2A1A74030F006382A3 /* transparent.png in Resources */,
 				258A29961A6F75DD004246D8 /* rbshop.png in Resources */,
 				250AC0A01A6D9BA5002D2C2E /* MainMenu.xib in Resources */,
 			);
