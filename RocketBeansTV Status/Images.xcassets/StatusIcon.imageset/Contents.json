@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "beans_default.png"
+      "filename" : "statusbar.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "beans_default@2x.png"
+      "filename" : "statusbar@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "beans_default@3x.png"
+      "filename" : "statusbar@3x.png"
     }
   ],
   "info" : {
