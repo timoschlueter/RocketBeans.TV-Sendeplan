@@ -168,6 +168,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         NSWorkspace.sharedWorkspace().openURL(twitchUrl)
     }
     
+    @IBAction func openGoogleCalendarButtonClicked(sender: AnyObject) {
+        let gcalUrl: NSURL = NSURL(string: "https://www.google.com/calendar/embed?src=h6tfehdpu3jrbcrn9sdju9ohj8%40group.calendar.google.com")!
+        NSWorkspace.sharedWorkspace().openURL(gcalUrl)
+    }
+    
     @IBAction func closeButtonClicked(sender: AnyObject) {
         NSApplication.sharedApplication().terminate(self)
     }
