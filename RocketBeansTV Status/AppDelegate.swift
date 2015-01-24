@@ -194,11 +194,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     
     var statusItem: NSStatusItem
     let statusItemLength: CGFloat = 25.0
-    let statusItemIcon: NSString = "beans_default.png"
     
     override init() {
         let statusBar = NSStatusBar.systemStatusBar()
-        self.statusItem = statusBar.statusItemWithLength(statusItemLength)
+        self.statusItem = statusBar.statusItemWithLength(-1)
     }
     
     func beginParsing()
@@ -215,7 +214,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         
         // Insert code here to initialize your application
         self.statusItem.toolTip = "Tooltip"
-        self.statusItem.image = NSImage(named: self.statusItemIcon)
+        self.statusItem.image = NSImage(named: "StatusIcon")
         self.statusItem.image?.setTemplate(true)
         self.statusItem.highlightMode = true
         self.statusItem.menu = mainMenu
