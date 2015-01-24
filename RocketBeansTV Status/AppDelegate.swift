@@ -106,24 +106,58 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             var dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "ee'.' dd'.' MMM'.' yyyy kk:mm"
             dateFormatter.locale = NSLocale(localeIdentifier: "de_DE")
-            var date = dateFormatter.dateFromString(programDate.componentsSeparatedByString(" bis")[0])
+            var startDate = dateFormatter.dateFromString(programDate.componentsSeparatedByString(" bis")[0])
             
-            if (date != nil) {
-                var timeinterval = date?.timeIntervalSince1970
+            if (startDate != nil) {
+                var timeinterval = startDate?.timeIntervalSince1970
                 program.programEpochDate = timeinterval!
             }
             
-            /* Check if program is in the future (or two hours ago) */
-            let currentDate = NSDate()
-            let currentEpochDate = currentDate.timeIntervalSince1970
-            
-            if ((currentEpochDate - 7200) < program.programEpochDate) {
-                programPlan.append(program)
+            /* check end date */
+            var endDateStr = programDate.componentsSeparatedByString(" bis ")[1]
+            if (countElements(endDateStr) == 5 && endDateStr.rangeOfString(":") != nil) {
+                /* this is just a time */
+                dateFormatter.dateFormat = "kk:mm"
+                var endDate = dateFormatter.dateFromString(endDateStr)
+                
+                if (endDate != nil) {
+                    /* it worked, remember hour and minute */
+                    let calendar = NSCalendar.currentCalendar()
+                    let comp = calendar.components((.HourCalendarUnit | .MinuteCalendarUnit), fromDate: endDate!)
+                    let hour = comp.hour
+                    let min = comp.minute
+                    
+                    /* create new date object from startDate with updated hours and minutes */
+                    endDate = calendar.dateBySettingHour(hour, minute: min, second: 0, ofDate: startDate!, options: NSCalendarOptions())
+                    let currentDate = NSDate()
+                    let currentEpochDate = currentDate.timeIntervalSince1970
+                    if (currentEpochDate > program.programEpochDate && currentEpochDate < endDate?.timeIntervalSince1970) {
+                        program.programCurrent = true
+                        /* TODO: remove label and rather display row with a different background color */
+                        program.programTitle += " (JETZT!)"
+                    }
+                }
             }
             
-            /* Sort the programs */
+            /* add every programm, old ones will be dropped later */
+            programPlan.append(program)
+            
+            /* sort the programs */
             programPlan.sort({$0.programEpochDate < $1.programEpochDate})
             
+            /* search for the current program */
+            var currentIndex = -1;
+            for (index, value) in enumerate(programPlan) {
+                if (value.programCurrent) {
+                    currentIndex = index;
+                    break
+                }
+            }
+            
+            /* only keep programs in the future, the current one and the latest old program */
+            if (currentIndex != -1) {
+                programPlan.removeRange(Range(start: 0, end: currentIndex - 1))
+            }
         }
         
     }
@@ -269,6 +303,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         let programPlan: ProgramPlan = self.programPlan[row]
         var cell = tableView.makeViewWithIdentifier("programCell", owner: self) as CustomTableView
         tableView.backgroundColor = NSColor.clearColor()
+        
+        if (programPlan.programCurrent) {
+            var rowView = tableView.rowViewAtRow(row, makeIfNecessary: true) as NSTableRowView
+            /* TODO: strange things happening when background color is changed */
+            /*rowView.backgroundColor = NSColor.lightGrayColor()*/
+        }
         
         cell.titleTextfield?.stringValue = "\(programPlan.programTitle)"
         cell.startTimeTextfield?.stringValue = "\(programPlan.programDate)"

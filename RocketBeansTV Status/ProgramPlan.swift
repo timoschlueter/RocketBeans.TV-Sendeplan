@@ -13,4 +13,5 @@ class ProgramPlan {
     var programDate: String = ""
     var programEpochDate: Double = 0.0
     var programState: String = ""
+    var programCurrent: Bool = false
 }
