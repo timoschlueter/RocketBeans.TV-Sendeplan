@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		220E68401A73FE47002BCF12 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220E683E1A73FE35002BCF12 /* SystemConfiguration.framework */; };
-		22309E2A1A74030F006382A3 /* transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 22309E291A74030F006382A3 /* transparent.png */; };
 		250AC09B1A6D9BA5002D2C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250AC09A1A6D9BA5002D2C2E /* AppDelegate.swift */; };
 		250AC09D1A6D9BA5002D2C2E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 250AC09C1A6D9BA5002D2C2E /* Images.xcassets */; };
 		250AC0A01A6D9BA5002D2C2E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 250AC09E1A6D9BA5002D2C2E /* MainMenu.xib */; };

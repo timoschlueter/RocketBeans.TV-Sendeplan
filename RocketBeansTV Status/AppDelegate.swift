@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     @IBOutlet weak var supportViewCell: NSMenuItem!
     @IBOutlet weak var programView: NSView!
     @IBOutlet weak var programTableView: NSTableView!
+    @IBOutlet weak var appVersionLabel: NSTextField!
     @IBOutlet weak var supportView: NSView!
     
     @IBOutlet weak var informationWindow: NSWindow!
@@ -290,6 +291,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         var timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector("beginParsing"), userInfo: nil, repeats: true)
         
         self.beginParsing()
+        
+        let bundle:NSBundle = NSBundle.mainBundle()
+        let appVersion: String = bundle.objectForInfoDictionaryKey("CFBundleShortVersionString") as String
+        
+        self.appVersionLabel.stringValue = "Version \(appVersion)"
     }
     
     func numberOfRowsInTableView(aTableView: NSTableView!) -> Int

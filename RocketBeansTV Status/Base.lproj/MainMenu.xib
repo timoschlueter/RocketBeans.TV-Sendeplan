@@ -13,6 +13,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="RocketBeans_TV_Sendeplan" customModuleProvider="target">
             <connections>
+                <outlet property="appVersionLabel" destination="DL4-K0-I0h" id="0Tt-5Z-cuB"/>
                 <outlet property="informationWindow" destination="eEQ-sF-qku" id="vrR-2S-hqR"/>
                 <outlet property="mainMenu" destination="uNo-Ar-HaW" id="5Fc-X1-tBI"/>
                 <outlet property="programTableView" destination="cog-ar-1hv" id="WNs-Lu-hed"/>
@@ -194,18 +195,18 @@
         </customView>
         <window title="Informationen" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="eEQ-sF-qku">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <rect key="contentRect" x="677" y="380" width="317" height="445"/>
+            <rect key="contentRect" x="677" y="380" width="317" height="470"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" id="oZL-a1-c3m">
-                <rect key="frame" x="0.0" y="0.0" width="317" height="445"/>
+                <rect key="frame" x="0.0" y="0.0" width="317" height="470"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kcw-s2-ZH2">
-                        <rect key="frame" x="117" y="345" width="84" height="84"/>
+                        <rect key="frame" x="117" y="370" width="84" height="84"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="RBTVIcon" id="LGe-C3-9Zd"/>
                     </imageView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7VL-kA-5mt">
-                        <rect key="frame" x="70" y="319" width="176" height="17"/>
+                        <rect key="frame" x="70" y="344" width="176" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="RocketBeans.TV Sendeplan" id="cC1-aq-qTS">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -219,7 +220,7 @@
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BM8-Pg-6Mb">
-                        <rect key="frame" x="70" y="276" width="176" height="35"/>
+                        <rect key="frame" x="70" y="277" width="176" height="35"/>
                         <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="center" id="nwQ-un-5qR">
                             <font key="font" metaFont="system"/>
                             <string key="title">Erstellt von:
@@ -229,7 +230,7 @@ Timo Schlüter</string>
                         </textFieldCell>
                     </textField>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tjb-lj-fM8">
-                        <rect key="frame" x="66" y="236" width="32" height="32"/>
+                        <rect key="frame" x="64" y="237" width="32" height="32"/>
                         <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="TwitterIcon" imagePosition="above" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="Etu-ii-su5">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -239,7 +240,7 @@ Timo Schlüter</string>
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cia-op-Jp6">
-                        <rect key="frame" x="105" y="236" width="32" height="32"/>
+                        <rect key="frame" x="103" y="237" width="32" height="32"/>
                         <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="RedditIcon" imagePosition="above" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="YZ3-5g-aMh">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -249,7 +250,7 @@ Timo Schlüter</string>
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ti6-48-e4P">
-                        <rect key="frame" x="144" y="236" width="32" height="32"/>
+                        <rect key="frame" x="142" y="237" width="32" height="32"/>
                         <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="FacebookIcon" imagePosition="above" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="Ihe-yb-Fu4">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -259,7 +260,7 @@ Timo Schlüter</string>
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TIM-lW-d9J">
-                        <rect key="frame" x="183" y="236" width="32" height="32"/>
+                        <rect key="frame" x="181" y="237" width="32" height="32"/>
                         <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="WordpressIcon" imagePosition="above" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="avM-kV-2s7">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -269,7 +270,7 @@ Timo Schlüter</string>
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MfT-Db-MAt">
-                        <rect key="frame" x="222" y="236" width="32" height="32"/>
+                        <rect key="frame" x="220" y="237" width="32" height="32"/>
                         <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="GithubIcon" imagePosition="above" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="GSS-Al-57g">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -278,8 +279,16 @@ Timo Schlüter</string>
                             <action selector="githubButtonPressed:" target="Voe-Tx-rLC" id="lEn-jy-n8j"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DL4-K0-I0h">
+                        <rect key="frame" x="114" y="325" width="88" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Version 0.0.0" id="7nm-oj-GXU">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xfl-hL-tSC">
-                        <rect key="frame" x="18" y="18" width="281" height="204"/>
+                        <rect key="frame" x="18" y="16" width="281" height="204"/>
                         <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" id="WSA-C6-ivD">
                             <font key="font" metaFont="system"/>
                             <string key="title">Die RocketBeans.TV Sendeplan App ist ein inoffizielles, von einem Fan erstelltes, Tool zur Anzeige des aktuellen Sendeplans in der Menüleiste von OS X.
@@ -293,7 +302,7 @@ Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inh
                     </textField>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="831.5" y="442.5"/>
+            <point key="canvasLocation" x="831.5" y="455"/>
         </window>
     </objects>
     <resources>
