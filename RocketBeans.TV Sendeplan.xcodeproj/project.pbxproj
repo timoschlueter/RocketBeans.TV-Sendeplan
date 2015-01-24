@@ -418,7 +418,7 @@
 				INFOPLIST_FILE = "RocketBeansTV StatusTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RocketBeansTV Status.app/Contents/MacOS/RocketBeansTV Status";
+				TEST_HOST = "";
 			};
 			name = Debug;
 		};
@@ -434,7 +434,7 @@
 				INFOPLIST_FILE = "RocketBeansTV StatusTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RocketBeansTV Status.app/Contents/MacOS/RocketBeansTV Status";
+				TEST_HOST = "";
 			};
 			name = Release;
 		};
