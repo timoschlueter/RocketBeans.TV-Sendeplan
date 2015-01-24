@@ -29,8 +29,7 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="8SR-7Y-jX6"/>
-                <menuItem title="Stream starten" id="4Tb-gV-JVW">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Stream öffnen" keyEquivalent="1" id="4Tb-gV-JVW">
                     <connections>
                         <action selector="startStreamButtonClicked:" target="Voe-Tx-rLC" id="jUj-k1-fYb"/>
                     </connections>
@@ -40,14 +39,12 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="4n6-kX-aQs"/>
-                <menuItem title="Informationen" id="LCw-9N-UOL">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Informationen" keyEquivalent="i" id="LCw-9N-UOL">
                     <connections>
                         <action selector="informationButtonPressed:" target="Voe-Tx-rLC" id="8ex-bL-HbS"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Beenden" id="jgF-RF-176">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Beenden" keyEquivalent="q" id="jgF-RF-176">
                     <connections>
                         <action selector="closeButtonClicked:" target="Voe-Tx-rLC" id="fCJ-kf-7RO"/>
                     </connections>
