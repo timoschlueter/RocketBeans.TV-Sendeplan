@@ -1,0 +1,474 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		250AC09B1A6D9BA5002D2C2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250AC09A1A6D9BA5002D2C2E /* AppDelegate.swift */; };
+		250AC09D1A6D9BA5002D2C2E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 250AC09C1A6D9BA5002D2C2E /* Images.xcassets */; };
+		250AC0A01A6D9BA5002D2C2E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 250AC09E1A6D9BA5002D2C2E /* MainMenu.xib */; };
+		250AC0AC1A6D9BA6002D2C2E /* RocketBeansTV_StatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250AC0AB1A6D9BA6002D2C2E /* RocketBeansTV_StatusTests.swift */; };
+		256E92CF1A7290E900FD7FFB /* beans_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 256E92CD1A7290E900FD7FFB /* beans_default.png */; };
+		256E92D01A7290E900FD7FFB /* beans_default@2x_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 256E92CE1A7290E900FD7FFB /* beans_default@2x_off.png */; };
+		256E92D41A72B37500FD7FFB /* ProgramPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256E92D31A72B37500FD7FFB /* ProgramPlan.swift */; };
+		256E92DC1A72BC2300FD7FFB /* rerun.png in Resources */ = {isa = PBXBuildFile; fileRef = 256E92DB1A72BC2300FD7FFB /* rerun.png */; };
+		256E92DE1A72BCB300FD7FFB /* live.png in Resources */ = {isa = PBXBuildFile; fileRef = 256E92DD1A72BCB300FD7FFB /* live.png */; };
+		256E92E01A72BD9700FD7FFB /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = 256E92DF1A72BD9700FD7FFB /* new.png */; };
+		256E92E31A72CE0A00FD7FFB /* app_icon_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 256E92E21A72CE0A00FD7FFB /* app_icon_128.png */; };
+		256E92E91A72D04200FD7FFB /* 1422060769_facebook-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 256E92E41A72D04200FD7FFB /* 1422060769_facebook-128.png */; };
+		256E92EA1A72D04200FD7FFB /* 1422060774_github-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 256E92E51A72D04200FD7FFB /* 1422060774_github-128.png */; };
+		256E92EB1A72D04200FD7FFB /* 1422060771_twitter-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 256E92E61A72D04200FD7FFB /* 1422060771_twitter-128.png */; };
+		256E92EC1A72D04200FD7FFB /* 1422060783_wordpress-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 256E92E71A72D04200FD7FFB /* 1422060783_wordpress-128.png */; };
+		256E92ED1A72D04200FD7FFB /* 1422060765_reddit-128.png in Resources */ = {isa = PBXBuildFile; fileRef = 256E92E81A72D04200FD7FFB /* 1422060765_reddit-128.png */; };
+		2575C9E41A6EC425007E7BDC /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2575C9E31A6EC425007E7BDC /* CustomTableView.swift */; };
+		258A29941A6F751F004246D8 /* amazon_logo_SPOT.png in Resources */ = {isa = PBXBuildFile; fileRef = 258A29931A6F751F004246D8 /* amazon_logo_SPOT.png */; };
+		258A29961A6F75DD004246D8 /* rbshop.png in Resources */ = {isa = PBXBuildFile; fileRef = 258A29951A6F75DD004246D8 /* rbshop.png */; };
+		258A29981A6F76CF004246D8 /* g2a.png in Resources */ = {isa = PBXBuildFile; fileRef = 258A29971A6F76CF004246D8 /* g2a.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		250AC0A61A6D9BA6002D2C2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 250AC08D1A6D9BA5002D2C2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 250AC0941A6D9BA5002D2C2E;
+			remoteInfo = "RocketBeansTV Status";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		250AC0951A6D9BA5002D2C2E /* RocketBeans.TV Sendeplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RocketBeans.TV Sendeplan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		250AC0991A6D9BA5002D2C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		250AC09A1A6D9BA5002D2C2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		250AC09C1A6D9BA5002D2C2E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		250AC09F1A6D9BA5002D2C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		250AC0A51A6D9BA6002D2C2E /* RocketBeansTV StatusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RocketBeansTV StatusTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		250AC0AA1A6D9BA6002D2C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		250AC0AB1A6D9BA6002D2C2E /* RocketBeansTV_StatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketBeansTV_StatusTests.swift; sourceTree = "<group>"; };
+		256E92CD1A7290E900FD7FFB /* beans_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beans_default.png; sourceTree = "<group>"; };
+		256E92CE1A7290E900FD7FFB /* beans_default@2x_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beans_default@2x_off.png"; sourceTree = "<group>"; };
+		256E92D31A72B37500FD7FFB /* ProgramPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlan.swift; sourceTree = "<group>"; };
+		256E92DB1A72BC2300FD7FFB /* rerun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rerun.png; sourceTree = "<group>"; };
+		256E92DD1A72BCB300FD7FFB /* live.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = live.png; sourceTree = "<group>"; };
+		256E92DF1A72BD9700FD7FFB /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
+		256E92E21A72CE0A00FD7FFB /* app_icon_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon_128.png; sourceTree = "<group>"; };
+		256E92E41A72D04200FD7FFB /* 1422060769_facebook-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1422060769_facebook-128.png"; sourceTree = "<group>"; };
+		256E92E51A72D04200FD7FFB /* 1422060774_github-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1422060774_github-128.png"; sourceTree = "<group>"; };
+		256E92E61A72D04200FD7FFB /* 1422060771_twitter-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1422060771_twitter-128.png"; sourceTree = "<group>"; };
+		256E92E71A72D04200FD7FFB /* 1422060783_wordpress-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1422060783_wordpress-128.png"; sourceTree = "<group>"; };
+		256E92E81A72D04200FD7FFB /* 1422060765_reddit-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1422060765_reddit-128.png"; sourceTree = "<group>"; };
+		2575C9E31A6EC425007E7BDC /* CustomTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
+		258A29931A6F751F004246D8 /* amazon_logo_SPOT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = amazon_logo_SPOT.png; sourceTree = "<group>"; };
+		258A29951A6F75DD004246D8 /* rbshop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rbshop.png; sourceTree = "<group>"; };
+		258A29971A6F76CF004246D8 /* g2a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = g2a.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		250AC0921A6D9BA5002D2C2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		250AC0A21A6D9BA6002D2C2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		250AC08C1A6D9BA5002D2C2E = {
+			isa = PBXGroup;
+			children = (
+				250AC0971A6D9BA5002D2C2E /* RocketBeansTV Status */,
+				250AC0A81A6D9BA6002D2C2E /* RocketBeansTV StatusTests */,
+				250AC0961A6D9BA5002D2C2E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		250AC0961A6D9BA5002D2C2E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				250AC0951A6D9BA5002D2C2E /* RocketBeans.TV Sendeplan.app */,
+				250AC0A51A6D9BA6002D2C2E /* RocketBeansTV StatusTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		250AC0971A6D9BA5002D2C2E /* RocketBeansTV Status */ = {
+			isa = PBXGroup;
+			children = (
+				250AC09A1A6D9BA5002D2C2E /* AppDelegate.swift */,
+				256E92D31A72B37500FD7FFB /* ProgramPlan.swift */,
+				2575C9E31A6EC425007E7BDC /* CustomTableView.swift */,
+				250AC09C1A6D9BA5002D2C2E /* Images.xcassets */,
+				250AC09E1A6D9BA5002D2C2E /* MainMenu.xib */,
+				250AC0981A6D9BA5002D2C2E /* Supporting Files */,
+			);
+			path = "RocketBeansTV Status";
+			sourceTree = "<group>";
+		};
+		250AC0981A6D9BA5002D2C2E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				256E92E41A72D04200FD7FFB /* 1422060769_facebook-128.png */,
+				256E92E51A72D04200FD7FFB /* 1422060774_github-128.png */,
+				256E92E61A72D04200FD7FFB /* 1422060771_twitter-128.png */,
+				256E92E71A72D04200FD7FFB /* 1422060783_wordpress-128.png */,
+				256E92E81A72D04200FD7FFB /* 1422060765_reddit-128.png */,
+				256E92E21A72CE0A00FD7FFB /* app_icon_128.png */,
+				256E92DF1A72BD9700FD7FFB /* new.png */,
+				256E92DD1A72BCB300FD7FFB /* live.png */,
+				256E92DB1A72BC2300FD7FFB /* rerun.png */,
+				256E92CD1A7290E900FD7FFB /* beans_default.png */,
+				256E92CE1A7290E900FD7FFB /* beans_default@2x_off.png */,
+				258A29971A6F76CF004246D8 /* g2a.png */,
+				258A29951A6F75DD004246D8 /* rbshop.png */,
+				258A29931A6F751F004246D8 /* amazon_logo_SPOT.png */,
+				250AC0991A6D9BA5002D2C2E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		250AC0A81A6D9BA6002D2C2E /* RocketBeansTV StatusTests */ = {
+			isa = PBXGroup;
+			children = (
+				250AC0AB1A6D9BA6002D2C2E /* RocketBeansTV_StatusTests.swift */,
+				250AC0A91A6D9BA6002D2C2E /* Supporting Files */,
+			);
+			path = "RocketBeansTV StatusTests";
+			sourceTree = "<group>";
+		};
+		250AC0A91A6D9BA6002D2C2E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				250AC0AA1A6D9BA6002D2C2E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		250AC0941A6D9BA5002D2C2E /* RocketBeansTV Status */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 250AC0AF1A6D9BA6002D2C2E /* Build configuration list for PBXNativeTarget "RocketBeansTV Status" */;
+			buildPhases = (
+				250AC0911A6D9BA5002D2C2E /* Sources */,
+				250AC0921A6D9BA5002D2C2E /* Frameworks */,
+				250AC0931A6D9BA5002D2C2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "RocketBeansTV Status";
+			productName = "RocketBeansTV Status";
+			productReference = 250AC0951A6D9BA5002D2C2E /* RocketBeans.TV Sendeplan.app */;
+			productType = "com.apple.product-type.application";
+		};
+		250AC0A41A6D9BA6002D2C2E /* RocketBeansTV StatusTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 250AC0B21A6D9BA6002D2C2E /* Build configuration list for PBXNativeTarget "RocketBeansTV StatusTests" */;
+			buildPhases = (
+				250AC0A11A6D9BA6002D2C2E /* Sources */,
+				250AC0A21A6D9BA6002D2C2E /* Frameworks */,
+				250AC0A31A6D9BA6002D2C2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				250AC0A71A6D9BA6002D2C2E /* PBXTargetDependency */,
+			);
+			name = "RocketBeansTV StatusTests";
+			productName = "RocketBeansTV StatusTests";
+			productReference = 250AC0A51A6D9BA6002D2C2E /* RocketBeansTV StatusTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		250AC08D1A6D9BA5002D2C2E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Timo Schlüter";
+				TargetAttributes = {
+					250AC0941A6D9BA5002D2C2E = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					250AC0A41A6D9BA6002D2C2E = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 250AC0941A6D9BA5002D2C2E;
+					};
+				};
+			};
+			buildConfigurationList = 250AC0901A6D9BA5002D2C2E /* Build configuration list for PBXProject "RocketBeans.TV Sendeplan" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 250AC08C1A6D9BA5002D2C2E;
+			productRefGroup = 250AC0961A6D9BA5002D2C2E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				250AC0941A6D9BA5002D2C2E /* RocketBeansTV Status */,
+				250AC0A41A6D9BA6002D2C2E /* RocketBeansTV StatusTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		250AC0931A6D9BA5002D2C2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				256E92ED1A72D04200FD7FFB /* 1422060765_reddit-128.png in Resources */,
+				256E92EA1A72D04200FD7FFB /* 1422060774_github-128.png in Resources */,
+				256E92E31A72CE0A00FD7FFB /* app_icon_128.png in Resources */,
+				256E92E01A72BD9700FD7FFB /* new.png in Resources */,
+				256E92EB1A72D04200FD7FFB /* 1422060771_twitter-128.png in Resources */,
+				256E92EC1A72D04200FD7FFB /* 1422060783_wordpress-128.png in Resources */,
+				258A29981A6F76CF004246D8 /* g2a.png in Resources */,
+				256E92DC1A72BC2300FD7FFB /* rerun.png in Resources */,
+				256E92DE1A72BCB300FD7FFB /* live.png in Resources */,
+				250AC09D1A6D9BA5002D2C2E /* Images.xcassets in Resources */,
+				256E92D01A7290E900FD7FFB /* beans_default@2x_off.png in Resources */,
+				258A29941A6F751F004246D8 /* amazon_logo_SPOT.png in Resources */,
+				256E92E91A72D04200FD7FFB /* 1422060769_facebook-128.png in Resources */,
+				256E92CF1A7290E900FD7FFB /* beans_default.png in Resources */,
+				258A29961A6F75DD004246D8 /* rbshop.png in Resources */,
+				250AC0A01A6D9BA5002D2C2E /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		250AC0A31A6D9BA6002D2C2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		250AC0911A6D9BA5002D2C2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2575C9E41A6EC425007E7BDC /* CustomTableView.swift in Sources */,
+				256E92D41A72B37500FD7FFB /* ProgramPlan.swift in Sources */,
+				250AC09B1A6D9BA5002D2C2E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		250AC0A11A6D9BA6002D2C2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				250AC0AC1A6D9BA6002D2C2E /* RocketBeansTV_StatusTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		250AC0A71A6D9BA6002D2C2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 250AC0941A6D9BA5002D2C2E /* RocketBeansTV Status */;
+			targetProxy = 250AC0A61A6D9BA6002D2C2E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		250AC09E1A6D9BA5002D2C2E /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				250AC09F1A6D9BA5002D2C2E /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		250AC0AD1A6D9BA6002D2C2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		250AC0AE1A6D9BA6002D2C2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		250AC0B01A6D9BA6002D2C2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "RocketBeansTV Status/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "RocketBeans.TV Sendeplan";
+			};
+			name = Debug;
+		};
+		250AC0B11A6D9BA6002D2C2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "RocketBeansTV Status/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "RocketBeans.TV Sendeplan";
+			};
+			name = Release;
+		};
+		250AC0B31A6D9BA6002D2C2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "RocketBeansTV StatusTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RocketBeansTV Status.app/Contents/MacOS/RocketBeansTV Status";
+			};
+			name = Debug;
+		};
+		250AC0B41A6D9BA6002D2C2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "RocketBeansTV StatusTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RocketBeansTV Status.app/Contents/MacOS/RocketBeansTV Status";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		250AC0901A6D9BA5002D2C2E /* Build configuration list for PBXProject "RocketBeans.TV Sendeplan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				250AC0AD1A6D9BA6002D2C2E /* Debug */,
+				250AC0AE1A6D9BA6002D2C2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		250AC0AF1A6D9BA6002D2C2E /* Build configuration list for PBXNativeTarget "RocketBeansTV Status" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				250AC0B01A6D9BA6002D2C2E /* Debug */,
+				250AC0B11A6D9BA6002D2C2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		250AC0B21A6D9BA6002D2C2E /* Build configuration list for PBXNativeTarget "RocketBeansTV StatusTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				250AC0B31A6D9BA6002D2C2E /* Debug */,
+				250AC0B41A6D9BA6002D2C2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 250AC08D1A6D9BA5002D2C2E /* Project object */;
+}
