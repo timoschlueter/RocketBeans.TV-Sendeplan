@@ -32,7 +32,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     
     var programPlan: [ProgramPlan] = []
     
-    
     /* Element Start */
     func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!, attributes attributeDict: NSDictionary!)
     {
@@ -66,20 +65,24 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         
         if (elementName == "entry") {
             
-            /* Check for status indicator in title */
-            let programStateRange = Range(start: programTitle.startIndex, end: advance(programTitle.startIndex, 3))
-            let programStateIndicator = programTitle.substringWithRange(programStateRange)
+            /* HTML Character decode */
+            programTitle = programTitle.stringByReplacingOccurrencesOfString("&amp;", withString: "&", options: nil, range: nil)
             
-            
-            switch (programStateIndicator) {
-                case "[L]":
-                    programTitle = programTitle.stringByReplacingOccurrencesOfString(programStateIndicator + " ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-                    programState = "live"
-                case "[N]":
-                    programTitle = programTitle.stringByReplacingOccurrencesOfString(programStateIndicator + " ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-                    programState = "new"
-                default:
-                    programState = "rerun"
+        
+            if let range = programTitle.rangeOfString("[L] ") {
+                programState = "live"
+                programTitle.removeRange(range)
+            } else if let range = programTitle.rangeOfString("[L]") {
+                programState = "live"
+                programTitle.removeRange(range)
+            } else if let range = programTitle.rangeOfString("[N] ") {
+                programState = "new"
+                programTitle.removeRange(range)
+            } else if let range = programTitle.rangeOfString("[N]") {
+                programState = "new"
+                programTitle.removeRange(range)
+            } else {
+                programState = "rerun"
             }
             
             programSummary = programSummary.componentsSeparatedByString("&nbsp;")[0]
@@ -94,13 +97,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                 programDate = result!
             }
             
-            /* 
-            println("Titel: " + programTitle)
-            println("Zeitraum: " + programDate)
-            println("Art: " + programState)
-            println("-----") 
-            */
-            
             let program: ProgramPlan = ProgramPlan()
             program.programTitle = programTitle
             program.programDate = programDate
@@ -108,7 +104,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             
             var dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "ee'.' dd'.' MMM'.' yyyy kk:mm"
-            
+            dateFormatter.locale = NSLocale(localeIdentifier: "de_DE")
             var date = dateFormatter.dateFromString(programDate.componentsSeparatedByString(" bis")[0])
             
             if (date != nil) {
@@ -116,8 +112,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                 program.programEpochDate = timeinterval!
             }
             
-            programPlan.append(program)
-            programPlan.sort({$0.programEpochDate > $1.programEpochDate})
+            /* Check if program is in the future (or two hours ago) */
+            let currentDate = NSDate()
+            let currentEpochDate = currentDate.timeIntervalSince1970
+            
+            if ((currentEpochDate - 7200) < program.programEpochDate) {
+                programPlan.append(program)
+            }
+            
+            /* Sort the programs */
+            programPlan.sort({$0.programEpochDate < $1.programEpochDate})
+            
         }
         
     }
@@ -125,6 +130,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     @IBAction func informationButtonPressed(sender: AnyObject) {
         self.informationWindow.makeKeyAndOrderFront(self)
         self.informationWindow.makeMainWindow()
+        var application: AnyObject! = NSApp
+        application.activateIgnoringOtherApps(true)
+
     }
     
     /* START Social Media Buttons */
@@ -199,6 +207,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        
         // Insert code here to initialize your application
         self.statusItem.toolTip = "Tooltip"
         self.statusItem.image = NSImage(named: self.statusItemIcon)
