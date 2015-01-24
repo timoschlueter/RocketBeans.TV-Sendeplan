@@ -199,7 +199,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     func beginParsing()
     {
         self.programPlan = []
-        parser = NSXMLParser(contentsOfURL: (NSURL(string: "https://www.google.com/calendar/feeds/h6tfehdpu3jrbcrn9sdju9ohj8%40group.calendar.google.com/public/basic")))!
+        parser = NSXMLParser(contentsOfURL: (NSURL(string: "https://www.google.com/calendar/feeds/h6tfehdpu3jrbcrn9sdju9ohj8%40group.calendar.google.com/public/basic?hl=de")))!
         parser.delegate = self
         parser.parse()
 
@@ -211,6 +211,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         // Insert code here to initialize your application
         self.statusItem.toolTip = "Tooltip"
         self.statusItem.image = NSImage(named: self.statusItemIcon)
+        self.statusItem.image?.setTemplate(true)
         self.statusItem.highlightMode = true
         self.statusItem.menu = mainMenu
         
