@@ -142,6 +142,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                         program.programCurrent = true
                         /* TODO: remove label and rather display row with a different background color */
                         program.programTitle += " (JETZT!)"
+                        
+                        /* Live-Indicator - maybe something other? */
+                        if (program.programState == "live") {
+                            self.statusItem.toolTip = "RocketBeans.TV Sendeplan\nLivesendung!"
+                        }
+                        else {
+                            self.statusItem.toolTip = "RocketBeans.TV Sendeplan"
+                        }
                     }
                 }
             }
@@ -284,7 +292,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
         // Insert code here to initialize your application
-        self.statusItem.toolTip = "Tooltip"
+        self.statusItem.toolTip = "RocketBeans.TV Sendeplan"
         self.statusItem.image = NSImage(named: "StatusIcon")
         self.statusItem.image?.setTemplate(true)
         self.statusItem.highlightMode = true
