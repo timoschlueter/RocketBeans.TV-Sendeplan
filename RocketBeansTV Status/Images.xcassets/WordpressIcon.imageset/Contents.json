@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "statusbar.png"
+      "filename" : "wordpress.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "statusbar@2x.png"
+      "filename" : "wordpress@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "statusbar@3x.png"
+      "filename" : "wordpress@3x.png"
     }
   ],
   "info" : {
