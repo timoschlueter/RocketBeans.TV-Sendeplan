@@ -201,11 +201,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kcw-s2-ZH2">
-                        <rect key="frame" x="117" y="342" width="83" height="83"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="app_icon_128" id="LGe-C3-9Zd"/>
+                        <rect key="frame" x="117" y="345" width="84" height="84"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="RBTVIcon" id="LGe-C3-9Zd"/>
                     </imageView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7VL-kA-5mt">
-                        <rect key="frame" x="70" y="317" width="176" height="17"/>
+                        <rect key="frame" x="70" y="319" width="176" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="RocketBeans.TV Sendeplan" id="cC1-aq-qTS">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -213,13 +213,13 @@
                         </textFieldCell>
                     </textField>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="LGv-HA-sYB">
-                        <rect key="frame" x="12" y="230" width="293" height="5"/>
+                        <rect key="frame" x="12" y="226" width="293" height="5"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BM8-Pg-6Mb">
-                        <rect key="frame" x="70" y="241" width="176" height="68"/>
+                        <rect key="frame" x="70" y="276" width="176" height="35"/>
                         <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" alignment="center" id="nwQ-un-5qR">
                             <font key="font" metaFont="system"/>
                             <string key="title">Erstellt von:
@@ -229,8 +229,8 @@ Timo Schlüter</string>
                         </textFieldCell>
                     </textField>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tjb-lj-fM8">
-                        <rect key="frame" x="70" y="241" width="29" height="29"/>
-                        <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="1422060771_twitter-128" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="Etu-ii-su5">
+                        <rect key="frame" x="66" y="236" width="32" height="32"/>
+                        <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="TwitterIcon" imagePosition="above" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="Etu-ii-su5">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -239,8 +239,8 @@ Timo Schlüter</string>
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cia-op-Jp6">
-                        <rect key="frame" x="107" y="241" width="29" height="29"/>
-                        <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="1422060765_reddit-128" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="YZ3-5g-aMh">
+                        <rect key="frame" x="105" y="236" width="32" height="32"/>
+                        <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="RedditIcon" imagePosition="above" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="YZ3-5g-aMh">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -249,8 +249,8 @@ Timo Schlüter</string>
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ti6-48-e4P">
-                        <rect key="frame" x="144" y="241" width="29" height="29"/>
-                        <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="1422060769_facebook-128" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="Ihe-yb-Fu4">
+                        <rect key="frame" x="144" y="236" width="32" height="32"/>
+                        <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="FacebookIcon" imagePosition="above" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="Ihe-yb-Fu4">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -259,8 +259,8 @@ Timo Schlüter</string>
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TIM-lW-d9J">
-                        <rect key="frame" x="181" y="241" width="29" height="29"/>
-                        <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="1422060783_wordpress-128" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="avM-kV-2s7">
+                        <rect key="frame" x="183" y="236" width="32" height="32"/>
+                        <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="WordpressIcon" imagePosition="above" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="avM-kV-2s7">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -269,8 +269,8 @@ Timo Schlüter</string>
                         </connections>
                     </button>
                     <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MfT-Db-MAt">
-                        <rect key="frame" x="218" y="241" width="29" height="29"/>
-                        <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="1422060774_github-128" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="GSS-Al-57g">
+                        <rect key="frame" x="222" y="236" width="32" height="32"/>
+                        <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="GithubIcon" imagePosition="above" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="GSS-Al-57g">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
@@ -279,7 +279,7 @@ Timo Schlüter</string>
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xfl-hL-tSC">
-                        <rect key="frame" x="18" y="20" width="281" height="204"/>
+                        <rect key="frame" x="18" y="18" width="281" height="204"/>
                         <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" id="WSA-C6-ivD">
                             <font key="font" metaFont="system"/>
                             <string key="title">Die RocketBeans.TV Sendeplan App ist ein inoffizielles, von einem Fan erstelltes, Tool zur Anzeige des aktuellen Sendeplans in der Menüleiste von OS X.
@@ -297,13 +297,13 @@ Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inh
         </window>
     </objects>
     <resources>
-        <image name="1422060765_reddit-128" width="128" height="128"/>
-        <image name="1422060769_facebook-128" width="128" height="128"/>
-        <image name="1422060771_twitter-128" width="128" height="128"/>
-        <image name="1422060774_github-128" width="128" height="128"/>
-        <image name="1422060783_wordpress-128" width="128" height="128"/>
+        <image name="FacebookIcon" width="32" height="32"/>
+        <image name="GithubIcon" width="32" height="32"/>
+        <image name="RBTVIcon" width="84" height="84"/>
+        <image name="RedditIcon" width="32" height="32"/>
+        <image name="TwitterIcon" width="32" height="32"/>
+        <image name="WordpressIcon" width="32" height="32"/>
         <image name="amazon_logo_SPOT" width="512.4000244140625" height="154.32000732421875"/>
-        <image name="app_icon_128" width="128" height="128"/>
         <image name="g2a" width="149" height="43"/>
         <image name="rbshop" width="149" height="54"/>
         <image name="rerun" width="68" height="68"/>
