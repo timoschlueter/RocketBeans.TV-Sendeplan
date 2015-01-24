@@ -1,6 +1,6 @@
 # RocketBeans.TV Sendeplan
 
-Diese App zeigt den aktuellen Sendeplan von [RocketBeans.TV](http://www.twitch.tv/rocketbeanstv) in der Menüleiste vOn Mac OS X an.
+Diese App zeigt den aktuellen Sendeplan von [RocketBeans.TV](http://www.twitch.tv/rocketbeanstv) in der Menüleiste von Mac OS X an.
 
 ## Screenshot
 
