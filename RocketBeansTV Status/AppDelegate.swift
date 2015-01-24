@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SystemConfiguration
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate, NSXMLParserDelegate {
@@ -203,11 +204,40 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     func beginParsing()
     {
         self.programPlan = []
-        parser = NSXMLParser(contentsOfURL: (NSURL(string: "https://www.google.com/calendar/feeds/h6tfehdpu3jrbcrn9sdju9ohj8%40group.calendar.google.com/public/basic?hl=de")))!
-        parser.delegate = self
-        parser.parse()
+        
+        if (!self.isConnectedToNetwork()) {
+            let program: ProgramPlan = ProgramPlan()
+            program.programTitle = "Keine Verbindung zum Internet!"
+            program.programDate = "Programm kann nicht geladen werden."
+            program.programState = ""
+            programPlan.append(program)
+        } else {
+            parser = NSXMLParser(contentsOfURL: (NSURL(string: "https://www.google.com/calendar/feeds/h6tfehdpu3jrbcrn9sdju9ohj8%40group.calendar.google.com/public/basic?hl=de")))!
+            parser.delegate = self
+            parser.parse()
+        }
 
         programTableView.reloadData()
+    }
+    
+    func isConnectedToNetwork() -> Bool {
+        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
+        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0)).takeRetainedValue()
+        }
+        
+        var flags: SCNetworkReachabilityFlags = 0
+        if SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) == 0 {
+            return false
+        }
+        
+        let isReachable = (flags & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        
+        return (isReachable && !needsConnection) ? true : false
     }
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -248,8 +278,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                 cell.logoImageView.image = NSImage(named: "live.png")
             case "new":
                 cell.logoImageView.image = NSImage(named: "new.png")
-            default:
+            case "rerun":
                 cell.logoImageView.image = NSImage(named: "rerun.png")
+            default:
+                cell.logoImageView.image = NSImage(named: "transparent.png")
         }
                 
         return cell;
