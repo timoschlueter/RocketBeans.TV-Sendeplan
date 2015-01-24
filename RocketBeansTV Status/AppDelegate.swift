@@ -335,13 +335,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         
         switch (programPlan.programState) {
             case "live":
-                cell.logoImageView.image = NSImage(named: "live.png")
+                cell.logoImageView.image = NSImage(named: "LiveIcon")
             case "new":
-                cell.logoImageView.image = NSImage(named: "new.png")
+                cell.logoImageView.image = NSImage(named: "NewIcon")
             case "rerun":
-                cell.logoImageView.image = NSImage(named: "rerun.png")
+                cell.logoImageView.image = NSImage(named: "RerunIcon")
             default:
-                cell.logoImageView.image = NSImage(named: "transparent.png")
+                cell.logoImageView.image = NSImage(named: "TransparentIcon")
         }
                 
         return cell;
