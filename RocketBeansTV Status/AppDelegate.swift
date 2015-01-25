@@ -114,17 +114,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             program.programDate = outputDateFormatter.stringFromDate(startDate!) //endDate will be appended later
             program.programState = programState
             
-            if (startDate != nil) {
-                var timeinterval = startDate?.timeIntervalSince1970
-                program.programEpochDate = timeinterval!
-            }
-            
             /* check end date */
+            var endDate: NSDate?
             var endDateStr = programDate.componentsSeparatedByString(" bis ")[1]
             if (countElements(endDateStr) == 5 && endDateStr.rangeOfString(":") != nil) {
                 /* this is just a time */
                 dateFormatter.dateFormat = "kk:mm"
-                var endDate = dateFormatter.dateFromString(endDateStr)
+                endDate = dateFormatter.dateFromString(endDateStr)
                 
                 if (endDate != nil) {
                     /* it worked, remember hour and minute */
@@ -135,43 +131,35 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                     
                     /* create new date object from startDate with updated hours and minutes */
                     endDate = calendar.dateBySettingHour(hour, minute: min, second: 0, ofDate: startDate!, options: NSCalendarOptions())
-                    let currentDate = NSDate()
-                    let currentEpochDate = currentDate.timeIntervalSince1970
-                    if (currentEpochDate > program.programEpochDate && currentEpochDate < endDate?.timeIntervalSince1970) {
-                        program.programCurrent = true
-                        /* TODO: remove label and rather display row with a different background color */
-                        program.programTitle += " (JETZT!)"
-                    }
                     
                     program.programDate += " bis "+endDateStr;
                 }
             } else {
                 /* endDate is a full date string */
-                var endDate = dateFormatter.dateFromString(endDateStr)
+                endDate = dateFormatter.dateFromString(endDateStr)
                 
                 if (endDate != nil) {
                     program.programDate += " bis "+outputDateFormatter.stringFromDate(endDate!)
                 }
             }
             
-            /* add every programm, old ones will be dropped later */
-            programPlan.append(program)
-            
-            /* sort the programs */
-            programPlan.sort({$0.programEpochDate < $1.programEpochDate})
-            
-            /* search for the current program */
-            var currentIndex = -1;
-            for (index, value) in enumerate(programPlan) {
-                if (value.programCurrent) {
-                    currentIndex = index;
-                    break
+            if (startDate != nil && endDate != nil) {
+                let currentEpochDate = NSDate().timeIntervalSince1970
+                let startEpochDate = startDate?.timeIntervalSince1970
+                let endEpochDate = endDate?.timeIntervalSince1970
+                
+                if (startEpochDate >= currentEpochDate || endEpochDate >= currentEpochDate) {
+                    if (currentEpochDate >= startEpochDate && currentEpochDate <= endEpochDate) {
+                        program.programCurrent = true
+                        /* TODO: remove label and rather display row with a different background color */
+                        program.programTitle += " (JETZT!)"
+                    }
+                    program.programEpochDate = startEpochDate!
+                    programPlan.append(program)
+                
+                    /* sort the programs */
+                    programPlan.sort({$0.programEpochDate < $1.programEpochDate})
                 }
-            }
-            
-            /* only keep programs in the future, the current one and the latest old program */
-            if (currentIndex != -1) {
-                programPlan.removeRange(Range(start: 0, end: currentIndex - 1))
             }
         }
         
@@ -326,9 +314,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         
         if (programPlan.programCurrent) {
             var rowView = tableView.rowViewAtRow(row, makeIfNecessary: true) as NSTableRowView
-            /* TODO: strange things happening when background color is changed */
-            /*rowView.backgroundColor = NSColor.lightGrayColor()*/
-        }
+            /* TODO: strange things happening when background color is changed */        }
         
         cell.titleTextfield?.stringValue = "\(programPlan.programTitle)"
         cell.startTimeTextfield?.stringValue = "\(programPlan.programDate)"
