@@ -130,12 +130,26 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                     
                     /* create new date object from startDate with updated hours and minutes */
                     endDate = calendar.dateBySettingHour(hour, minute: min, second: 0, ofDate: startDate!, options: NSCalendarOptions())
+                    
+                    /* add an additional day in case google calendar doesn't deliver the day */
+                    if (endDate?.timeIntervalSince1970 < startDate?.timeIntervalSince1970) {
+                        endDate = endDate?.dateByAddingTimeInterval(60*60*24)
+                    }
+                    
                     let currentDate = NSDate()
                     let currentEpochDate = currentDate.timeIntervalSince1970
                     if (currentEpochDate > program.programEpochDate && currentEpochDate < endDate?.timeIntervalSince1970) {
                         program.programCurrent = true
                         /* TODO: remove label and rather display row with a different background color */
                         program.programTitle += " (JETZT!)"
+                        
+                        /* Live-Indicator - maybe something other? */
+                        if (program.programState == "live") {
+                            self.statusItem.toolTip = "RocketBeans.TV Sendeplan\nLivesendung!"
+                        }
+                        else {
+                            self.statusItem.toolTip = "RocketBeans.TV Sendeplan"
+                        }
                     }
                 }
             }
@@ -156,7 +170,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             }
             
             /* only keep programs in the future, the current one and the latest old program */
-            if (currentIndex != -1) {
+            if (currentIndex != -1 && currentIndex > 1) {
                 programPlan.removeRange(Range(start: 0, end: currentIndex - 1))
             }
         }
@@ -278,7 +292,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
         // Insert code here to initialize your application
-        self.statusItem.toolTip = "Tooltip"
+        self.statusItem.toolTip = "RocketBeans.TV Sendeplan"
         self.statusItem.image = NSImage(named: "StatusIcon")
         self.statusItem.image?.setTemplate(true)
         self.statusItem.highlightMode = true
@@ -321,13 +335,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         
         switch (programPlan.programState) {
             case "live":
-                cell.logoImageView.image = NSImage(named: "live.png")
+                cell.logoImageView.image = NSImage(named: "LiveIcon")
             case "new":
-                cell.logoImageView.image = NSImage(named: "new.png")
+                cell.logoImageView.image = NSImage(named: "NewIcon")
             case "rerun":
-                cell.logoImageView.image = NSImage(named: "rerun.png")
+                cell.logoImageView.image = NSImage(named: "RerunIcon")
             default:
-                cell.logoImageView.image = NSImage(named: "transparent.png")
+                cell.logoImageView.image = NSImage(named: "TransparentIcon")
         }
                 
         return cell;
