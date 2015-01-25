@@ -284,6 +284,33 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             if (currentIndex != -1 && currentIndex > 1) {
                 programPlan.removeRange(Range(start: 0, end: currentIndex - 1))
             }
+            
+            /* remove old programs in case no current program has been found */
+            if (currentIndex == -1) {
+                /* search for the upcoming program */
+                var upcomingIndex = -1;
+                let currentDate = NSDate()
+                let currentEpochDate = currentDate.timeIntervalSince1970
+                for (index, value) in enumerate(programPlan) {
+                    if (value.programEpochDate > currentEpochDate) {
+                        upcomingIndex = index;
+                        break
+                    }
+                }
+                
+                /* remove all programs up to the one that is upcoming but keep one old program*/
+                if (upcomingIndex != -1) {
+                    programPlan.removeRange(Range(start: 0, end: upcomingIndex - 1))
+                } else {
+                    /* there is no current _and_ no upcoming program -> delete all programs and display empty plan message */
+                    programPlan.removeAll(keepCapacity: false)
+                    let program: ProgramPlan = ProgramPlan()
+                    program.programTitle = "Keine weiteren Sendungen geplant!"
+                    program.programDate = "Versuch es später noch einmal."
+                    program.programState = ""
+                    programPlan.append(program)
+                }
+            }
         }
 
         programTableView.reloadData()
