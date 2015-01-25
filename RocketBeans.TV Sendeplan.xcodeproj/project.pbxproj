@@ -13,9 +13,6 @@
 		250AC0A01A6D9BA5002D2C2E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 250AC09E1A6D9BA5002D2C2E /* MainMenu.xib */; };
 		250AC0AC1A6D9BA6002D2C2E /* RocketBeansTV_StatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250AC0AB1A6D9BA6002D2C2E /* RocketBeansTV_StatusTests.swift */; };
 		256E92D41A72B37500FD7FFB /* ProgramPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256E92D31A72B37500FD7FFB /* ProgramPlan.swift */; };
-		256E92DC1A72BC2300FD7FFB /* rerun.png in Resources */ = {isa = PBXBuildFile; fileRef = 256E92DB1A72BC2300FD7FFB /* rerun.png */; };
-		256E92DE1A72BCB300FD7FFB /* live.png in Resources */ = {isa = PBXBuildFile; fileRef = 256E92DD1A72BCB300FD7FFB /* live.png */; };
-		256E92E01A72BD9700FD7FFB /* new.png in Resources */ = {isa = PBXBuildFile; fileRef = 256E92DF1A72BD9700FD7FFB /* new.png */; };
 		2575C9E41A6EC425007E7BDC /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2575C9E31A6EC425007E7BDC /* CustomTableView.swift */; };
 		258A29941A6F751F004246D8 /* amazon_logo_SPOT.png in Resources */ = {isa = PBXBuildFile; fileRef = 258A29931A6F751F004246D8 /* amazon_logo_SPOT.png */; };
 		258A29961A6F75DD004246D8 /* rbshop.png in Resources */ = {isa = PBXBuildFile; fileRef = 258A29951A6F75DD004246D8 /* rbshop.png */; };
@@ -34,7 +31,6 @@
 
 /* Begin PBXFileReference section */
 		220E683E1A73FE35002BCF12 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		22309E291A74030F006382A3 /* transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparent.png; sourceTree = "<group>"; };
 		250AC0951A6D9BA5002D2C2E /* RocketBeans.TV Sendeplan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RocketBeans.TV Sendeplan.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		250AC0991A6D9BA5002D2C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		250AC09A1A6D9BA5002D2C2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,9 +40,6 @@
 		250AC0AA1A6D9BA6002D2C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		250AC0AB1A6D9BA6002D2C2E /* RocketBeansTV_StatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketBeansTV_StatusTests.swift; sourceTree = "<group>"; };
 		256E92D31A72B37500FD7FFB /* ProgramPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlan.swift; sourceTree = "<group>"; };
-		256E92DB1A72BC2300FD7FFB /* rerun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rerun.png; sourceTree = "<group>"; };
-		256E92DD1A72BCB300FD7FFB /* live.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = live.png; sourceTree = "<group>"; };
-		256E92DF1A72BD9700FD7FFB /* new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new.png; sourceTree = "<group>"; };
 		2575C9E31A6EC425007E7BDC /* CustomTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
 		258A29931A6F751F004246D8 /* amazon_logo_SPOT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = amazon_logo_SPOT.png; sourceTree = "<group>"; };
 		258A29951A6F75DD004246D8 /* rbshop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rbshop.png; sourceTree = "<group>"; };
@@ -107,13 +100,9 @@
 		250AC0981A6D9BA5002D2C2E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				256E92DF1A72BD9700FD7FFB /* new.png */,
-				256E92DD1A72BCB300FD7FFB /* live.png */,
-				256E92DB1A72BC2300FD7FFB /* rerun.png */,
 				258A29971A6F76CF004246D8 /* g2a.png */,
 				258A29951A6F75DD004246D8 /* rbshop.png */,
 				258A29931A6F751F004246D8 /* amazon_logo_SPOT.png */,
-				22309E291A74030F006382A3 /* transparent.png */,
 				250AC0991A6D9BA5002D2C2E /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -216,10 +205,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				256E92E01A72BD9700FD7FFB /* new.png in Resources */,
 				258A29981A6F76CF004246D8 /* g2a.png in Resources */,
-				256E92DC1A72BC2300FD7FFB /* rerun.png in Resources */,
-				256E92DE1A72BCB300FD7FFB /* live.png in Resources */,
 				250AC09D1A6D9BA5002D2C2E /* Images.xcassets in Resources */,
 				258A29941A6F751F004246D8 /* amazon_logo_SPOT.png in Resources */,
 				258A29961A6F75DD004246D8 /* rbshop.png in Resources */,

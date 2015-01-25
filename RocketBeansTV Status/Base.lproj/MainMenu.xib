@@ -64,7 +64,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="46" horizontalPageScroll="10" verticalLineScroll="46" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHG-fD-kOQ">
-                    <rect key="frame" x="0.0" y="7" width="353" height="247"/>
+                    <rect key="frame" x="0.0" y="0.0" width="353" height="259"/>
                     <clipView key="contentView" misplaced="YES" drawsBackground="NO" copiesOnScroll="NO" id="IFS-62-Oij">
                         <rect key="frame" x="1" y="0.0" width="238" height="134"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -93,7 +93,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wKg-FS-TsC">
-                                                        <rect key="frame" x="43" y="22" width="306" height="17"/>
+                                                        <rect key="frame" x="43" y="22" width="295" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="porgramTitle" placeholderString="Bohn Jour" id="C8B-ot-j9d">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -101,7 +101,7 @@
                                                         </textFieldCell>
                                                     </textField>
                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="USM-me-qpm">
-                                                        <rect key="frame" x="43" y="5" width="306" height="14"/>
+                                                        <rect key="frame" x="43" y="5" width="295" height="14"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="startTime" placeholderString="19:00 Uhr" id="4YD-bd-5jI">
                                                             <font key="font" metaFont="smallSystem"/>
                                                             <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
@@ -110,7 +110,7 @@
                                                     </textField>
                                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="anO-Rq-Ov8">
                                                         <rect key="frame" x="3" y="5" width="34" height="34"/>
-                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="rerun" id="XZY-yf-xsy"/>
+                                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="RerunIcon" id="XZY-yf-xsy"/>
                                                     </imageView>
                                                 </subviews>
                                                 <connections>
@@ -196,7 +196,7 @@
         <window title="Informationen" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="eEQ-sF-qku">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <rect key="contentRect" x="677" y="380" width="317" height="470"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="oZL-a1-c3m">
                 <rect key="frame" x="0.0" y="0.0" width="317" height="470"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -310,11 +310,11 @@ Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inh
         <image name="GithubIcon" width="32" height="32"/>
         <image name="RBTVIcon" width="84" height="84"/>
         <image name="RedditIcon" width="32" height="32"/>
+        <image name="RerunIcon" width="34" height="34"/>
         <image name="TwitterIcon" width="32" height="32"/>
         <image name="WordpressIcon" width="32" height="32"/>
         <image name="amazon_logo_SPOT" width="512.4000244140625" height="154.32000732421875"/>
         <image name="g2a" width="149" height="43"/>
         <image name="rbshop" width="149" height="54"/>
-        <image name="rerun" width="68" height="68"/>
     </resources>
 </document>

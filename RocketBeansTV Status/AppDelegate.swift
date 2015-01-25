@@ -153,6 +153,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                     /* TODO: remove label and rather display row with a different background color */
                     program.programTitle += " (JETZT!)"
                 }
+                
+                /* Live-Indicator - maybe something other? */
+                if (program.programState == "live") {
+                    self.statusItem.toolTip = "RocketBeans.TV Sendeplan\nLivesendung!"
+                }
+                else {
+                    self.statusItem.toolTip = "RocketBeans.TV Sendeplan"
+                }
             }
             
             /* add every programm, old ones will be dropped later */
@@ -241,7 +249,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         if (!self.isConnectedToNetwork()) {
             let program: ProgramPlan = ProgramPlan()
             program.programTitle = "Keine Verbindung zum Internet!"
-            program.programDate = "Programm kann nicht geladen werden."
+            program.programDate = "Sendeplan kann nicht geladen werden."
             program.programState = ""
             programPlan.append(program)
         } else {
@@ -293,7 +301,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
         // Insert code here to initialize your application
-        self.statusItem.toolTip = "Tooltip"
+        self.statusItem.toolTip = "RocketBeans.TV Sendeplan"
         self.statusItem.image = NSImage(named: "StatusIcon")
         self.statusItem.image?.setTemplate(true)
         self.statusItem.highlightMode = true
@@ -336,15 +344,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         
         switch (programPlan.programState) {
             case "live":
-                cell.logoImageView.image = NSImage(named: "live.png")
+                cell.logoImageView.image = NSImage(named: "LiveIcon")
             case "new":
-                cell.logoImageView.image = NSImage(named: "new.png")
+                cell.logoImageView.image = NSImage(named: "NewIcon")
             case "rerun":
-                cell.logoImageView.image = NSImage(named: "rerun.png")
+                cell.logoImageView.image = NSImage(named: "RerunIcon")
             default:
-                cell.logoImageView.image = NSImage(named: "transparent.png")
+                cell.logoImageView.image = NSImage(named: "TransparentIcon")
         }
-                
+        
         return cell;
     }
 
