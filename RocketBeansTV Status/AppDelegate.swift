@@ -10,7 +10,7 @@ import Cocoa
 import SystemConfiguration
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate, NSXMLParserDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate {
 
     @IBOutlet weak var mainMenu: NSMenu!
     @IBOutlet weak var programViewCell: NSMenuItem!
@@ -34,139 +34,135 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     
     var programPlan: [ProgramPlan] = []
     
-    /* Element Start */
-    func parser(parser: NSXMLParser!, didStartElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!, attributes attributeDict: NSDictionary!)
-    {
-        currentElementName = elementName
-        
-        if (elementName == "entry") {
-            programTitle = ""
-            programSummary = ""
-        }
-    }
+    /* 
     
-    /* Element processed */
-    func parser(parser: NSXMLParser!, foundCharacters string: String!) {
-        
-        let data = string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-        
-        if (!data.isEmpty) {
-            
-            if (currentElementName == "title") {
-                programTitle += data
-            } else if (currentElementName == "summary") {
-                programSummary += data
-            }
-            
-        }
-    }
+    ICS Parsing
     
-    /* Element end */
-    func parser(parser: NSXMLParser!, didEndElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!)
-    {
+    The main data handling happens here now. This function gets the program from ICS.
+    All the logic that chooses which program is visible and which is not should be applied here.
+    Formatting such as human readable dates and program title gimmicks should be applied when tableview is drawn
+    
+    */
+    
+    let icsUrl: String = "https://www.google.com/calendar/ical/h6tfehdpu3jrbcrn9sdju9ohj8%40group.calendar.google.com/public/basic.ics"
+    
+    func parseICS() {
         
-        if (elementName == "entry") {
-            
-            /* HTML Character decode */
-            programTitle = programTitle.stringByReplacingOccurrencesOfString("&amp;", withString: "&", options: nil, range: nil)
-            
+        var session = NSURLSession.sharedSession()
         
-            if let range = programTitle.rangeOfString("[L] ") {
-                programState = "live"
-                programTitle.removeRange(range)
-            } else if let range = programTitle.rangeOfString("[L]") {
-                programState = "live"
-                programTitle.removeRange(range)
-            } else if let range = programTitle.rangeOfString("[N] ") {
-                programState = "new"
-                programTitle.removeRange(range)
-            } else if let range = programTitle.rangeOfString("[N]") {
-                programState = "new"
-                programTitle.removeRange(range)
-            } else {
-                programState = "rerun"
-            }
+        let task = session.dataTaskWithURL(NSURL(string: icsUrl)!) {(data, response, error) in
             
-            programSummary = programSummary.componentsSeparatedByString("&nbsp;")[0]
-
-            var pattern = "Wann: (.*)"
-            var error: NSError? = nil
-            var regex = NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.DotMatchesLineSeparators, error: &error)
-            
-            var result = regex?.stringByReplacingMatchesInString(programSummary, options: nil, range: NSRange(location:0, length:countElements(programSummary)), withTemplate: "$1")
-            
-            if (result != nil) {
-                programDate = result!
-            }
-            
-            let program: ProgramPlan = ProgramPlan()
-            program.programTitle = programTitle
-            program.programDate = programDate
-            program.programState = programState
-            
-            let currentDate = NSDate()
-            let currentEpochDate = currentDate.timeIntervalSince1970
-            
-            var dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "ee'.' dd'.' MMM'.' yyyy kk:mm"
-            dateFormatter.locale = NSLocale(localeIdentifier: "de_DE")
-            var startDate = dateFormatter.dateFromString(programDate.componentsSeparatedByString(" bis")[0])
-            
-            if (startDate != nil) {
-                var timeinterval = startDate?.timeIntervalSince1970
-                program.programEpochDate = timeinterval!
-            }
-            
-            /* get the end date string */
-            var endDateStr = programDate.componentsSeparatedByString(" bis ")[1]
-            
-            /* try parsing a time (most common case) */
-            dateFormatter.dateFormat = "kk:mm"
-            var endDate = dateFormatter.dateFromString(endDateStr)
-            
-            if (endDate != nil) {
-                /* it worked, remember hour and minute */
-                let calendar = NSCalendar.currentCalendar()
-                let comp = calendar.components((.HourCalendarUnit | .MinuteCalendarUnit), fromDate: endDate!)
-                let hour = comp.hour
-                let min = comp.minute
+            if (error == nil) {
+                
+                var dataContent: NSString = NSString(data: data, encoding: NSUTF8StringEncoding)!
+                dataContent = dataContent.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                
+                let dataLines: NSArray = dataContent.componentsSeparatedByString("\n")
+                
+                var programList:[ProgramPlan] = []
+                
+                for var i = 0; i < dataLines.count; i++ {
                     
-                /* create new date object from startDate with updated hours and minutes */
-                endDate = calendar.dateBySettingHour(hour, minute: min, second: 0, ofDate: startDate!, options: NSCalendarOptions())
+                    if dataLines[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "BEGIN:VEVENT" {
+                        var program: ProgramPlan = ProgramPlan()
+                        i++
+                        
+                        while (dataLines[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) != "END:VEVENT") {
+                            
+                            var currentLine = dataLines[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+                            
+                            let splittedLine = currentLine.componentsSeparatedByString(":")
+                            
+                            var value = ""
+                            var attribute = ""
+                            
+                            if splittedLine.count > 1 {
+                                attribute = splittedLine[0]
+                                value = splittedLine[1]
+                            }
+                            
+                            switch (attribute) {
+                            case "DTSTART":
+                                program.programStartDate = value
+                            case "DTEND":
+                                program.programEndDate = value
+                            case "CREATED":
+                                program.programCreatedDate = value
+                            case "LAST-MODIFIED":
+                                program.programLastModifiedDate = value
+                            case "SUMMARY":
+                                program.programTitle = value
+                            default:
+                                break
+                            }
+                            
+                            i++
+                        }
+                        
+                        /* Date parsing */
+                        var dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "yyyyMMdd'T'HHmmss'Z'"
+                        var startDate = dateFormatter.dateFromString(program.programStartDate)
+                        var endDate = dateFormatter.dateFromString(program.programEndDate)
+                        
+                        /* Convert ICS date to UTC */
+                        startDate = startDate?.dateByAddingTimeInterval(1 * 60 * 60)
+                        endDate = endDate?.dateByAddingTimeInterval(1 * 60 * 60)
+                        
+                        /* Get current date in UTC */
+                        let currentDate = NSDate()
+                        
+                        /* Date related functions */
+                        /* From now on, we are comparing only in UTC. Setting local timezone will be done at the last step */
+                        
+                        /* Check if program is in the future or now */
+                        if ((startDate?.compare(currentDate) == NSComparisonResult.OrderedDescending)
+                            || (startDate?.compare(currentDate) == NSComparisonResult.OrderedSame))
+                            || ((currentDate.compare(startDate!) == NSComparisonResult.OrderedDescending)
+                            && (currentDate.compare(endDate!) == NSComparisonResult.OrderedAscending))
+                        {
+                            /* Check if program is currently running */
+                            if (currentDate.compare(startDate!) == NSComparisonResult.OrderedDescending) && (currentDate.compare(endDate!) == NSComparisonResult.OrderedAscending) {
+                                program.programCurrent = true
+                            } else {
+                                program.programCurrent = false
+                            }
+                            
+                            /*
+                            DEBUG: Print all programs with startdate and enddate
+                            println(program.programTitle + " - Start: \(startDate!) / Ende: \(endDate!)")
+                            */
+                            
+                            program.programStartDateFormattable = startDate!
+                            var startEpochDate = startDate?.timeIntervalSince1970
+                            program.programStartDateEpoch = startEpochDate!
+                            
+                            program.programEndDateFormattable = endDate!
+                            var endEpochDate = endDate?.timeIntervalSince1970
+                            program.programEndDateEpoch = endEpochDate!
+                            
+                            /* Append program to list */
+                            programList.append(program)
+                        }
+                    }
+                }
                 
-                /* add an additional day in case google calendar doesn't deliver the day */
-                if (endDate?.timeIntervalSince1970 < startDate?.timeIntervalSince1970) {
-                    endDate = endDate?.dateByAddingTimeInterval(60*60*24)
-                }
-            }
-            
-            if (endDate == nil) {
-                /* end date string is not a time string, try full date string*/
-                dateFormatter.dateFormat = "ee'.' dd'.' MMM'.' yyyy kk:mm"
-                endDate = dateFormatter.dateFromString(endDateStr)
-            }
-            
-            if (endDate != nil) {
-                /* we have an end date, let's check the program if it's currently running */
-                if (currentEpochDate > program.programEpochDate && currentEpochDate < endDate?.timeIntervalSince1970) {
-                    program.programCurrent = true
-                    /* TODO: remove label and rather display row with a different background color */
-                    program.programTitle += " (JETZT!)"
-                }
+                /* Sort by date before entering main thread */
+                programList.sort({$0.programStartDateEpoch < $1.programStartDateEpoch})
                 
-                /* Live-Indicator - maybe something other? */
-                if (program.programState == "live") {
-                    self.statusItem.toolTip = "RocketBeans.TV Sendeplan\nLivesendung!"
-                }
-                else {
-                    self.statusItem.toolTip = "RocketBeans.TV Sendeplan"
-                }
+                /* Since NSURLSession is asynchrounous, we have to dispach the data back to the main thread of the app */
+                dispatch_async(dispatch_get_main_queue(), {
+                    /* Set global programPlan to the just generated programList */
+                    self.programPlan = programList
+                    self.programTableView.reloadData()
+                })
+                
+            } else {
+                /* An error occured */
             }
-            
-            /* add every programm, old ones will be dropped later */
-            programPlan.append(program)
         }
         
+        task.resume()
     }
     
     @IBAction func informationButtonPressed(sender: AnyObject) {
@@ -247,32 +243,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         self.programPlan = []
         
         if (!self.isConnectedToNetwork()) {
+            /* No connection to the internet */
             let program: ProgramPlan = ProgramPlan()
             program.programTitle = "Keine Verbindung zum Internet!"
             program.programDate = "Sendeplan kann nicht geladen werden."
             program.programState = ""
             programPlan.append(program)
         } else {
-            parser = NSXMLParser(contentsOfURL: (NSURL(string: "https://www.google.com/calendar/feeds/h6tfehdpu3jrbcrn9sdju9ohj8%40group.calendar.google.com/public/basic")))!
-            parser.delegate = self
-            parser.parse()
-            
-            /* sort the programs */
-            programPlan.sort({$0.programEpochDate < $1.programEpochDate})
-            
-            /* search for the current program */
-            var currentIndex = -1;
-            for (index, value) in enumerate(programPlan) {
-                if (value.programCurrent) {
-                    currentIndex = index;
-                    break
-                }
-            }
-            
-            /* only keep programs in the future, the current one and the latest old program */
-            if (currentIndex != -1 && currentIndex > 1) {
-                programPlan.removeRange(Range(start: 0, end: currentIndex - 1))
-            }
+            /* We have a signal! Lets go! */
+            self.parseICS()
         }
 
         programTableView.reloadData()
@@ -300,7 +279,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
-        // Insert code here to initialize your application
         self.statusItem.toolTip = "RocketBeans.TV Sendeplan"
         self.statusItem.image = NSImage(named: "StatusIcon")
         self.statusItem.image?.setTemplate(true)
@@ -329,29 +307,58 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     func tableView(tableView: NSTableView, viewForTableColumn: NSTableColumn, row: Int) -> NSView
     {
         
-        let programPlan: ProgramPlan = self.programPlan[row]
+        let programRow: ProgramPlan = self.programPlan[row]
+        
         var cell = tableView.makeViewWithIdentifier("programCell", owner: self) as CustomTableView
+        
         tableView.backgroundColor = NSColor.clearColor()
         
-        if (programPlan.programCurrent) {
+        /*
+        
+        if (programRow.programCurrent) {
             var rowView = tableView.rowViewAtRow(row, makeIfNecessary: true) as NSTableRowView
             /* TODO: strange things happening when background color is changed */
-            /*rowView.backgroundColor = NSColor.lightGrayColor()*/
+            rowView.backgroundColor = NSColor.lightGrayColor()
+        }
+    
+        */
+        
+        /* Determine the state of the program and set the icon */
+        if let range = programRow.programTitle.rangeOfString("[L] ") {
+            cell.logoImageView.image = NSImage(named: "LiveIcon")
+            programRow.programTitle.removeRange(range)
+        } else if let range = programRow.programTitle.rangeOfString("[L]") {
+            cell.logoImageView.image = NSImage(named: "LiveIcon")
+            programRow.programTitle.removeRange(range)
+        } else if let range = programRow.programTitle.rangeOfString("[N] ") {
+            cell.logoImageView.image = NSImage(named: "NewIcon")
+            programRow.programTitle.removeRange(range)
+        } else if let range = programRow.programTitle.rangeOfString("[N]") {
+            cell.logoImageView.image = NSImage(named: "NewIcon")
+            programRow.programTitle.removeRange(range)
+        } else {
+            cell.logoImageView.image = NSImage(named: "RerunIcon")
         }
         
-        cell.titleTextfield?.stringValue = "\(programPlan.programTitle)"
-        cell.startTimeTextfield?.stringValue = "\(programPlan.programDate)"
-        
-        switch (programPlan.programState) {
-            case "live":
-                cell.logoImageView.image = NSImage(named: "LiveIcon")
-            case "new":
-                cell.logoImageView.image = NSImage(named: "NewIcon")
-            case "rerun":
-                cell.logoImageView.image = NSImage(named: "RerunIcon")
-            default:
-                cell.logoImageView.image = NSImage(named: "TransparentIcon")
+        /* Append special state, if the program is currently running */
+        if (programRow.programCurrent) {
+            var rowView = tableView.rowViewAtRow(row, makeIfNecessary: true) as NSTableRowView
+            programRow.programTitle = "(JETZT!) \(programRow.programTitle)"
         }
+        
+        /* Set the final program title */
+        cell.titleTextfield?.stringValue = "\(programRow.programTitle)"
+        
+        /* Formatting the date end setting timezone to local timezone */
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .ShortStyle
+        dateFormatter.timeStyle = .ShortStyle
+        dateFormatter.doesRelativeDateFormatting = true
+        let humanReadableStartDate = dateFormatter.stringFromDate(programRow.programStartDateFormattable)
+        let humanReadableEndDate = dateFormatter.stringFromDate(programRow.programEndDateFormattable)
+        
+        /* Set the date label */
+        cell.startTimeTextfield?.stringValue = "\(humanReadableStartDate) - \(humanReadableEndDate)"
         
         return cell;
     }
