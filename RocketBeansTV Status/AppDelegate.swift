@@ -99,15 +99,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                 programDate = result!
             }
             
-            let program: ProgramPlan = ProgramPlan()
-            program.programTitle = programTitle
-            program.programDate = programDate
-            program.programState = programState
-            
             var dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "ee'.' dd'.' MMM'.' yyyy kk:mm"
             dateFormatter.locale = NSLocale(localeIdentifier: "de_DE")
             var startDate = dateFormatter.dateFromString(programDate.componentsSeparatedByString(" bis")[0])
+            
+            var outputDateFormatter = NSDateFormatter();
+            outputDateFormatter.doesRelativeDateFormatting = true;
+            outputDateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle;
+            outputDateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle;
+            
+            let program: ProgramPlan = ProgramPlan()
+            program.programTitle = programTitle
+            program.programDate = outputDateFormatter.stringFromDate(startDate!) //endDate will be appended later
+            program.programState = programState
             
             if (startDate != nil) {
                 var timeinterval = startDate?.timeIntervalSince1970
@@ -137,6 +142,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                         /* TODO: remove label and rather display row with a different background color */
                         program.programTitle += " (JETZT!)"
                     }
+                    
+                    program.programDate += " bis "+endDateStr;
+                }
+            } else {
+                /* endDate is a full date string */
+                var endDate = dateFormatter.dateFromString(endDateStr)
+                
+                if (endDate != nil) {
+                    program.programDate += " bis "+outputDateFormatter.stringFromDate(endDate!)
                 }
             }
             
