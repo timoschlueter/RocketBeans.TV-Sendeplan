@@ -108,6 +108,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             outputDateFormatter.doesRelativeDateFormatting = true;
             outputDateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle;
             outputDateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle;
+            outputDateFormatter.locale = NSLocale(localeIdentifier: "de_DE")
+
             
             let program: ProgramPlan = ProgramPlan()
             program.programTitle = programTitle
