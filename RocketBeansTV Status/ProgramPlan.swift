@@ -14,4 +14,15 @@ class ProgramPlan {
     var programEpochDate: Double = 0.0
     var programState: String = ""
     var programCurrent: Bool = false
+    
+    /* New variables for ics parsing */
+    var programStartDate: String = ""
+    var programStartDateFormattable: NSDate = NSDate()
+    var programStartDateEpoch: Double = 0.0
+    var programEndDate: String = ""
+    var programEndDateFormattable: NSDate = NSDate()
+    var programEndDateEpoch: Double = 0.0
+    var programCreatedDate: String = ""
+    var programLastModifiedDate: String = ""
+
 }
