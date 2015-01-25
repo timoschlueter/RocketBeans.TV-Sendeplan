@@ -66,7 +66,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                     if dataLines[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "BEGIN:VEVENT" {
                         var program: ProgramPlan = ProgramPlan()
                         i++
-                        var event: [String] = []
                         
                         while (dataLines[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) != "END:VEVENT") {
                             
@@ -115,8 +114,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                         
                         /* Date related functions */
                         /* From now on, we are comparing only in UTC. Setting local timezone will be done at the last step */
-                        /* Check if program is in the future or now */
                         
+                        /* Check if program is in the future or now */
                         if ((startDate?.compare(currentDate) == NSComparisonResult.OrderedDescending)
                             || (startDate?.compare(currentDate) == NSComparisonResult.OrderedSame))
                             || ((currentDate.compare(startDate!) == NSComparisonResult.OrderedDescending)
@@ -129,7 +128,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                                 program.programCurrent = false
                             }
                             
-                            //println(program.programTitle + " - Start: \(startDate!) / Ende: \(endDate!)")
+                            /*
+                            DEBUG: Print all programs with startdate and enddate
+                            println(program.programTitle + " - Start: \(startDate!) / Ende: \(endDate!)")
+                            */
                             
                             program.programStartDateFormattable = startDate!
                             var startEpochDate = startDate?.timeIntervalSince1970
@@ -145,14 +147,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                     }
                 }
                 
+                /* Sort by date before entering main thread */
                 programList.sort({$0.programStartDateEpoch < $1.programStartDateEpoch})
                 
                 /* Since NSURLSession is asynchrounous, we have to dispach the data back to the main thread of the app */
                 dispatch_async(dispatch_get_main_queue(), {
                     /* Set global programPlan to the just generated programList */
                     self.programPlan = programList
-                    /* Sort by date before entering main thread */
-                    self.programPlan.sort({$0.programStartDateEpoch < $1.programStartDateEpoch})
                     self.programTableView.reloadData()
                 })
                 
@@ -345,7 +346,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             programRow.programTitle = "(JETZT!) \(programRow.programTitle)"
         }
         
-        /* Set the program final title */
+        /* Set the final program title */
         cell.titleTextfield?.stringValue = "\(programRow.programTitle)"
         
         /* Formatting the date end setting timezone to local timezone */
