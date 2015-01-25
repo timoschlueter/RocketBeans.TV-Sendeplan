@@ -104,6 +104,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             program.programDate = programDate
             program.programState = programState
             
+            let currentDate = NSDate()
+            let currentEpochDate = currentDate.timeIntervalSince1970
+            
             var dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "ee'.' dd'.' MMM'.' yyyy kk:mm"
             dateFormatter.locale = NSLocale(localeIdentifier: "de_DE")
@@ -114,65 +117,54 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                 program.programEpochDate = timeinterval!
             }
             
-            /* check end date */
+            /* get the end date string */
             var endDateStr = programDate.componentsSeparatedByString(" bis ")[1]
-            if (countElements(endDateStr) == 5 && endDateStr.rangeOfString(":") != nil) {
-                /* this is just a time */
-                dateFormatter.dateFormat = "kk:mm"
-                var endDate = dateFormatter.dateFromString(endDateStr)
+            
+            /* try parsing a time (most common case) */
+            dateFormatter.dateFormat = "kk:mm"
+            var endDate = dateFormatter.dateFromString(endDateStr)
+            
+            if (endDate != nil) {
+                /* it worked, remember hour and minute */
+                let calendar = NSCalendar.currentCalendar()
+                let comp = calendar.components((.HourCalendarUnit | .MinuteCalendarUnit), fromDate: endDate!)
+                let hour = comp.hour
+                let min = comp.minute
+                    
+                /* create new date object from startDate with updated hours and minutes */
+                endDate = calendar.dateBySettingHour(hour, minute: min, second: 0, ofDate: startDate!, options: NSCalendarOptions())
                 
-                if (endDate != nil) {
-                    /* it worked, remember hour and minute */
-                    let calendar = NSCalendar.currentCalendar()
-                    let comp = calendar.components((.HourCalendarUnit | .MinuteCalendarUnit), fromDate: endDate!)
-                    let hour = comp.hour
-                    let min = comp.minute
-                    
-                    /* create new date object from startDate with updated hours and minutes */
-                    endDate = calendar.dateBySettingHour(hour, minute: min, second: 0, ofDate: startDate!, options: NSCalendarOptions())
-                    
-                    /* add an additional day in case google calendar doesn't deliver the day */
-                    if (endDate?.timeIntervalSince1970 < startDate?.timeIntervalSince1970) {
-                        endDate = endDate?.dateByAddingTimeInterval(60*60*24)
-                    }
-                    
-                    let currentDate = NSDate()
-                    let currentEpochDate = currentDate.timeIntervalSince1970
-                    if (currentEpochDate > program.programEpochDate && currentEpochDate < endDate?.timeIntervalSince1970) {
-                        program.programCurrent = true
-                        /* TODO: remove label and rather display row with a different background color */
-                        program.programTitle += " (JETZT!)"
-                        
-                        /* Live-Indicator - maybe something other? */
-                        if (program.programState == "live") {
-                            self.statusItem.toolTip = "RocketBeans.TV Sendeplan\nLivesendung!"
-                        }
-                        else {
-                            self.statusItem.toolTip = "RocketBeans.TV Sendeplan"
-                        }
-                    }
+                /* add an additional day in case google calendar doesn't deliver the day */
+                if (endDate?.timeIntervalSince1970 < startDate?.timeIntervalSince1970) {
+                    endDate = endDate?.dateByAddingTimeInterval(60*60*24)
+                }
+            }
+            
+            if (endDate == nil) {
+                /* end date string is not a time string, try full date string*/
+                dateFormatter.dateFormat = "ee'.' dd'.' MMM'.' yyyy kk:mm"
+                endDate = dateFormatter.dateFromString(endDateStr)
+            }
+            
+            if (endDate != nil) {
+                /* we have an end date, let's check the program if it's currently running */
+                if (currentEpochDate > program.programEpochDate && currentEpochDate < endDate?.timeIntervalSince1970) {
+                    program.programCurrent = true
+                    /* TODO: remove label and rather display row with a different background color */
+                    program.programTitle += " (JETZT!)"
+                }
+                
+                /* Live-Indicator - maybe something other? */
+                if (program.programState == "live") {
+                    self.statusItem.toolTip = "RocketBeans.TV Sendeplan\nLivesendung!"
+                }
+                else {
+                    self.statusItem.toolTip = "RocketBeans.TV Sendeplan"
                 }
             }
             
             /* add every programm, old ones will be dropped later */
             programPlan.append(program)
-            
-            /* sort the programs */
-            programPlan.sort({$0.programEpochDate < $1.programEpochDate})
-            
-            /* search for the current program */
-            var currentIndex = -1;
-            for (index, value) in enumerate(programPlan) {
-                if (value.programCurrent) {
-                    currentIndex = index;
-                    break
-                }
-            }
-            
-            /* only keep programs in the future, the current one and the latest old program */
-            if (currentIndex != -1 && currentIndex > 1) {
-                programPlan.removeRange(Range(start: 0, end: currentIndex - 1))
-            }
         }
         
     }
@@ -257,13 +249,30 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         if (!self.isConnectedToNetwork()) {
             let program: ProgramPlan = ProgramPlan()
             program.programTitle = "Keine Verbindung zum Internet!"
-            program.programDate = "Programm kann nicht geladen werden."
+            program.programDate = "Sendeplan kann nicht geladen werden."
             program.programState = ""
             programPlan.append(program)
         } else {
-            parser = NSXMLParser(contentsOfURL: (NSURL(string: "https://www.google.com/calendar/feeds/h6tfehdpu3jrbcrn9sdju9ohj8%40group.calendar.google.com/public/basic?hl=de")))!
+            parser = NSXMLParser(contentsOfURL: (NSURL(string: "https://www.google.com/calendar/feeds/h6tfehdpu3jrbcrn9sdju9ohj8%40group.calendar.google.com/public/basic")))!
             parser.delegate = self
             parser.parse()
+            
+            /* sort the programs */
+            programPlan.sort({$0.programEpochDate < $1.programEpochDate})
+            
+            /* search for the current program */
+            var currentIndex = -1;
+            for (index, value) in enumerate(programPlan) {
+                if (value.programCurrent) {
+                    currentIndex = index;
+                    break
+                }
+            }
+            
+            /* only keep programs in the future, the current one and the latest old program */
+            if (currentIndex != -1 && currentIndex > 1) {
+                programPlan.removeRange(Range(start: 0, end: currentIndex - 1))
+            }
         }
 
         programTableView.reloadData()
@@ -343,7 +352,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             default:
                 cell.logoImageView.image = NSImage(named: "TransparentIcon")
         }
-                
+        
         return cell;
     }
 
