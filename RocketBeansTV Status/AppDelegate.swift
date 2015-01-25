@@ -101,8 +101,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             
             let program: ProgramPlan = ProgramPlan()
             program.programTitle = programTitle
-            program.programDate = programDate
+            program.programDate = ""
             program.programState = programState
+            
+            var outputDateFormatter = NSDateFormatter()
+            outputDateFormatter.doesRelativeDateFormatting = true
+            outputDateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+            outputDateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+            outputDateFormatter.locale = NSLocale(localeIdentifier: "de_DE")
             
             let currentDate = NSDate()
             let currentEpochDate = currentDate.timeIntervalSince1970
@@ -115,6 +121,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             if (startDate != nil) {
                 var timeinterval = startDate?.timeIntervalSince1970
                 program.programEpochDate = timeinterval!
+                program.programDate = outputDateFormatter.stringFromDate(startDate!)
             }
             
             /* get the end date string */
@@ -138,12 +145,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                 if (endDate?.timeIntervalSince1970 < startDate?.timeIntervalSince1970) {
                     endDate = endDate?.dateByAddingTimeInterval(60*60*24)
                 }
+                
+                program.programDate += " bis "+endDateStr;
             }
             
             if (endDate == nil) {
                 /* end date string is not a time string, try full date string*/
                 dateFormatter.dateFormat = "ee'.' dd'.' MMM'.' yyyy kk:mm"
                 endDate = dateFormatter.dateFromString(endDateStr)
+                
+                program.programDate += " bis "+outputDateFormatter.stringFromDate(endDate!)
             }
             
             if (endDate != nil) {
@@ -253,7 +264,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             program.programState = ""
             programPlan.append(program)
         } else {
-            parser = NSXMLParser(contentsOfURL: (NSURL(string: "https://www.google.com/calendar/feeds/h6tfehdpu3jrbcrn9sdju9ohj8%40group.calendar.google.com/public/basic")))!
+            parser = NSXMLParser(contentsOfURL: (NSURL(string: "https://www.google.com/calendar/feeds/h6tfehdpu3jrbcrn9sdju9ohj8%40group.calendar.google.com/public/basic?hl=de")))!
             parser.delegate = self
             parser.parse()
             
