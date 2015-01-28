@@ -132,7 +132,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                             /* Check if program is starting in about 10 minutes - send notification if so */
                             let diff = NSDate().timeIntervalSinceDate(currentDate)
                             if (diff > 600 - self.refreshInterval && diff <= 600) { // 600 = 10 minutes
-                                self.sendLocalNotification(program.programTitle, text: "\(program.programTitle) fängt gleich an!")
+                                let title = self.iconNameFromTitle(program.programTitle)
+                                self.sendLocalNotification(program.programTitle, text: "\(title.stripedTitle) fängt gleich an!")
                             }
                             
                             /*
@@ -317,6 +318,31 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         self.appVersionLabel.stringValue = "Version \(appVersion)"
     }
     
+    /* seperates title to iconname and title without type tag in front of it */
+    func iconNameFromTitle(title: String) -> (stripedTitle: String, iconName: String)
+    {
+        var stripedTitle = title
+        var iconName: String
+        
+        if let range = title.rangeOfString("[L] ") {
+            iconName = "LiveIcon"
+            stripedTitle.removeRange(range)
+        } else if let range = title.rangeOfString("[L]") {
+            iconName = "LiveIcon"
+            stripedTitle.removeRange(range)
+        } else if let range = title.rangeOfString("[N] ") {
+            iconName = "NewIcon"
+            stripedTitle.removeRange(range)
+        } else if let range = title.rangeOfString("[N]") {
+            iconName = "NewIcon"
+            stripedTitle.removeRange(range)
+        } else {
+            iconName = "RerunIcon"
+        }
+        
+        return (stripedTitle, iconName)
+    }
+    
     func numberOfRowsInTableView(aTableView: NSTableView!) -> Int
     {
         return self.programPlan.count
@@ -341,22 +367,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     
         */
         
-        /* Determine the state of the program and set the icon */
-        if let range = programRow.programTitle.rangeOfString("[L] ") {
-            cell.logoImageView.image = NSImage(named: "LiveIcon")
-            programRow.programTitle.removeRange(range)
-        } else if let range = programRow.programTitle.rangeOfString("[L]") {
-            cell.logoImageView.image = NSImage(named: "LiveIcon")
-            programRow.programTitle.removeRange(range)
-        } else if let range = programRow.programTitle.rangeOfString("[N] ") {
-            cell.logoImageView.image = NSImage(named: "NewIcon")
-            programRow.programTitle.removeRange(range)
-        } else if let range = programRow.programTitle.rangeOfString("[N]") {
-            cell.logoImageView.image = NSImage(named: "NewIcon")
-            programRow.programTitle.removeRange(range)
-        } else {
-            cell.logoImageView.image = NSImage(named: "RerunIcon")
-        }
+        /* get title without type tag and get icon name */
+        let titleInfo = self.iconNameFromTitle(programRow.programTitle)
+        programRow.programTitle = titleInfo.stripedTitle
+        cell.logoImageView.image = NSImage(named: titleInfo.iconName)
         
         /* Append special state, if the program is currently running */
         if (programRow.programCurrent) {
