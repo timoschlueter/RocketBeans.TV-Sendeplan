@@ -23,6 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     @IBOutlet weak var informationWindow: NSWindow!
     
     var parser = NSXMLParser()
+    let refreshInterval: NSTimeInterval = 60
     var posts = NSMutableArray()
     var elements = NSMutableDictionary()
     var currentElementName = NSString()
@@ -126,6 +127,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                                 program.programCurrent = true
                             } else {
                                 program.programCurrent = false
+                            }
+                            
+                            /* Check if program is starting in about 10 minutes - send notification if so */
+                            let diff = NSDate().timeIntervalSinceDate(currentDate)
+                            if (diff > 600 - self.refreshInterval && diff <= 600) { // 600 = 10 minutes
+                                self.sendLocalNotification(program.programTitle, text: "\(program.programTitle) fängt gleich an!")
                             }
                             
                             /*
@@ -257,6 +264,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         programTableView.reloadData()
     }
     
+    /* sends a local notification for given title and text */
+    func sendLocalNotification(title: String, text: String)
+    {
+        let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
+        let notification = NSUserNotification()
+        notification.title = title
+        notification.informativeText = text
+        notification.deliveryDate = NSDate(timeIntervalSinceNow: 5) // 5 seconds delay
+        notificationCenter.scheduleNotification(notification)
+    }
+    
     func isConnectedToNetwork() -> Bool {
         var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
         zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
@@ -289,7 +307,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         self.supportViewCell.view = supportView
         self.programTableView.setDataSource(self)
         
-        var timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector("beginParsing"), userInfo: nil, repeats: true)
+        var timer = NSTimer.scheduledTimerWithTimeInterval(self.refreshInterval, target: self, selector: Selector("beginParsing"), userInfo: nil, repeats: true)
         
         self.beginParsing()
         
