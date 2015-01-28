@@ -133,7 +133,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                             let diff = NSDate().timeIntervalSinceDate(currentDate)
                             if (diff > 600 - self.refreshInterval && diff <= 600) { // 600 = 10 minutes
                                 let title = self.iconNameFromTitle(program.programTitle)
-                                self.sendLocalNotification(program.programTitle, text: "\(title.stripedTitle) fängt gleich an!")
+                                self.sendLocalNotification(title.stripedTitle, text: "\(title.stripedTitle) fängt gleich an!")
                             }
                             
                             /*
