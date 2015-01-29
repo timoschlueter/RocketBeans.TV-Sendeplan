@@ -25,4 +25,23 @@ class ProgramPlan {
     var programCreatedDate: String = ""
     var programLastModifiedDate: String = ""
 
+    func humanReadableStartDate() -> String
+    {
+        return self.convertDateToHumanReadable(self.programStartDateFormattable)
+    }
+    
+    func humanReadableEndDate() -> String
+    {
+        return self.convertDateToHumanReadable(self.programEndDateFormattable)
+    }
+    
+    /* Formatting the date end setting timezone to local timezone */
+    private func convertDateToHumanReadable(date: NSDate) -> String
+    {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .ShortStyle
+        dateFormatter.timeStyle = .ShortStyle
+        dateFormatter.doesRelativeDateFormatting = true
+        return dateFormatter.stringFromDate(date)
+    }
 }
