@@ -130,10 +130,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                             }
                             
                             /* Check if program is starting in about 10 minutes - send notification if so */
-                            let diff = NSDate().timeIntervalSinceDate(currentDate)
-                            if (diff > 600 - self.refreshInterval && diff <= 600) { // 600 = 10 minutes
-                                let title = self.iconNameFromTitle(program.programTitle)
-                                self.sendLocalNotification(title.stripedTitle, text: "\(title.stripedTitle) fängt gleich an!")
+                            if startDate != nil {
+                                let diff = startDate!.timeIntervalSinceDate(currentDate)
+                                if (diff > 600 - self.refreshInterval && diff <= 600) { // 600 = 10 minutes
+                                    
+                                    /* get human readable date */
+                                    let humanReadableStartDate = program.humanReadableStartDate()
+                                    let humanReadableEndDate = program.humanReadableEndDate()
+                                    
+                                    let title = self.iconNameFromTitle(program.programTitle)
+                                    self.sendLocalNotification(title.stripedTitle, text: "\(title.stripedTitle): \(humanReadableStartDate) - \(humanReadableEndDate)")
+                                }
                             }
                             
                             /*
@@ -381,13 +388,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         /* Set the final program title */
         cell.titleTextfield?.stringValue = "\(programRow.programTitle)"
         
-        /* Formatting the date end setting timezone to local timezone */
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .ShortStyle
-        dateFormatter.timeStyle = .ShortStyle
-        dateFormatter.doesRelativeDateFormatting = true
-        let humanReadableStartDate = dateFormatter.stringFromDate(programRow.programStartDateFormattable)
-        let humanReadableEndDate = dateFormatter.stringFromDate(programRow.programEndDateFormattable)
+        /* get human readable date */
+        let humanReadableStartDate = programRow.humanReadableStartDate()
+        let humanReadableEndDate = programRow.humanReadableEndDate()
         
         /* Set the date label */
         cell.startTimeTextfield?.stringValue = "\(humanReadableStartDate) - \(humanReadableEndDate)"
