@@ -129,20 +129,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                                 program.programCurrent = false
                             }
                             
-                            /* Check if program is starting in about 10 minutes - send notification if so */
-                            if startDate != nil {
-                                let diff = startDate!.timeIntervalSinceDate(currentDate)
-                                if (diff > 600 - self.refreshInterval && diff <= 600) { // 600 = 10 minutes
-                                    
-                                    /* get human readable date */
-                                    let humanReadableStartDate = program.humanReadableStartDate()
-                                    let humanReadableEndDate = program.humanReadableEndDate()
-                                    
-                                    let title = self.iconNameFromTitle(program.programTitle)
-                                    self.sendLocalNotification(title.stripedTitle, text: "\(title.stripedTitle): \(humanReadableStartDate) - \(humanReadableEndDate)")
-                                }
-                            }
-                            
                             /*
                             DEBUG: Print all programs with startdate and enddate
                             println(program.programTitle + " - Start: \(startDate!) / Ende: \(endDate!)")
@@ -158,6 +144,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                             
                             /* Append program to list */
                             programList.append(program)
+                            
+                            /* Check if program is starting in about 10 minutes - send notification if so */
+                            if startDate != nil {
+                                let diff = startDate!.timeIntervalSinceDate(currentDate)
+                                if (diff > 600 - self.refreshInterval && diff <= 600) { // 600 = 10 minutes
+                                
+                                    /* get human readable date */
+                                    let humanReadableStartDate = program.humanReadableStartDate()
+                                    let humanReadableEndDate = program.humanReadableEndDate()
+                                    
+                                    let title = self.iconNameFromTitle(program.programTitle)
+                                    self.sendLocalNotification(title.stripedTitle, text: "\(title.stripedTitle): \(humanReadableStartDate) - \(humanReadableEndDate)")
+                                }
+                            }
                         }
                     }
                 }
