@@ -50,6 +50,11 @@
                         <action selector="informationButtonPressed:" target="Voe-Tx-rLC" id="8ex-bL-HbS"/>
                     </connections>
                 </menuItem>
+                <menuItem title="Einstellungen" keyEquivalent="," id="Ulz-RD-5rt">
+                    <connections>
+                        <action selector="settingsButtonPressed:" target="Voe-Tx-rLC" id="mWF-nc-7vg"/>
+                    </connections>
+                </menuItem>
                 <menuItem title="Beenden" keyEquivalent="q" id="jgF-RF-176">
                     <connections>
                         <action selector="closeButtonClicked:" target="Voe-Tx-rLC" id="fCJ-kf-7RO"/>
