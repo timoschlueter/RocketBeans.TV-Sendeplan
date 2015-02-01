@@ -259,6 +259,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         
         self.settingsWC?.showWindow(self)
         self.settingsWC?.window?.makeKeyAndOrderFront(self)
+        self.settingsWC?.window?.makeMainWindow()
     }
     
     /* START Social Media Buttons */
@@ -421,7 +422,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     
     func updateValuesFromUserDefaults()
     {
-        println("updateValuesFromUserDefaults")
         /* stop previous timer */
         self.refreshTimer?.invalidate()
         /* update user settings */
