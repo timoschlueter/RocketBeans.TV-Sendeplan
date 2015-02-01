@@ -23,7 +23,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     @IBOutlet weak var informationWindow: NSWindow!
     
     var parser = NSXMLParser()
-    let refreshInterval: NSTimeInterval = 60
+    var refreshInterval: NSTimeInterval = 60
+    var refreshTimer: NSTimer?
     var posts = NSMutableArray()
     var elements = NSMutableDictionary()
     var currentElementName = NSString()
@@ -33,7 +34,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     var programState: String = ""
     var programDate: String = ""
     
-    var programPlan: [ProgramPlan] = []
+    var programPlan: [ProgramPlan] = [] // all events from the google calendar
+    var tableViewProgramPlan: [ProgramPlan] = [] // program for the table view
+    
+    var settingsWC: SettingsWindowController?
     
     /* 
     
@@ -61,6 +65,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                 let dataLines: NSArray = dataContent.componentsSeparatedByString("\n")
                 
                 var programList:[ProgramPlan] = []
+                var tableViewProgramPlan:[ProgramPlan] = []
                 
                 for var i = 0; i < dataLines.count; i++ {
                     
@@ -93,6 +98,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                                 program.programLastModifiedDate = value
                             case "SUMMARY":
                                 program.programTitle = value
+                            case "UID":
+                                program.programUid = value
                             default:
                                 break
                             }
@@ -110,6 +117,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                         startDate = startDate?.dateByAddingTimeInterval(1 * 60 * 60)
                         endDate = endDate?.dateByAddingTimeInterval(1 * 60 * 60)
                         
+                        /* update startdate properties */
+                        program.programStartDateFormattable = startDate!
+                        var startEpochDate = startDate?.timeIntervalSince1970
+                        program.programStartDateEpoch = startEpochDate!
+                        
+                        /* update enddate properties */
+                        program.programEndDateFormattable = endDate!
+                        var endEpochDate = endDate?.timeIntervalSince1970
+                        program.programEndDateEpoch = endEpochDate!
+                        
+                        programList.append(program)
+                        
                         /* Get current date in UTC */
                         let currentDate = NSDate()
                         
@@ -123,7 +142,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                             && (currentDate.compare(endDate!) == NSComparisonResult.OrderedAscending))
                         {
                             /* Check if program is currently running */
-                            if (currentDate.compare(startDate!) == NSComparisonResult.OrderedDescending) && (currentDate.compare(endDate!) == NSComparisonResult.OrderedAscending) {
+                            if (currentDate.compare(startDate!) == NSComparisonResult.OrderedDescending)
+                                && (currentDate.compare(endDate!) == NSComparisonResult.OrderedAscending)
+                            {
                                 program.programCurrent = true
                             } else {
                                 program.programCurrent = false
@@ -134,43 +155,28 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                             println(program.programTitle + " - Start: \(startDate!) / Ende: \(endDate!)")
                             */
                             
-                            program.programStartDateFormattable = startDate!
-                            var startEpochDate = startDate?.timeIntervalSince1970
-                            program.programStartDateEpoch = startEpochDate!
-                            
-                            program.programEndDateFormattable = endDate!
-                            var endEpochDate = endDate?.timeIntervalSince1970
-                            program.programEndDateEpoch = endEpochDate!
-                            
-                            /* Append program to list */
-                            programList.append(program)
-                            
-                            /* Check if program is starting in about 10 minutes - send notification if so */
-                            if startDate != nil {
-                                let diff = startDate!.timeIntervalSinceDate(currentDate)
-                                if (diff > 600 - self.refreshInterval && diff <= 600) { // 600 = 10 minutes
-                                
-                                    /* get human readable date */
-                                    let humanReadableStartDate = program.humanReadableStartDate()
-                                    let humanReadableEndDate = program.humanReadableEndDate()
-                                    
-                                    let title = self.iconNameFromTitle(program.programTitle)
-                                    self.sendLocalNotification(title.stripedTitle, text: "\(title.stripedTitle): \(humanReadableStartDate) - \(humanReadableEndDate)")
-                                }
-                            }
+                            /* Append program to list for the table view */
+                            tableViewProgramPlan.append(program)
                         }
                     }
                 }
                 
                 /* Sort by date before entering main thread */
                 programList.sort({$0.programStartDateEpoch < $1.programStartDateEpoch})
+                tableViewProgramPlan.sort({$0.programStartDateEpoch < $1.programStartDateEpoch})
                 
                 /* Since NSURLSession is asynchrounous, we have to dispach the data back to the main thread of the app */
                 dispatch_async(dispatch_get_main_queue(), {
                     /* Set global programPlan to the just generated programList */
-                    self.programPlan = programList
+                    self.tableViewProgramPlan = tableViewProgramPlan
                     self.programTableView.reloadData()
                 })
+                
+                /* checks if program plan has changed */
+                self.checkForNewProgramPlan(programList)
+                
+                /* checks if we need to add a user notification for upcoming broadcast */
+                self.checkForNextBroadcastNotification(tableViewProgramPlan)
                 
             } else {
                 /* An error occured */
@@ -180,12 +186,80 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         task.resume()
     }
     
+    /* check if we have a user notification for the next broadcast */
+    func checkForNextBroadcastNotification(newPlan: [ProgramPlan])
+    {
+        /* only if notifications for broadcasts are enabled */
+        if NSUserDefaults.standardUserDefaults().boolForKey("NotificationOnAir") {
+            
+            /* check first two entries */
+            for i in 0...1 {
+                if newPlan.count > i {
+                    
+                    let program = newPlan[i]
+                    var found = false
+                    
+                    /* check if there is already a notification in progress */
+                    for n in NSUserNotificationCenter.defaultUserNotificationCenter().scheduledNotifications {
+                        
+                        let notification = n as NSUserNotification
+                        
+                        if program.programUid == notification.identifier {
+                            found = true
+                            break
+                        }
+                    }
+                    
+                    if !found {
+                        /* get human readable date */
+                        let humanReadableStartDate = program.humanReadableStartDate()
+                        let humanReadableEndDate = program.humanReadableEndDate()
+                        
+                        let title = self.iconNameFromTitle(program.programTitle)
+                        
+                        /* calculate delivery date */
+                        var deliveryDate = program.programStartDateFormattable
+                        let aheadInterval = NSUserDefaults.standardUserDefaults().doubleForKey("BroadcastAheadInterval")
+                        deliveryDate = deliveryDate.dateByAddingTimeInterval(-1 * 60 * aheadInterval)
+                        
+                        /* send the notification */
+                        self.sendLocalNotification(title.stripedTitle, text: "\(title.stripedTitle): \(humanReadableStartDate) - \(humanReadableEndDate)", deliveryDate: deliveryDate, identifier: program.programUid)
+                    }
+                }
+            }
+        }
+    }
+    
+    /* check for updated program plan and send user notification */
+    func checkForNewProgramPlan(newPlan: [ProgramPlan])
+    {
+        // if the number of entries is different - we have a changed program plan
+        if self.programPlan.count != newPlan.count && self.programPlan.count != 0 {
+            self.programPlan = newPlan
+            if NSUserDefaults.standardUserDefaults().boolForKey("NotificationOnChanges") {
+                self.sendLocalNotification("Aktualisierung", text: "Der Sendeplan wurde aktualisiert.")
+            }
+        }
+    }
+    
+    // MARK: - IBActions
+    
     @IBAction func informationButtonPressed(sender: AnyObject) {
         self.informationWindow.makeKeyAndOrderFront(self)
         self.informationWindow.makeMainWindow()
         var application: AnyObject! = NSApp
         application.activateIgnoringOtherApps(true)
 
+    }
+    
+    @IBAction func settingsButtonPressed(sender: AnyObject) {
+        if self.settingsWC == nil {
+            self.settingsWC = SettingsWindowController(windowNibName: "SettingsWindowController")
+        }
+        
+        self.settingsWC?.showWindow(self)
+        self.settingsWC?.window?.makeKeyAndOrderFront(self)
+        self.settingsWC?.window?.makeMainWindow()
     }
     
     /* START Social Media Buttons */
@@ -245,6 +319,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         NSWorkspace.sharedWorkspace().openURL(g2aShopUrl)
     }
     
+    // MARK: -
+    
     var statusItem: NSStatusItem
     let statusItemLength: CGFloat = 25.0
     
@@ -255,7 +331,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     
     func beginParsing()
     {
-        self.programPlan = []
+        self.tableViewProgramPlan = []
         
         if (!self.isConnectedToNetwork()) {
             /* No connection to the internet */
@@ -263,7 +339,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             program.programTitle = "Keine Verbindung zum Internet!"
             program.programDate = "Sendeplan kann nicht geladen werden."
             program.programState = ""
-            programPlan.append(program)
+            self.tableViewProgramPlan.append(program)
         } else {
             /* We have a signal! Lets go! */
             self.parseICS()
@@ -275,11 +351,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     /* sends a local notification for given title and text */
     func sendLocalNotification(title: String, text: String)
     {
+        let deliveryDate = NSDate(timeIntervalSinceNow: 2) // 2 seconds delay
+        self.sendLocalNotification(title, text: text, deliveryDate: deliveryDate, identifier: nil)
+    }
+
+    /* sends a local notification for given title and text - at the delivery date */
+    func sendLocalNotification(title: String, text: String, deliveryDate: NSDate, identifier: String?)
+    {
         let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
         let notification = NSUserNotification()
         notification.title = title
+        if identifier != nil { notification.identifier = identifier! }
         notification.informativeText = text
-        notification.deliveryDate = NSDate(timeIntervalSinceNow: 5) // 5 seconds delay
+        notification.deliveryDate = deliveryDate
         notificationCenter.scheduleNotification(notification)
     }
     
@@ -305,6 +389,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
+        /* register delivered default settings */
+        NSUserDefaults.standardUserDefaults().registerDefaults([
+            "NotificationOnChanges" : true,   // enable notifications for changes on air dates
+            "NotificationOnAir" : true,       // enable notifications for starting broadcasts
+            "UpdateInterval" : 1,             // update every minute
+            "BroadcastAheadInterval" : 10     // notification 10 minutes before broadcast
+            ])
+        
+        /* get updates for user defaults */
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("updateValuesFromUserDefaults"), name: NSUserDefaultsDidChangeNotification, object: nil)
+        
         self.statusItem.toolTip = "RocketBeans.TV Sendeplan"
         self.statusItem.image = NSImage(named: "StatusIcon")
         self.statusItem.image?.setTemplate(true)
@@ -315,7 +410,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         self.supportViewCell.view = supportView
         self.programTableView.setDataSource(self)
         
-        var timer = NSTimer.scheduledTimerWithTimeInterval(self.refreshInterval, target: self, selector: Selector("beginParsing"), userInfo: nil, repeats: true)
+        self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(self.refreshInterval, target: self, selector: Selector("beginParsing"), userInfo: nil, repeats: true)
         
         self.beginParsing()
         
@@ -323,6 +418,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         let appVersion: String = bundle.objectForInfoDictionaryKey("CFBundleShortVersionString") as String
         
         self.appVersionLabel.stringValue = "Version \(appVersion)"
+    }
+    
+    func updateValuesFromUserDefaults()
+    {
+        /* stop previous timer */
+        self.refreshTimer?.invalidate()
+        /* update user settings */
+        self.refreshInterval = NSUserDefaults.standardUserDefaults().doubleForKey("UpdateInterval") * 60 // and convert minutes to seconds
+        /* restart timer */
+        self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(self.refreshInterval, target: self, selector: Selector("beginParsing"), userInfo: nil, repeats: true)
     }
     
     /* seperates title to iconname and title without type tag in front of it */
@@ -352,13 +457,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     
     func numberOfRowsInTableView(aTableView: NSTableView!) -> Int
     {
-        return self.programPlan.count
+        return self.tableViewProgramPlan.count
     }
     
     func tableView(tableView: NSTableView, viewForTableColumn: NSTableColumn, row: Int) -> NSView
     {
         
-        let programRow: ProgramPlan = self.programPlan[row]
+        let programRow: ProgramPlan = self.tableViewProgramPlan[row]
         
         var cell = tableView.makeViewWithIdentifier("programCell", owner: self) as CustomTableView
         
@@ -398,9 +503,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         return cell;
     }
 
-
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
+        
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
 }
 
