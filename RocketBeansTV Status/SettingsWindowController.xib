@@ -60,7 +60,7 @@
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z1a-Dh-oQZ">
                         <rect key="frame" x="82" y="55" width="380" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Updateinterval in Minuten" id="Y6P-T6-Q4C">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Updateinterval (Google Kalendar) in Minuten" id="Y6P-T6-Q4C">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -77,6 +77,9 @@
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
+                        <connections>
+                            <action selector="broadcastAheadTimeChanged:" target="-2" id="8Ug-df-0bR"/>
+                        </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4WR-Np-TNB">
                         <rect key="frame" x="82" y="23" width="380" height="17"/>

@@ -218,7 +218,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                         let title = self.iconNameFromTitle(program.programTitle)
                         
                         /* calculate delivery date */
-                        var deliveryDate = program.programStartDateFormattable //.dateByAddingTimeInterval(-1 * 60 * 60)
+                        var deliveryDate = program.programStartDateFormattable
                         let aheadInterval = NSUserDefaults.standardUserDefaults().doubleForKey("BroadcastAheadInterval")
                         deliveryDate = deliveryDate.dateByAddingTimeInterval(-1 * 60 * aheadInterval)
                         
@@ -258,6 +258,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         }
         
         self.settingsWC?.showWindow(self)
+        self.settingsWC?.window?.makeKeyAndOrderFront(self)
     }
     
     /* START Social Media Buttons */

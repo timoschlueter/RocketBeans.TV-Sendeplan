@@ -8,8 +8,7 @@
 
 import Cocoa
 
-class SettingsWindowController: NSWindowController {
-    
+class SettingsWindowController: NSWindowController, NSWindowDelegate {
     
     @IBOutlet weak var notificationOnChangesButton: NSButton!
     @IBOutlet weak var notificationBeforeBroadcastButton: NSButton!
@@ -19,9 +18,24 @@ class SettingsWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         
+        self.window?.delegate = self
+    }
+    
+    func windowWillClose(notification: NSNotification!)
+    {
+        /* store input to NSUserDefaults */
+        self.updateUserDefaultsFromViews()
+        
+        /* save user defaults on close */
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    func windowDidBecomeKey(notification: NSNotification)
+    {
         self.updateViewItems()
     }
     
+    /* updates the views - textfields, buttons - with the data from NSUserDefaults */
     func updateViewItems()
     {
         if NSUserDefaults.standardUserDefaults().boolForKey("NotificationOnChanges") {
@@ -36,8 +50,27 @@ class SettingsWindowController: NSWindowController {
             self.notificationBeforeBroadcastButton.state = NSOffState
         }
         
-        self.updateIntervalTextField.integerValue = NSUserDefaults.standardUserDefaults().integerForKey("UpdateInterval")
-        self.broadcastNotificationAheadIntervalTextField.integerValue = NSUserDefaults.standardUserDefaults().integerForKey("BroadcastAheadInterval")
+        self.updateIntervalTextField.doubleValue = NSUserDefaults.standardUserDefaults().doubleForKey("UpdateInterval")
+        self.broadcastNotificationAheadIntervalTextField.doubleValue = NSUserDefaults.standardUserDefaults().doubleForKey("BroadcastAheadInterval")
+    }
+    
+    /* updates the NSUserDefaults with the data from the views */
+    func updateUserDefaultsFromViews()
+    {
+        if self.notificationOnChangesButton.state == NSOnState {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "NotificationOnChanges")
+        } else {
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "NotificationOnChanges")
+        }
+        
+        if self.notificationBeforeBroadcastButton.state == NSOnState {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "NotificationOnAir")
+        } else {
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "NotificationOnAir")
+        }
+        
+        NSUserDefaults.standardUserDefaults().setDouble(self.updateIntervalTextField.doubleValue, forKey: "UpdateInterval")
+        NSUserDefaults.standardUserDefaults().setDouble(self.broadcastNotificationAheadIntervalTextField.doubleValue, forKey: "BroadcastAheadInterval")
     }
     
     // MARK: - IBActions
@@ -49,7 +82,6 @@ class SettingsWindowController: NSWindowController {
         } else {
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: "NotificationOnChanges")
         }
-        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     @IBAction func notificationsForBroadcastsChanged(sender: AnyObject)
@@ -59,12 +91,15 @@ class SettingsWindowController: NSWindowController {
         } else {
             NSUserDefaults.standardUserDefaults().setBool(false, forKey: "NotificationOnAir")
         }
-        NSUserDefaults.standardUserDefaults().synchronize()
     }
     
     @IBAction func updateIntervalChanged(sender: AnyObject)
     {
-        NSUserDefaults.standardUserDefaults().setInteger(self.updateIntervalTextField.integerValue, forKey: "UpdateInterval")
-        NSUserDefaults.standardUserDefaults().synchronize()
+        NSUserDefaults.standardUserDefaults().setDouble(self.updateIntervalTextField.doubleValue, forKey: "UpdateInterval")
+    }
+    
+    @IBAction func broadcastAheadTimeChanged(sender: AnyObject)
+    {
+        NSUserDefaults.standardUserDefaults().setDouble(self.broadcastNotificationAheadIntervalTextField.doubleValue, forKey: "BroadcastAheadInterval")
     }
 }
