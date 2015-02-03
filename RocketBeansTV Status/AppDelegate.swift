@@ -22,12 +22,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     
     @IBOutlet weak var informationWindow: NSWindow!
     
-    var parser = NSXMLParser()
     var refreshInterval: NSTimeInterval = 60
     var refreshTimer: NSTimer?
-    var posts = NSMutableArray()
-    var elements = NSMutableDictionary()
-    var currentElementName = NSString()
     
     var programTitle: String = ""
     var programSummary: String = ""

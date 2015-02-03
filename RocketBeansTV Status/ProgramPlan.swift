@@ -22,8 +22,6 @@ class ProgramPlan {
     var programEndDate: String = ""
     var programEndDateFormattable: NSDate = NSDate()
     var programEndDateEpoch: Double = 0.0
-    var programCreatedDate: String = ""
-    var programLastModifiedDate: String = ""
     var programUid: String = ""
 
     func humanReadableStartDate() -> String
