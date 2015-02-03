@@ -8,7 +8,6 @@
             <connections>
                 <outlet property="nextTextField" destination="XF1-Cg-uFB" id="CW7-BS-cOM"/>
                 <outlet property="nowTextField" destination="KU6-MB-4x2" id="Ypn-kM-R7z"/>
-                <outlet property="textField" destination="KU6-MB-4x2" id="f2V-eW-LBp"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -28,19 +27,6 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="dEX-BX-QdB">
-                    <rect key="frame" x="2" y="0.0" width="318" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="cW7-Og-1Pv"/>
-                    </constraints>
-                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" transparent="YES" imageScaling="proportionallyDown" inset="2" id="3XO-7g-EDb">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="widgetClicked:" target="-2" id="9gB-4S-hKN"/>
-                    </connections>
-                </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XF1-Cg-uFB" userLabel="Danach">
                     <rect key="frame" x="0.0" y="0.0" width="304" height="20"/>
                     <constraints>
@@ -52,6 +38,16 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dEX-BX-QdB">
+                    <rect key="frame" x="2" y="0.0" width="318" height="25"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="3XO-7g-EDb">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="widgetClicked:" target="-2" id="9gB-4S-hKN"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="dEX-BX-QdB" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="3AW-1H-GWv"/>
@@ -59,10 +55,8 @@
                 <constraint firstItem="KU6-MB-4x2" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="2" id="AfO-ab-vWV"/>
                 <constraint firstItem="dEX-BX-QdB" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="DWK-kf-poE"/>
                 <constraint firstAttribute="trailing" secondItem="KU6-MB-4x2" secondAttribute="trailing" constant="18" id="Fst-pa-L2p"/>
-                <constraint firstItem="dEX-BX-QdB" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="QCB-Lj-qxL"/>
-                <constraint firstItem="dEX-BX-QdB" firstAttribute="leading" secondItem="KU6-MB-4x2" secondAttribute="leading" id="Uif-Pc-Uwh"/>
+                <constraint firstItem="XF1-Cg-uFB" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="2" id="GEF-vh-Pxo"/>
                 <constraint firstAttribute="height" constant="40" id="XN6-Gc-JG0"/>
-                <constraint firstItem="XF1-Cg-uFB" firstAttribute="leading" secondItem="dEX-BX-QdB" secondAttribute="leading" id="XhK-PU-pJh"/>
                 <constraint firstItem="KU6-MB-4x2" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="aFo-8G-i2m"/>
                 <constraint firstItem="XF1-Cg-uFB" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" symbolic="YES" id="adt-yT-ii6"/>
                 <constraint firstAttribute="trailing" secondItem="dEX-BX-QdB" secondAttribute="trailing" id="i06-ij-Mbk"/>

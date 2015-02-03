@@ -12,17 +12,19 @@
 		250AC09D1A6D9BA5002D2C2E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 250AC09C1A6D9BA5002D2C2E /* Images.xcassets */; };
 		250AC0A01A6D9BA5002D2C2E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 250AC09E1A6D9BA5002D2C2E /* MainMenu.xib */; };
 		250AC0AC1A6D9BA6002D2C2E /* RocketBeansTV_StatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250AC0AB1A6D9BA6002D2C2E /* RocketBeansTV_StatusTests.swift */; };
-		256E92D41A72B37500FD7FFB /* ProgramPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256E92D31A72B37500FD7FFB /* ProgramPlan.swift */; };
+		256E92D41A72B37500FD7FFB /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256E92D31A72B37500FD7FFB /* Program.swift */; };
 		2575C9E41A6EC425007E7BDC /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2575C9E31A6EC425007E7BDC /* CustomTableView.swift */; };
 		258A29941A6F751F004246D8 /* amazon_logo_SPOT.png in Resources */ = {isa = PBXBuildFile; fileRef = 258A29931A6F751F004246D8 /* amazon_logo_SPOT.png */; };
 		258A29961A6F75DD004246D8 /* rbshop.png in Resources */ = {isa = PBXBuildFile; fileRef = 258A29951A6F75DD004246D8 /* rbshop.png */; };
 		258A29981A6F76CF004246D8 /* g2a.png in Resources */ = {isa = PBXBuildFile; fileRef = 258A29971A6F76CF004246D8 /* g2a.png */; };
+		33236C501A7F5F4F0046529B /* ProgramPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33236C4F1A7F5F4F0046529B /* ProgramPlan.swift */; };
+		33236C511A7F98710046529B /* RocketBeans TV.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 336A97721A7E35A10090B4BC /* RocketBeans TV.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		33236C551A7FB52C0046529B /* ProgramPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33236C4F1A7F5F4F0046529B /* ProgramPlan.swift */; };
 		336A97751A7E35A10090B4BC /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 336A97741A7E35A10090B4BC /* NotificationCenter.framework */; };
 		336A977C1A7E35A10090B4BC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 336A977A1A7E35A10090B4BC /* InfoPlist.strings */; };
 		336A977E1A7E35A10090B4BC /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336A977D1A7E35A10090B4BC /* TodayViewController.swift */; };
 		336A97801A7E35A10090B4BC /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 336A977F1A7E35A10090B4BC /* TodayViewController.xib */; };
-		336A97831A7E35A10090B4BC /* RocketBeans TV.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 336A97721A7E35A10090B4BC /* RocketBeans TV.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		336A97881A7E35E80090B4BC /* ProgramPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256E92D31A72B37500FD7FFB /* ProgramPlan.swift */; };
+		336A97881A7E35E80090B4BC /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256E92D31A72B37500FD7FFB /* Program.swift */; };
 		F8FD27BF1A7D093D008062EF /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FD27BD1A7D093D008062EF /* SettingsWindowController.swift */; };
 		F8FD27C01A7D093D008062EF /* SettingsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8FD27BE1A7D093D008062EF /* SettingsWindowController.xib */; };
 /* End PBXBuildFile section */
@@ -35,7 +37,7 @@
 			remoteGlobalIDString = 250AC0941A6D9BA5002D2C2E;
 			remoteInfo = "RocketBeansTV Status";
 		};
-		336A97811A7E35A10090B4BC /* PBXContainerItemProxy */ = {
+		33236C521A7F98710046529B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 250AC08D1A6D9BA5002D2C2E /* Project object */;
 			proxyType = 1;
@@ -45,13 +47,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		336A97871A7E35A10090B4BC /* Embed App Extensions */ = {
+		33236C541A7F98710046529B /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				336A97831A7E35A10090B4BC /* RocketBeans TV.appex in Embed App Extensions */,
+				33236C511A7F98710046529B /* RocketBeans TV.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -68,11 +70,12 @@
 		250AC0A51A6D9BA6002D2C2E /* RocketBeansTV StatusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RocketBeansTV StatusTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		250AC0AA1A6D9BA6002D2C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		250AC0AB1A6D9BA6002D2C2E /* RocketBeansTV_StatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketBeansTV_StatusTests.swift; sourceTree = "<group>"; };
-		256E92D31A72B37500FD7FFB /* ProgramPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlan.swift; sourceTree = "<group>"; };
+		256E92D31A72B37500FD7FFB /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		2575C9E31A6EC425007E7BDC /* CustomTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
 		258A29931A6F751F004246D8 /* amazon_logo_SPOT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = amazon_logo_SPOT.png; sourceTree = "<group>"; };
 		258A29951A6F75DD004246D8 /* rbshop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rbshop.png; sourceTree = "<group>"; };
 		258A29971A6F76CF004246D8 /* g2a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = g2a.png; sourceTree = "<group>"; };
+		33236C4F1A7F5F4F0046529B /* ProgramPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlan.swift; sourceTree = "<group>"; };
 		336A97721A7E35A10090B4BC /* RocketBeans TV.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "RocketBeans TV.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		336A97741A7E35A10090B4BC /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		336A97781A7E35A10090B4BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -140,7 +143,8 @@
 				2575C9E31A6EC425007E7BDC /* CustomTableView.swift */,
 				250AC09C1A6D9BA5002D2C2E /* Images.xcassets */,
 				250AC09E1A6D9BA5002D2C2E /* MainMenu.xib */,
-				256E92D31A72B37500FD7FFB /* ProgramPlan.swift */,
+				33236C4F1A7F5F4F0046529B /* ProgramPlan.swift */,
+				256E92D31A72B37500FD7FFB /* Program.swift */,
 				F8FD27BD1A7D093D008062EF /* SettingsWindowController.swift */,
 				F8FD27BE1A7D093D008062EF /* SettingsWindowController.xib */,
 				250AC0981A6D9BA5002D2C2E /* Supporting Files */,
@@ -214,12 +218,12 @@
 				250AC0911A6D9BA5002D2C2E /* Sources */,
 				250AC0921A6D9BA5002D2C2E /* Frameworks */,
 				250AC0931A6D9BA5002D2C2E /* Resources */,
-				336A97871A7E35A10090B4BC /* Embed App Extensions */,
+				33236C541A7F98710046529B /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				336A97821A7E35A10090B4BC /* PBXTargetDependency */,
+				33236C531A7F98710046529B /* PBXTargetDependency */,
 			);
 			name = "RocketBeansTV Status";
 			productName = "RocketBeansTV Status";
@@ -340,9 +344,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				2575C9E41A6EC425007E7BDC /* CustomTableView.swift in Sources */,
-				256E92D41A72B37500FD7FFB /* ProgramPlan.swift in Sources */,
+				256E92D41A72B37500FD7FFB /* Program.swift in Sources */,
 				F8FD27BF1A7D093D008062EF /* SettingsWindowController.swift in Sources */,
 				250AC09B1A6D9BA5002D2C2E /* AppDelegate.swift in Sources */,
+				33236C501A7F5F4F0046529B /* ProgramPlan.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,7 +364,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				336A977E1A7E35A10090B4BC /* TodayViewController.swift in Sources */,
-				336A97881A7E35E80090B4BC /* ProgramPlan.swift in Sources */,
+				336A97881A7E35E80090B4BC /* Program.swift in Sources */,
+				33236C551A7FB52C0046529B /* ProgramPlan.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,10 +377,10 @@
 			target = 250AC0941A6D9BA5002D2C2E /* RocketBeansTV Status */;
 			targetProxy = 250AC0A61A6D9BA6002D2C2E /* PBXContainerItemProxy */;
 		};
-		336A97821A7E35A10090B4BC /* PBXTargetDependency */ = {
+		33236C531A7F98710046529B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 336A97711A7E35A10090B4BC /* RocketBeans TV */;
-			targetProxy = 336A97811A7E35A10090B4BC /* PBXContainerItemProxy */;
+			targetProxy = 33236C521A7F98710046529B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -602,6 +608,7 @@
 				336A97851A7E35A10090B4BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
