@@ -14,21 +14,19 @@ protocol ProgramPlanDelegate {
     func programPlanDidRefresh(programPlan: ProgramPlan);
 }
 
-class ProgramPlan {
-    let icsUrl: String = "https://www.google.com/calendar/ical/h6tfehdpu3jrbcrn9sdju9ohj8%40group.calendar.google.com/public/basic.ics"
-    
+class ProgramPlan {    
     var delegate: ProgramPlanDelegate?
     var programs: [Program] = []
     
     /*
     
     Google Calender API Key.
-    Go to your Google Developer Console (https://console.developers.google.com/project) and create a new Project with an iOS Specific API key.
+    Go to your Google Developer Console ( https://console.developers.google.com/project ) and create a new Project with an iOS Specific API key.
     Set the Bundle Identifier to "in.timo.ios.RocketBeans-TV-Sendeplan" and insert the generated API key below.
     
     */
     
-    var googleApiKey = ""
+    var googleApiKey = "AIzaSyDr0O52g04NR2hzSe4560DfvD8HCRp7xjE"
     
     init() {
         

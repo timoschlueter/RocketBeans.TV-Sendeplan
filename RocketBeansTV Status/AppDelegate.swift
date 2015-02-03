@@ -93,9 +93,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
     {
         // if the number of entries is different - we have a changed program plan
         // if we have only a single entry and its an error, something went wrong - no notification
-        if lastCount != newPlan.count && lastCount != 0 && newPlan.count > 1 {
-            if NSUserDefaults.standardUserDefaults().boolForKey("NotificationOnChanges") {
-                self.sendLocalNotification("Aktualisierung", text: "Der Sendeplan wurde aktualisiert.")
+        if lastCount != newPlan.count && lastCount != 0 && newPlan.count > 0 {
+            if newPlan.count > 1 || newPlan[0].state() != .Error {
+                if NSUserDefaults.standardUserDefaults().boolForKey("NotificationOnChanges") {
+                    self.sendLocalNotification("Aktualisierung", text: "Der Sendeplan wurde aktualisiert.")
+                }
             }
         }
     }

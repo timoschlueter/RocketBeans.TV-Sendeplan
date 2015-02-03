@@ -66,12 +66,12 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
         for (var i=0; i<programs.count; i++) {
             var program = programs[i];
             
-            if (program.current) {
-                self.nowTextField.stringValue = "Jetzt: "+(program.title());
+            if (program.current || program.state() == .Error) {
+                self.nowTextField.stringValue = "Jetzt - "+(program.title());
             }
             
             if (program.future) {
-                self.nextTextField.stringValue = "Um \(program.shortHumanReadableStartDate()): \(program.title())";
+                self.nextTextField.stringValue = "Um \(program.shortHumanReadableStartDate()) - \(program.title())";
                 break;
             }
         }
