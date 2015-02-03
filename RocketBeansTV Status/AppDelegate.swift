@@ -101,7 +101,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                         
                         if let singleProgramItemAttributes = singleProgramItem as? NSDictionary {
                             
-                            
                             if let startDateObject = singleProgramItemAttributes["start"] as? NSDictionary {
                                 var startDateString = startDateObject["dateTime"] as String
                                 startDate = dateFormatter.dateFromString(startDateString)!
@@ -120,6 +119,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                             }
                             
                             program.programTitle = singleProgramItemAttributes["summary"] as String
+                            program.programUid = singleProgramItemAttributes["iCalUID"] as String
                             
                             programList.append(program)
                             
