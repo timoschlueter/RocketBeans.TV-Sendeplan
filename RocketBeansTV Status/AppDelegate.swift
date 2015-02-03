@@ -66,7 +66,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         var dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         
-        var timeMin = dateFormatter.stringFromDate(NSDate())
+        var now = NSDate()
+        var timeMin = dateFormatter.stringFromDate(now)
+        
         var timeMinEncoded = timeMin.stringByReplacingOccurrencesOfString("+", withString: "%2B")
         
         /* Put together the request url */
@@ -90,20 +92,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             var tableViewProgramPlan:[ProgramPlan] = []
             
             if let programCalendar = programData as? NSDictionary {
+
                 if let programItems = programCalendar["items"] as? NSArray {
                     
                     for singleProgramItem in programItems {
                         
                         var program: ProgramPlan = ProgramPlan()
                         
-                        var startDate: NSDate = NSDate()
-                        var endDate: NSDate = NSDate()
-                        
                         if let singleProgramItemAttributes = singleProgramItem as? NSDictionary {
                             
                             if let startDateObject = singleProgramItemAttributes["start"] as? NSDictionary {
                                 var startDateString = startDateObject["dateTime"] as String
-                                startDate = dateFormatter.dateFromString(startDateString)!
+                                var startDate = dateFormatter.dateFromString(startDateString)!
                                 program.programStartDateFormattable = startDate
                                 var startEpochDate = startDate.timeIntervalSince1970
                                 program.programStartDateEpoch = startEpochDate
@@ -124,18 +124,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                             programList.append(program)
                             
                             /* Get current date in UTC */
-                            let currentDate = NSDate()
+                            var currentDate = NSDate()
                             
+                            var comparingStartDate = program.programStartDateFormattable
+                            var comparingEndDate = program.programEndDateFormattable
                             
                             /* Check if program is in the future or now */
-                            if ((startDate.compare(currentDate) == NSComparisonResult.OrderedDescending)
-                                || (startDate.compare(currentDate) == NSComparisonResult.OrderedSame))
-                                || ((currentDate.compare(startDate) == NSComparisonResult.OrderedDescending)
-                                    && (currentDate.compare(endDate) == NSComparisonResult.OrderedAscending))
+                            if ((comparingStartDate.compare(currentDate) == NSComparisonResult.OrderedDescending)
+                                || (comparingStartDate.compare(currentDate) == NSComparisonResult.OrderedSame))
+                                || ((currentDate.compare(comparingStartDate) == NSComparisonResult.OrderedDescending)
+                                    && (currentDate.compare(comparingEndDate) == NSComparisonResult.OrderedAscending))
                             {
                                 /* Check if program is currently running */
-                                if (currentDate.compare(startDate) == NSComparisonResult.OrderedDescending)
-                                    && (currentDate.compare(endDate) == NSComparisonResult.OrderedAscending)
+                                if (currentDate.compare(comparingStartDate) == NSComparisonResult.OrderedDescending)
+                                    && (currentDate.compare(comparingEndDate) == NSComparisonResult.OrderedAscending)
                                 {
                                     program.programCurrent = true
                                 } else {
