@@ -28,7 +28,7 @@ class ProgramPlan {
     
     */
     
-    var googleApiKey = "AIzaSyDTYybi9Pmyh_VopefELWY6KPWAfKCI6KA"
+    var googleApiKey = ""
     
     init() {
         
