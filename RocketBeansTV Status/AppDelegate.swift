@@ -39,149 +39,133 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     
     var settingsWC: SettingsWindowController?
     
-    /* 
+    /*
     
-    ICS Parsing
+    Google Calender API Key.
+    Go to your Google Developer Console (https://console.developers.google.com/project) and create a new Project with an iOS Specific API key.
+    Set the Bundle Identifier to "in.timo.ios.RocketBeans-TV-Sendeplan" and insert the generated API key below.
     
-    The main data handling happens here now. This function gets the program from ICS.
+    */
+    
+    var googleApiKey = ""
+    
+    
+    /*
+    
+    Google Calendar Parsing
+    
+    The main data handling happens here now. This function gets the program from Google Calendar API
     All the logic that chooses which program is visible and which is not should be applied here.
     Formatting such as human readable dates and program title gimmicks should be applied when tableview is drawn
     
     */
     
-    let icsUrl: String = "https://www.google.com/calendar/ical/h6tfehdpu3jrbcrn9sdju9ohj8%40group.calendar.google.com/public/basic.ics"
-    
-    func parseICS() {
+    func parseGoogleCalendar() {
         
-        var session = NSURLSession.sharedSession()
+        /* Determine date for calendar request */
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         
-        let task = session.dataTaskWithURL(NSURL(string: icsUrl)!) {(data, response, error) in
+        var timeMin = dateFormatter.stringFromDate(NSDate())
+        var timeMinEncoded = timeMin.stringByReplacingOccurrencesOfString("+", withString: "%2B")
+        
+        /* Put together the request url */
+        var url: NSURL = NSURL(string: "https://www.googleapis.com/calendar/v3/calendars/h6tfehdpu3jrbcrn9sdju9ohj8%40group.calendar.google.com/events?orderBy=startTime&singleEvents=true&key=\(self.googleApiKey)&maxResults=20&timeMin=\(timeMinEncoded)")!
+        
+        var sessionConfig:NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        sessionConfig.HTTPAdditionalHeaders = ["X-Ios-Bundle-Identifier": "in.timo.ios.RocketBeans-TV-Sendeplan"]
+        
+        let session = NSURLSession(configuration: sessionConfig)
+        
+        let task : NSURLSessionDataTask = session.dataTaskWithURL(url) {(data, response, error) in
+            let jsonData: NSData = data
+            var error: NSError?
             
-            if (error == nil) {
-                
-                var dataContent: NSString = NSString(data: data, encoding: NSUTF8StringEncoding)!
-                dataContent = dataContent.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-                
-                let dataLines: NSArray = dataContent.componentsSeparatedByString("\n")
-                
-                var programList:[ProgramPlan] = []
-                var tableViewProgramPlan:[ProgramPlan] = []
-                
-                for var i = 0; i < dataLines.count; i++ {
+            let programData: AnyObject? = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &error)
+            
+            var dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ssXXX" /* Example: 2015-01-18T00:00:00+01:00 */
+            
+            var programList:[ProgramPlan] = []
+            var tableViewProgramPlan:[ProgramPlan] = []
+            
+            if let programCalendar = programData as? NSDictionary {
+                if let programItems = programCalendar["items"] as? NSArray {
                     
-                    if dataLines[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "BEGIN:VEVENT" {
+                    for singleProgramItem in programItems {
+                        
                         var program: ProgramPlan = ProgramPlan()
-                        i++
                         
-                        while (dataLines[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) != "END:VEVENT") {
+                        var startDate: NSDate = NSDate()
+                        var endDate: NSDate = NSDate()
+                        
+                        if let singleProgramItemAttributes = singleProgramItem as? NSDictionary {
                             
-                            var currentLine = dataLines[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
                             
-                            let splittedLine = currentLine.componentsSeparatedByString(":")
-                            
-                            var value = ""
-                            var attribute = ""
-                            
-                            if splittedLine.count > 1 {
-                                attribute = splittedLine[0]
-                                value = splittedLine[1]
+                            if let startDateObject = singleProgramItemAttributes["start"] as? NSDictionary {
+                                var startDateString = startDateObject["dateTime"] as String
+                                startDate = dateFormatter.dateFromString(startDateString)!
+                                program.programStartDateFormattable = startDate
+                                var startEpochDate = startDate.timeIntervalSince1970
+                                program.programStartDateEpoch = startEpochDate
+                                
                             }
                             
-                            switch (attribute) {
-                            case "DTSTART":
-                                program.programStartDate = value
-                            case "DTEND":
-                                program.programEndDate = value
-                            case "CREATED":
-                                program.programCreatedDate = value
-                            case "LAST-MODIFIED":
-                                program.programLastModifiedDate = value
-                            case "SUMMARY":
-                                program.programTitle = value
-                            case "UID":
-                                program.programUid = value
-                            default:
-                                break
+                            if let endDateObject = singleProgramItemAttributes["end"] as? NSDictionary {
+                                var endDateString = endDateObject["dateTime"] as String
+                                var endDate = dateFormatter.dateFromString(endDateString)
+                                program.programEndDateFormattable = endDate!
+                                var endEpochDate = endDate?.timeIntervalSince1970
+                                program.programEndDateEpoch = endEpochDate!
                             }
                             
-                            i++
-                        }
-                        
-                        /* Date parsing */
-                        var dateFormatter = NSDateFormatter()
-                        dateFormatter.dateFormat = "yyyyMMdd'T'HHmmss'Z'"
-                        var startDate = dateFormatter.dateFromString(program.programStartDate)
-                        var endDate = dateFormatter.dateFromString(program.programEndDate)
-                        
-                        /* Convert ICS date to UTC */
-                        startDate = startDate?.dateByAddingTimeInterval(1 * 60 * 60)
-                        endDate = endDate?.dateByAddingTimeInterval(1 * 60 * 60)
-                        
-                        /* update startdate properties */
-                        program.programStartDateFormattable = startDate!
-                        var startEpochDate = startDate?.timeIntervalSince1970
-                        program.programStartDateEpoch = startEpochDate!
-                        
-                        /* update enddate properties */
-                        program.programEndDateFormattable = endDate!
-                        var endEpochDate = endDate?.timeIntervalSince1970
-                        program.programEndDateEpoch = endEpochDate!
-                        
-                        programList.append(program)
-                        
-                        /* Get current date in UTC */
-                        let currentDate = NSDate()
-                        
-                        /* Date related functions */
-                        /* From now on, we are comparing only in UTC. Setting local timezone will be done at the last step */
-                        
-                        /* Check if program is in the future or now */
-                        if ((startDate?.compare(currentDate) == NSComparisonResult.OrderedDescending)
-                            || (startDate?.compare(currentDate) == NSComparisonResult.OrderedSame))
-                            || ((currentDate.compare(startDate!) == NSComparisonResult.OrderedDescending)
-                            && (currentDate.compare(endDate!) == NSComparisonResult.OrderedAscending))
-                        {
-                            /* Check if program is currently running */
-                            if (currentDate.compare(startDate!) == NSComparisonResult.OrderedDescending)
-                                && (currentDate.compare(endDate!) == NSComparisonResult.OrderedAscending)
+                            program.programTitle = singleProgramItemAttributes["summary"] as String
+                            
+                            programList.append(program)
+                            
+                            /* Get current date in UTC */
+                            let currentDate = NSDate()
+                            
+                            
+                            /* Check if program is in the future or now */
+                            if ((startDate.compare(currentDate) == NSComparisonResult.OrderedDescending)
+                                || (startDate.compare(currentDate) == NSComparisonResult.OrderedSame))
+                                || ((currentDate.compare(startDate) == NSComparisonResult.OrderedDescending)
+                                    && (currentDate.compare(endDate) == NSComparisonResult.OrderedAscending))
                             {
-                                program.programCurrent = true
-                            } else {
-                                program.programCurrent = false
+                                /* Check if program is currently running */
+                                if (currentDate.compare(startDate) == NSComparisonResult.OrderedDescending)
+                                    && (currentDate.compare(endDate) == NSComparisonResult.OrderedAscending)
+                                {
+                                    program.programCurrent = true
+                                } else {
+                                    program.programCurrent = false
+                                }
+                                
+                                /* Append program to list for the table view */
+                                tableViewProgramPlan.append(program)
                             }
                             
-                            /*
-                            DEBUG: Print all programs with startdate and enddate
-                            println(program.programTitle + " - Start: \(startDate!) / Ende: \(endDate!)")
-                            */
+                            programList.sort({$0.programStartDateEpoch < $1.programStartDateEpoch})
+                            tableViewProgramPlan.sort({$0.programStartDateEpoch < $1.programStartDateEpoch})
                             
-                            /* Append program to list for the table view */
-                            tableViewProgramPlan.append(program)
+                            dispatch_async(dispatch_get_main_queue(), {
+                                /* Set global programPlan to the just generated programList */
+                                self.tableViewProgramPlan = tableViewProgramPlan
+                                self.programTableView.reloadData()
+                            })
+                            
+                            /* checks if program plan has changed */
+                            self.checkForNewProgramPlan(programList)
+                            
+                            /* checks if we need to add a user notification for upcoming broadcast */
+                            self.checkForNextBroadcastNotification(tableViewProgramPlan)
                         }
                     }
                 }
-                
-                /* Sort by date before entering main thread */
-                programList.sort({$0.programStartDateEpoch < $1.programStartDateEpoch})
-                tableViewProgramPlan.sort({$0.programStartDateEpoch < $1.programStartDateEpoch})
-                
-                /* Since NSURLSession is asynchrounous, we have to dispach the data back to the main thread of the app */
-                dispatch_async(dispatch_get_main_queue(), {
-                    /* Set global programPlan to the just generated programList */
-                    self.tableViewProgramPlan = tableViewProgramPlan
-                    self.programTableView.reloadData()
-                })
-                
-                /* checks if program plan has changed */
-                self.checkForNewProgramPlan(programList)
-                
-                /* checks if we need to add a user notification for upcoming broadcast */
-                self.checkForNextBroadcastNotification(tableViewProgramPlan)
-                
-            } else {
-                /* An error occured */
             }
-        }
+            
+        };
         
         task.resume()
     }
@@ -342,7 +326,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             self.tableViewProgramPlan.append(program)
         } else {
             /* We have a signal! Lets go! */
-            self.parseICS()
+            self.parseGoogleCalendar()
         }
 
         programTableView.reloadData()
