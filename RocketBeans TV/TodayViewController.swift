@@ -52,7 +52,6 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
         dispatch_async(dispatch_get_main_queue(), {
             self.nowTextField.stringValue = "Updating...";
             self.nextTextField.stringValue = "";
-            completionHandler(.NewData)
         });
 
         self.lastCompletionHandler = completionHandler;
