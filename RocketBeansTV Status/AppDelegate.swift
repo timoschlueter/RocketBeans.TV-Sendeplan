@@ -255,31 +255,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(self.refreshInterval, target: self, selector: Selector("beginParsing"), userInfo: nil, repeats: true)
     }
     
-    /* seperates title to iconname and title without type tag in front of it */
-    func iconNameFromTitle(title: String) -> (stripedTitle: String, iconName: String)
-    {
-        var stripedTitle = title
-        var iconName: String
-        
-        if let range = title.rangeOfString("[L] ") {
-            iconName = "LiveIcon"
-            stripedTitle.removeRange(range)
-        } else if let range = title.rangeOfString("[L]") {
-            iconName = "LiveIcon"
-            stripedTitle.removeRange(range)
-        } else if let range = title.rangeOfString("[N] ") {
-            iconName = "NewIcon"
-            stripedTitle.removeRange(range)
-        } else if let range = title.rangeOfString("[N]") {
-            iconName = "NewIcon"
-            stripedTitle.removeRange(range)
-        } else {
-            iconName = "RerunIcon"
-        }
-        
-        return (stripedTitle, iconName)
-    }
-    
     func numberOfRowsInTableView(aTableView: NSTableView!) -> Int
     {
         return self.tableViewPrograms.count
@@ -291,18 +266,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         let programRow: Program = self.tableViewPrograms[row]
         
         var cell = tableView.makeViewWithIdentifier("programCell", owner: self) as CustomTableView
+//        cell.layer?.rasterizationScale = 1.0
+//        cell.layer?.backgroundColor = NSColor.clearColor().CGColor
         
-        tableView.backgroundColor = NSColor.clearColor()
+//        tableView.backgroundColor = NSColor.clearColor()
         
         /*
         
-        if (programRow.programCurrent) {
+        if (programRow.current) {
             var rowView = tableView.rowViewAtRow(row, makeIfNecessary: true) as NSTableRowView
-            /* TODO: strange things happening when background color is changed */
+            //TODO: strange things happening when background color is changed
             rowView.backgroundColor = NSColor.lightGrayColor()
         }
-    
+
         */
+
+
         
         /* get title without type tag and get icon name */
         if let iconName = programRow.iconName() {
@@ -312,7 +291,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         /* Append special state, if the program is currently running */
         var title = programRow.title()
         if (programRow.current) {
-            var rowView = tableView.rowViewAtRow(row, makeIfNecessary: true) as NSTableRowView
             title = "(JETZT) \(title)"
         }
         
