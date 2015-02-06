@@ -7,10 +7,9 @@
 //
 
 import Cocoa
-import SystemConfiguration
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTableViewDataSource, NSTableViewDelegate {
 
     @IBOutlet weak var mainMenu: NSMenu!
     @IBOutlet weak var programViewCell: NSMenuItem!
@@ -25,16 +24,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     var refreshInterval: NSTimeInterval = 60
     var refreshTimer: NSTimer?
     
-    var programTitle: String = ""
-    var programSummary: String = ""
-    var programState: String = ""
-    var programDate: String = ""
-    
-    var programPlan: [ProgramPlan] = [] // all events from the google calendar
-    var tableViewProgramPlan: [ProgramPlan] = [] // program for the table view
+    var programPlan: ProgramPlan // all events from the google calendar
+    var tableViewPrograms: [Program] = [] // program for the table view
     
     var settingsWC: SettingsWindowController?
     
+<<<<<<< HEAD
     /*
     
     Google Calender API Key.
@@ -164,12 +159,26 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
             }
             
         };
+=======
+    func beginParsing()
+    {
+        self.tableViewPrograms = []
+        self.programPlan.beginRefresh()
+    }
+    
+    /* Callback from ProgramPlan */
+    func programPlanDidRefresh(programPlan: ProgramPlan) {
+        /* Set global programPlan to the just generated programList */
+        self.tableViewPrograms = programPlan.currentAndFuturePrograms()
+        self.programTableView.reloadData()
+>>>>>>> origin/pr/24
         
-        task.resume()
+        self.checkForNewProgramPlan(self.tableViewPrograms)
+        self.checkForNextBroadcastNotification(self.tableViewPrograms)
     }
     
     /* check if we have a user notification for the next broadcast */
-    func checkForNextBroadcastNotification(newPlan: [ProgramPlan])
+    func checkForNextBroadcastNotification(newPlan: [Program])
     {
         /* only if notifications for broadcasts are enabled */
         if NSUserDefaults.standardUserDefaults().boolForKey("NotificationOnAir") {
@@ -186,7 +195,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                         
                         let notification = n as NSUserNotification
                         
-                        if program.programUid == notification.identifier {
+                        if program.uid == notification.identifier {
                             found = true
                             break
                         }
@@ -197,15 +206,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
                         let humanReadableStartDate = program.humanReadableStartDate()
                         let humanReadableEndDate = program.humanReadableEndDate()
                         
-                        let title = self.iconNameFromTitle(program.programTitle)
-                        
                         /* calculate delivery date */
-                        var deliveryDate = program.programStartDateFormattable
+                        var deliveryDate = program.startDateFormattable
                         let aheadInterval = NSUserDefaults.standardUserDefaults().doubleForKey("BroadcastAheadInterval")
                         deliveryDate = deliveryDate.dateByAddingTimeInterval(-1 * 60 * aheadInterval)
                         
                         /* send the notification */
-                        self.sendLocalNotification(title.stripedTitle, text: "\(title.stripedTitle): \(humanReadableStartDate) - \(humanReadableEndDate)", deliveryDate: deliveryDate, identifier: program.programUid)
+                        self.sendLocalNotification(program.title(), text: "\(humanReadableStartDate) - \(humanReadableEndDate)", deliveryDate: deliveryDate, identifier: program.uid)
                     }
                 }
             }
@@ -213,13 +220,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     }
     
     /* check for updated program plan and send user notification */
-    func checkForNewProgramPlan(newPlan: [ProgramPlan])
+    var lastCount = 0;
+    func checkForNewProgramPlan(newPlan: [Program])
     {
         // if the number of entries is different - we have a changed program plan
-        if self.programPlan.count != newPlan.count && self.programPlan.count != 0 {
-            self.programPlan = newPlan
-            if NSUserDefaults.standardUserDefaults().boolForKey("NotificationOnChanges") {
-                self.sendLocalNotification("Aktualisierung", text: "Der Sendeplan wurde aktualisiert.")
+        // if we have only a single entry and its an error, something went wrong - no notification
+        if lastCount != newPlan.count && lastCount != 0 && newPlan.count > 0 {
+            if newPlan.count > 1 || newPlan[0].state() != .Error {
+                if NSUserDefaults.standardUserDefaults().boolForKey("NotificationOnChanges") {
+                    self.sendLocalNotification("Aktualisierung", text: "Der Sendeplan wurde aktualisiert.")
+                }
             }
         }
     }
@@ -309,6 +319,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     override init() {
         let statusBar = NSStatusBar.systemStatusBar()
         self.statusItem = statusBar.statusItemWithLength(-1)
+<<<<<<< HEAD
     }
     
     func beginParsing()
@@ -328,6 +339,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         }
 
         programTableView.reloadData()
+=======
+        self.programPlan = ProgramPlan()
+>>>>>>> origin/pr/24
     }
     
     /* sends a local notification for given title and text */
@@ -349,25 +363,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         notificationCenter.scheduleNotification(notification)
     }
     
-    func isConnectedToNetwork() -> Bool {
-        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
-        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
-        zeroAddress.sin_family = sa_family_t(AF_INET)
-        
-        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0)).takeRetainedValue()
-        }
-        
-        var flags: SCNetworkReachabilityFlags = 0
-        if SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) == 0 {
-            return false
-        }
-        
-        let isReachable = (flags & UInt32(kSCNetworkFlagsReachable)) != 0
-        let needsConnection = (flags & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
-        
-        return (isReachable && !needsConnection) ? true : false
-    }
+    
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
@@ -394,6 +390,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         
         self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(self.refreshInterval, target: self, selector: Selector("beginParsing"), userInfo: nil, repeats: true)
         
+        self.programPlan.delegate = self;
         self.beginParsing()
         
         let bundle:NSBundle = NSBundle.mainBundle()
@@ -412,68 +409,47 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(self.refreshInterval, target: self, selector: Selector("beginParsing"), userInfo: nil, repeats: true)
     }
     
-    /* seperates title to iconname and title without type tag in front of it */
-    func iconNameFromTitle(title: String) -> (stripedTitle: String, iconName: String)
-    {
-        var stripedTitle = title
-        var iconName: String
-        
-        if let range = title.rangeOfString("[L] ") {
-            iconName = "LiveIcon"
-            stripedTitle.removeRange(range)
-        } else if let range = title.rangeOfString("[L]") {
-            iconName = "LiveIcon"
-            stripedTitle.removeRange(range)
-        } else if let range = title.rangeOfString("[N] ") {
-            iconName = "NewIcon"
-            stripedTitle.removeRange(range)
-        } else if let range = title.rangeOfString("[N]") {
-            iconName = "NewIcon"
-            stripedTitle.removeRange(range)
-        } else {
-            iconName = "RerunIcon"
-        }
-        
-        return (stripedTitle, iconName)
-    }
-    
     func numberOfRowsInTableView(aTableView: NSTableView!) -> Int
     {
-        return self.tableViewProgramPlan.count
+        return self.tableViewPrograms.count
     }
     
     func tableView(tableView: NSTableView, viewForTableColumn: NSTableColumn, row: Int) -> NSView
     {
         
-        let programRow: ProgramPlan = self.tableViewProgramPlan[row]
+        let programRow: Program = self.tableViewPrograms[row]
         
         var cell = tableView.makeViewWithIdentifier("programCell", owner: self) as CustomTableView
+//        cell.layer?.rasterizationScale = 1.0
+//        cell.layer?.backgroundColor = NSColor.clearColor().CGColor
         
-        tableView.backgroundColor = NSColor.clearColor()
+//        tableView.backgroundColor = NSColor.clearColor()
         
         /*
         
-        if (programRow.programCurrent) {
+        if (programRow.current) {
             var rowView = tableView.rowViewAtRow(row, makeIfNecessary: true) as NSTableRowView
-            /* TODO: strange things happening when background color is changed */
+            //TODO: strange things happening when background color is changed
             rowView.backgroundColor = NSColor.lightGrayColor()
         }
-    
+
         */
+
+
         
         /* get title without type tag and get icon name */
-        let titleInfo = self.iconNameFromTitle(programRow.programTitle)
-        programRow.programTitle = titleInfo.stripedTitle
-        cell.logoImageView.image = NSImage(named: titleInfo.iconName)
+        if let iconName = programRow.iconName() {
+            cell.logoImageView.image = NSImage(named: iconName)
+        }
         
         /* Append special state, if the program is currently running */
-        if (programRow.programCurrent) {
-            var rowView = tableView.rowViewAtRow(row, makeIfNecessary: true) as NSTableRowView
-            programRow.programTitle = "(JETZT!) \(programRow.programTitle)"
+        var title = programRow.title()
+        if (programRow.current) {
+            title = "(JETZT) \(title)"
         }
         
         /* Set the final program title */
-        cell.titleTextfield?.stringValue = "\(programRow.programTitle)"
+        cell.titleTextfield?.stringValue = "\(title)"
         
         /* get human readable date */
         let humanReadableStartDate = programRow.humanReadableStartDate()
