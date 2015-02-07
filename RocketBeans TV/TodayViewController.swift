@@ -33,7 +33,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
         
         self.programPlan.delegate = self
     }
-
+    
     required init?(coder: NSCoder) {
         self.programPlan = ProgramPlan()
         
@@ -53,7 +53,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
             self.nowTextField.stringValue = "Updating...";
             self.nextTextField.stringValue = "";
         });
-
+        
         self.lastCompletionHandler = completionHandler;
         self.programPlan.beginRefresh()
     }

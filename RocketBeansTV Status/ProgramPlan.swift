@@ -9,30 +9,12 @@
 import Foundation
 import SystemConfiguration
 
-<<<<<<< HEAD
-class ProgramPlan {
-    var programTitle: String = ""
-    var programDate: String = ""
-    var programEpochDate: Double = 0.0
-    var programState: String = ""
-    var programCurrent: Bool = false
-    
-    /* New variables for ics parsing */
-    var programStartDate: String = ""
-    var programStartDateFormattable: NSDate = NSDate()
-    var programStartDateEpoch: Double = 0.0
-    var programEndDate: String = ""
-    var programEndDateFormattable: NSDate = NSDate()
-    var programEndDateEpoch: Double = 0.0
-    var programUid: String = ""
-=======
->>>>>>> origin/pr/24
 
 protocol ProgramPlanDelegate {
     func programPlanDidRefresh(programPlan: ProgramPlan);
 }
 
-class ProgramPlan {    
+class ProgramPlan {
     var delegate: ProgramPlanDelegate?
     var programs: [Program] = []
     
@@ -90,7 +72,7 @@ class ProgramPlan {
                 
                 var dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ssXXX" /* Example: 2015-01-18T00:00:00+01:00 */
-
+                
                 var programList:[Program] = []
                 
                 if let programCalendar = programData as? NSDictionary {
@@ -99,7 +81,7 @@ class ProgramPlan {
                         
                         for singleProgramItem in programItems {
                             var program: Program = Program()
-                
+                            
                             if let singleProgramItemAttributes = singleProgramItem as? NSDictionary {
                                 
                                 if let startDateObject = singleProgramItemAttributes["start"] as? NSDictionary {

@@ -10,7 +10,7 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTableViewDataSource, NSTableViewDelegate {
-
+    
     @IBOutlet weak var mainMenu: NSMenu!
     @IBOutlet weak var programViewCell: NSMenuItem!
     @IBOutlet weak var supportViewCell: NSMenuItem!
@@ -29,137 +29,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
     
     var settingsWC: SettingsWindowController?
     
-<<<<<<< HEAD
-    /*
-    
-    Google Calender API Key.
-    Go to your Google Developer Console (https://console.developers.google.com/project) and create a new Project with an iOS Specific API key.
-    Set the Bundle Identifier to "in.timo.ios.RocketBeans-TV-Sendeplan" and insert the generated API key below.
-    
-    */
-    
-    var googleApiKey = ""
-    
-    
-    /*
-    
-    Google Calendar Parsing
-    
-    The main data handling happens here now. This function gets the program from Google Calendar API
-    All the logic that chooses which program is visible and which is not should be applied here.
-    Formatting such as human readable dates and program title gimmicks should be applied when tableview is drawn
-    
-    */
-    
-    func parseGoogleCalendar() {
-        
-        /* Determine date for calendar request */
-        var dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        
-        var now = NSDate()
-        var timeMin = dateFormatter.stringFromDate(now)
-        
-        var timeMinEncoded = timeMin.stringByReplacingOccurrencesOfString("+", withString: "%2B")
-        
-        /* Put together the request url */
-        var url: NSURL = NSURL(string: "https://www.googleapis.com/calendar/v3/calendars/h6tfehdpu3jrbcrn9sdju9ohj8%40group.calendar.google.com/events?orderBy=startTime&singleEvents=true&key=\(self.googleApiKey)&maxResults=20&timeMin=\(timeMinEncoded)")!
-        
-        var sessionConfig:NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        sessionConfig.HTTPAdditionalHeaders = ["X-Ios-Bundle-Identifier": "in.timo.ios.RocketBeans-TV-Sendeplan"]
-        
-        let session = NSURLSession(configuration: sessionConfig)
-        
-        let task : NSURLSessionDataTask = session.dataTaskWithURL(url) {(data, response, error) in
-            let jsonData: NSData = data
-            var error: NSError?
-            
-            let programData: AnyObject? = NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &error)
-            
-            var dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ssXXX" /* Example: 2015-01-18T00:00:00+01:00 */
-            
-            var programList:[ProgramPlan] = []
-            var tableViewProgramPlan:[ProgramPlan] = []
-            
-            if let programCalendar = programData as? NSDictionary {
-
-                if let programItems = programCalendar["items"] as? NSArray {
-                    
-                    for singleProgramItem in programItems {
-                        
-                        var program: ProgramPlan = ProgramPlan()
-                        
-                        if let singleProgramItemAttributes = singleProgramItem as? NSDictionary {
-                            
-                            if let startDateObject = singleProgramItemAttributes["start"] as? NSDictionary {
-                                var startDateString = startDateObject["dateTime"] as String
-                                var startDate = dateFormatter.dateFromString(startDateString)!
-                                program.programStartDateFormattable = startDate
-                                var startEpochDate = startDate.timeIntervalSince1970
-                                program.programStartDateEpoch = startEpochDate
-                                
-                            }
-                            
-                            if let endDateObject = singleProgramItemAttributes["end"] as? NSDictionary {
-                                var endDateString = endDateObject["dateTime"] as String
-                                var endDate = dateFormatter.dateFromString(endDateString)
-                                program.programEndDateFormattable = endDate!
-                                var endEpochDate = endDate?.timeIntervalSince1970
-                                program.programEndDateEpoch = endEpochDate!
-                            }
-                            
-                            program.programTitle = singleProgramItemAttributes["summary"] as String
-                            program.programUid = singleProgramItemAttributes["iCalUID"] as String
-                            
-                            programList.append(program)
-                            
-                            /* Get current date in UTC */
-                            var currentDate = NSDate()
-                            
-                            var comparingStartDate = program.programStartDateFormattable
-                            var comparingEndDate = program.programEndDateFormattable
-                            
-                            /* Check if program is in the future or now */
-                            if ((comparingStartDate.compare(currentDate) == NSComparisonResult.OrderedDescending)
-                                || (comparingStartDate.compare(currentDate) == NSComparisonResult.OrderedSame))
-                                || ((currentDate.compare(comparingStartDate) == NSComparisonResult.OrderedDescending)
-                                    && (currentDate.compare(comparingEndDate) == NSComparisonResult.OrderedAscending))
-                            {
-                                /* Check if program is currently running */
-                                if (currentDate.compare(comparingStartDate) == NSComparisonResult.OrderedDescending)
-                                    && (currentDate.compare(comparingEndDate) == NSComparisonResult.OrderedAscending)
-                                {
-                                    program.programCurrent = true
-                                } else {
-                                    program.programCurrent = false
-                                }
-                                
-                                /* Append program to list for the table view */
-                                tableViewProgramPlan.append(program)
-                            }
-                            
-                            programList.sort({$0.programStartDateEpoch < $1.programStartDateEpoch})
-                            tableViewProgramPlan.sort({$0.programStartDateEpoch < $1.programStartDateEpoch})
-                            
-                            dispatch_async(dispatch_get_main_queue(), {
-                                /* Set global programPlan to the just generated programList */
-                                self.tableViewProgramPlan = tableViewProgramPlan
-                                self.programTableView.reloadData()
-                            })
-                            
-                            /* checks if program plan has changed */
-                            self.checkForNewProgramPlan(programList)
-                            
-                            /* checks if we need to add a user notification for upcoming broadcast */
-                            self.checkForNextBroadcastNotification(tableViewProgramPlan)
-                        }
-                    }
-                }
-            }
-            
-        };
-=======
     func beginParsing()
     {
         self.tableViewPrograms = []
@@ -171,7 +40,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         /* Set global programPlan to the just generated programList */
         self.tableViewPrograms = programPlan.currentAndFuturePrograms()
         self.programTableView.reloadData()
->>>>>>> origin/pr/24
         
         self.checkForNewProgramPlan(self.tableViewPrograms)
         self.checkForNextBroadcastNotification(self.tableViewPrograms)
@@ -241,7 +109,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         self.informationWindow.makeMainWindow()
         var application: AnyObject! = NSApp
         application.activateIgnoringOtherApps(true)
-
+        
     }
     
     @IBAction func settingsButtonPressed(sender: AnyObject) {
@@ -300,7 +168,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         let amazonUrl: NSURL = NSURL(string: "http://www.amazon.de/?_encoding=UTF8&camp=1638&creative=19454&linkCode=ur2&site-redirect=de&tag=rocketbeansde-21&linkId=TS4VQU7BZNNUKCKO")!
         NSWorkspace.sharedWorkspace().openURL(amazonUrl)
     }
-
+    
     @IBAction func rbShopButtonClicked(sender: AnyObject) {
         let rbShopUrl: NSURL = NSURL(string: "http://rocketbeans-shop.de")!
         NSWorkspace.sharedWorkspace().openURL(rbShopUrl)
@@ -319,29 +187,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
     override init() {
         let statusBar = NSStatusBar.systemStatusBar()
         self.statusItem = statusBar.statusItemWithLength(-1)
-<<<<<<< HEAD
-    }
-    
-    func beginParsing()
-    {
-        self.tableViewProgramPlan = []
-        
-        if (!self.isConnectedToNetwork()) {
-            /* No connection to the internet */
-            let program: ProgramPlan = ProgramPlan()
-            program.programTitle = "Keine Verbindung zum Internet!"
-            program.programDate = "Sendeplan kann nicht geladen werden."
-            program.programState = ""
-            self.tableViewProgramPlan.append(program)
-        } else {
-            /* We have a signal! Lets go! */
-            self.parseGoogleCalendar()
-        }
-
-        programTableView.reloadData()
-=======
         self.programPlan = ProgramPlan()
->>>>>>> origin/pr/24
     }
     
     /* sends a local notification for given title and text */
@@ -350,7 +196,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         let deliveryDate = NSDate(timeIntervalSinceNow: 2) // 2 seconds delay
         self.sendLocalNotification(title, text: text, deliveryDate: deliveryDate, identifier: nil)
     }
-
+    
     /* sends a local notification for given title and text - at the delivery date */
     func sendLocalNotification(title: String, text: String, deliveryDate: NSDate, identifier: String?)
     {
@@ -420,22 +266,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         let programRow: Program = self.tableViewPrograms[row]
         
         var cell = tableView.makeViewWithIdentifier("programCell", owner: self) as CustomTableView
-//        cell.layer?.rasterizationScale = 1.0
-//        cell.layer?.backgroundColor = NSColor.clearColor().CGColor
+        //        cell.layer?.rasterizationScale = 1.0
+        //        cell.layer?.backgroundColor = NSColor.clearColor().CGColor
         
-//        tableView.backgroundColor = NSColor.clearColor()
+        //        tableView.backgroundColor = NSColor.clearColor()
         
         /*
         
         if (programRow.current) {
-            var rowView = tableView.rowViewAtRow(row, makeIfNecessary: true) as NSTableRowView
-            //TODO: strange things happening when background color is changed
-            rowView.backgroundColor = NSColor.lightGrayColor()
+        var rowView = tableView.rowViewAtRow(row, makeIfNecessary: true) as NSTableRowView
+        //TODO: strange things happening when background color is changed
+        rowView.backgroundColor = NSColor.lightGrayColor()
         }
-
+        
         */
-
-
+        
+        
         
         /* get title without type tag and get icon name */
         if let iconName = programRow.iconName() {
@@ -460,11 +306,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         
         return cell;
     }
-
+    
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
         
         NSUserDefaults.standardUserDefaults().synchronize()
     }
 }
-
