@@ -105,10 +105,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
     // MARK: - IBActions
     
     @IBAction func informationButtonPressed(sender: AnyObject) {
+        NSApp.activateIgnoringOtherApps(true)
+        self.informationWindow.center()
         self.informationWindow.makeKeyAndOrderFront(self)
-        self.informationWindow.makeMainWindow()
-        var application: AnyObject! = NSApp
-        application.activateIgnoringOtherApps(true)
         
     }
     
@@ -117,9 +116,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
             self.settingsWC = SettingsWindowController(windowNibName: "SettingsWindowController")
         }
         
+        NSApp.activateIgnoringOtherApps(true);
+        self.settingsWC?.window?.center()
         self.settingsWC?.showWindow(self)
         self.settingsWC?.window?.makeKeyAndOrderFront(self)
-        self.settingsWC?.window?.makeMainWindow()
     }
     
     /* START Social Media Buttons */
