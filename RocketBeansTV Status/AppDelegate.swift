@@ -7,11 +7,10 @@
 //
 
 import Cocoa
-import SystemConfiguration
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate {
-
+class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTableViewDataSource, NSTableViewDelegate {
+    
     @IBOutlet weak var mainMenu: NSMenu!
     @IBOutlet weak var programViewCell: NSMenuItem!
     @IBOutlet weak var supportViewCell: NSMenuItem!
@@ -22,155 +21,105 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
     
     @IBOutlet weak var informationWindow: NSWindow!
     
-    var parser = NSXMLParser()
-    var posts = NSMutableArray()
-    var elements = NSMutableDictionary()
-    var currentElementName = NSString()
+    var refreshInterval: NSTimeInterval = 60
+    var refreshTimer: NSTimer?
     
-    var programTitle: String = ""
-    var programSummary: String = ""
-    var programState: String = ""
-    var programDate: String = ""
+    var programPlan: ProgramPlan // all events from the google calendar
+    var tableViewPrograms: [Program] = [] // program for the table view
     
-    var programPlan: [ProgramPlan] = []
+    var settingsWC: SettingsWindowController?
     
-    /* 
-    
-    ICS Parsing
-    
-    The main data handling happens here now. This function gets the program from ICS.
-    All the logic that chooses which program is visible and which is not should be applied here.
-    Formatting such as human readable dates and program title gimmicks should be applied when tableview is drawn
-    
-    */
-    
-    let icsUrl: String = "https://www.google.com/calendar/ical/h6tfehdpu3jrbcrn9sdju9ohj8%40group.calendar.google.com/public/basic.ics"
-    
-    func parseICS() {
-        
-        var session = NSURLSession.sharedSession()
-        
-        let task = session.dataTaskWithURL(NSURL(string: icsUrl)!) {(data, response, error) in
-            
-            if (error == nil) {
-                
-                var dataContent: NSString = NSString(data: data, encoding: NSUTF8StringEncoding)!
-                dataContent = dataContent.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-                
-                let dataLines: NSArray = dataContent.componentsSeparatedByString("\n")
-                
-                var programList:[ProgramPlan] = []
-                
-                for var i = 0; i < dataLines.count; i++ {
-                    
-                    if dataLines[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) == "BEGIN:VEVENT" {
-                        var program: ProgramPlan = ProgramPlan()
-                        i++
-                        
-                        while (dataLines[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) != "END:VEVENT") {
-                            
-                            var currentLine = dataLines[i].stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-                            
-                            let splittedLine = currentLine.componentsSeparatedByString(":")
-                            
-                            var value = ""
-                            var attribute = ""
-                            
-                            if splittedLine.count > 1 {
-                                attribute = splittedLine[0]
-                                value = splittedLine[1]
-                            }
-                            
-                            switch (attribute) {
-                            case "DTSTART":
-                                program.programStartDate = value
-                            case "DTEND":
-                                program.programEndDate = value
-                            case "CREATED":
-                                program.programCreatedDate = value
-                            case "LAST-MODIFIED":
-                                program.programLastModifiedDate = value
-                            case "SUMMARY":
-                                program.programTitle = value
-                            default:
-                                break
-                            }
-                            
-                            i++
-                        }
-                        
-                        /* Date parsing */
-                        var dateFormatter = NSDateFormatter()
-                        dateFormatter.dateFormat = "yyyyMMdd'T'HHmmss'Z'"
-                        var startDate = dateFormatter.dateFromString(program.programStartDate)
-                        var endDate = dateFormatter.dateFromString(program.programEndDate)
-                        
-                        /* Convert ICS date to UTC */
-                        startDate = startDate?.dateByAddingTimeInterval(1 * 60 * 60)
-                        endDate = endDate?.dateByAddingTimeInterval(1 * 60 * 60)
-                        
-                        /* Get current date in UTC */
-                        let currentDate = NSDate()
-                        
-                        /* Date related functions */
-                        /* From now on, we are comparing only in UTC. Setting local timezone will be done at the last step */
-                        
-                        /* Check if program is in the future or now */
-                        if ((startDate?.compare(currentDate) == NSComparisonResult.OrderedDescending)
-                            || (startDate?.compare(currentDate) == NSComparisonResult.OrderedSame))
-                            || ((currentDate.compare(startDate!) == NSComparisonResult.OrderedDescending)
-                            && (currentDate.compare(endDate!) == NSComparisonResult.OrderedAscending))
-                        {
-                            /* Check if program is currently running */
-                            if (currentDate.compare(startDate!) == NSComparisonResult.OrderedDescending) && (currentDate.compare(endDate!) == NSComparisonResult.OrderedAscending) {
-                                program.programCurrent = true
-                            } else {
-                                program.programCurrent = false
-                            }
-                            
-                            /*
-                            DEBUG: Print all programs with startdate and enddate
-                            println(program.programTitle + " - Start: \(startDate!) / Ende: \(endDate!)")
-                            */
-                            
-                            program.programStartDateFormattable = startDate!
-                            var startEpochDate = startDate?.timeIntervalSince1970
-                            program.programStartDateEpoch = startEpochDate!
-                            
-                            program.programEndDateFormattable = endDate!
-                            var endEpochDate = endDate?.timeIntervalSince1970
-                            program.programEndDateEpoch = endEpochDate!
-                            
-                            /* Append program to list */
-                            programList.append(program)
-                        }
-                    }
-                }
-                
-                /* Sort by date before entering main thread */
-                programList.sort({$0.programStartDateEpoch < $1.programStartDateEpoch})
-                
-                /* Since NSURLSession is asynchrounous, we have to dispach the data back to the main thread of the app */
-                dispatch_async(dispatch_get_main_queue(), {
-                    /* Set global programPlan to the just generated programList */
-                    self.programPlan = programList
-                    self.programTableView.reloadData()
-                })
-                
-            } else {
-                /* An error occured */
-            }
-        }
-        
-        task.resume()
+    func beginParsing()
+    {
+        self.tableViewPrograms = []
+        self.programPlan.beginRefresh()
     }
     
+    /* Callback from ProgramPlan */
+    func programPlanDidRefresh(programPlan: ProgramPlan) {
+        /* Set global programPlan to the just generated programList */
+        self.tableViewPrograms = programPlan.currentAndFuturePrograms()
+        self.programTableView.reloadData()
+        
+        self.checkForNewProgramPlan(self.tableViewPrograms)
+        self.checkForNextBroadcastNotification(self.tableViewPrograms)
+    }
+    
+    /* check if we have a user notification for the next broadcast */
+    func checkForNextBroadcastNotification(newPlan: [Program])
+    {
+        /* only if notifications for broadcasts are enabled */
+        if NSUserDefaults.standardUserDefaults().boolForKey("NotificationOnAir") {
+            
+            /* check first two entries */
+            for i in 0...1 {
+                if newPlan.count > i {
+                    
+                    let program = newPlan[i]
+                    var found = false
+                    
+                    /* check if there is already a notification in progress */
+                    for n in NSUserNotificationCenter.defaultUserNotificationCenter().scheduledNotifications {
+                        
+                        let notification = n as NSUserNotification
+                        
+                        if program.uid == notification.identifier {
+                            found = true
+                            break
+                        }
+                    }
+                    
+                    if !found {
+                        /* get human readable date */
+                        let humanReadableStartDate = program.humanReadableStartDate()
+                        let humanReadableEndDate = program.humanReadableEndDate()
+                        
+                        /* calculate delivery date */
+                        var deliveryDate = program.startDateFormattable
+                        let aheadInterval = NSUserDefaults.standardUserDefaults().doubleForKey("BroadcastAheadInterval")
+                        deliveryDate = deliveryDate.dateByAddingTimeInterval(-1 * 60 * aheadInterval)
+                        
+                        /* send the notification */
+                        self.sendLocalNotification(program.title(), text: "\(humanReadableStartDate) - \(humanReadableEndDate)", deliveryDate: deliveryDate, identifier: program.uid)
+                    }
+                }
+            }
+        }
+    }
+    
+    /* check for updated program plan and send user notification */
+    var lastCount = 0;
+    func checkForNewProgramPlan(newPlan: [Program])
+    {
+        // if the number of entries is different - we have a changed program plan
+        // if we have only a single entry and its an error, something went wrong - no notification
+        if lastCount != newPlan.count && lastCount != 0 && newPlan.count > 0 {
+            if newPlan.count > 1 || newPlan[0].state() != .Error {
+                if NSUserDefaults.standardUserDefaults().boolForKey("NotificationOnChanges") {
+                    self.sendLocalNotification("Aktualisierung", text: "Der Sendeplan wurde aktualisiert.")
+                }
+            }
+        }
+    }
+    
+    // MARK: - IBActions
+    
     @IBAction func informationButtonPressed(sender: AnyObject) {
+        NSApp.activateIgnoringOtherApps(true)
+        self.informationWindow.center()
         self.informationWindow.makeKeyAndOrderFront(self)
-        self.informationWindow.makeMainWindow()
-        var application: AnyObject! = NSApp
-        application.activateIgnoringOtherApps(true)
-
+        
+    }
+    
+    @IBAction func settingsButtonPressed(sender: AnyObject) {
+        if self.settingsWC == nil {
+            self.settingsWC = SettingsWindowController(windowNibName: "SettingsWindowController")
+        }
+        
+        NSApp.activateIgnoringOtherApps(true);
+        self.settingsWC?.window?.center()
+        self.settingsWC?.showWindow(self)
+        self.settingsWC?.window?.makeKeyAndOrderFront(self)
     }
     
     /* START Social Media Buttons */
@@ -219,7 +168,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         let amazonUrl: NSURL = NSURL(string: "http://www.amazon.de/?_encoding=UTF8&camp=1638&creative=19454&linkCode=ur2&site-redirect=de&tag=rocketbeansde-21&linkId=TS4VQU7BZNNUKCKO")!
         NSWorkspace.sharedWorkspace().openURL(amazonUrl)
     }
-
+    
     @IBAction func rbShopButtonClicked(sender: AnyObject) {
         let rbShopUrl: NSURL = NSURL(string: "http://rocketbeans-shop.de")!
         NSWorkspace.sharedWorkspace().openURL(rbShopUrl)
@@ -230,54 +179,50 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         NSWorkspace.sharedWorkspace().openURL(g2aShopUrl)
     }
     
+    // MARK: -
+    
     var statusItem: NSStatusItem
     let statusItemLength: CGFloat = 25.0
     
     override init() {
         let statusBar = NSStatusBar.systemStatusBar()
         self.statusItem = statusBar.statusItemWithLength(-1)
+        self.programPlan = ProgramPlan()
     }
     
-    func beginParsing()
+    /* sends a local notification for given title and text */
+    func sendLocalNotification(title: String, text: String)
     {
-        self.programPlan = []
-        
-        if (!self.isConnectedToNetwork()) {
-            /* No connection to the internet */
-            let program: ProgramPlan = ProgramPlan()
-            program.programTitle = "Keine Verbindung zum Internet!"
-            program.programDate = "Sendeplan kann nicht geladen werden."
-            program.programState = ""
-            programPlan.append(program)
-        } else {
-            /* We have a signal! Lets go! */
-            self.parseICS()
-        }
-
-        programTableView.reloadData()
+        let deliveryDate = NSDate(timeIntervalSinceNow: 2) // 2 seconds delay
+        self.sendLocalNotification(title, text: text, deliveryDate: deliveryDate, identifier: nil)
     }
     
-    func isConnectedToNetwork() -> Bool {
-        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
-        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
-        zeroAddress.sin_family = sa_family_t(AF_INET)
-        
-        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0)).takeRetainedValue()
-        }
-        
-        var flags: SCNetworkReachabilityFlags = 0
-        if SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) == 0 {
-            return false
-        }
-        
-        let isReachable = (flags & UInt32(kSCNetworkFlagsReachable)) != 0
-        let needsConnection = (flags & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
-        
-        return (isReachable && !needsConnection) ? true : false
+    /* sends a local notification for given title and text - at the delivery date */
+    func sendLocalNotification(title: String, text: String, deliveryDate: NSDate, identifier: String?)
+    {
+        let notificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter()
+        let notification = NSUserNotification()
+        notification.title = title
+        if identifier != nil { notification.identifier = identifier! }
+        notification.informativeText = text
+        notification.deliveryDate = deliveryDate
+        notificationCenter.scheduleNotification(notification)
     }
+    
+    
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        
+        /* register delivered default settings */
+        NSUserDefaults.standardUserDefaults().registerDefaults([
+            "NotificationOnChanges" : true,   // enable notifications for changes on air dates
+            "NotificationOnAir" : true,       // enable notifications for starting broadcasts
+            "UpdateInterval" : 1,             // update every minute
+            "BroadcastAheadInterval" : 10     // notification 10 minutes before broadcast
+            ])
+        
+        /* get updates for user defaults */
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("updateValuesFromUserDefaults"), name: NSUserDefaultsDidChangeNotification, object: nil)
         
         self.statusItem.toolTip = "RocketBeans.TV Sendeplan"
         self.statusItem.image = NSImage(named: "StatusIcon")
@@ -289,8 +234,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         self.supportViewCell.view = supportView
         self.programTableView.setDataSource(self)
         
-        var timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector("beginParsing"), userInfo: nil, repeats: true)
+        self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(self.refreshInterval, target: self, selector: Selector("beginParsing"), userInfo: nil, repeats: true)
         
+        self.programPlan.delegate = self;
         self.beginParsing()
         
         let bundle:NSBundle = NSBundle.mainBundle()
@@ -299,73 +245,71 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTableViewDataSource, NSTab
         self.appVersionLabel.stringValue = "Version \(appVersion)"
     }
     
+    func updateValuesFromUserDefaults()
+    {
+        /* stop previous timer */
+        self.refreshTimer?.invalidate()
+        /* update user settings */
+        self.refreshInterval = NSUserDefaults.standardUserDefaults().doubleForKey("UpdateInterval") * 60 // and convert minutes to seconds
+        /* restart timer */
+        self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(self.refreshInterval, target: self, selector: Selector("beginParsing"), userInfo: nil, repeats: true)
+    }
+    
     func numberOfRowsInTableView(aTableView: NSTableView!) -> Int
     {
-        return self.programPlan.count
+        return self.tableViewPrograms.count
     }
     
     func tableView(tableView: NSTableView, viewForTableColumn: NSTableColumn, row: Int) -> NSView
     {
         
-        let programRow: ProgramPlan = self.programPlan[row]
+        let programRow: Program = self.tableViewPrograms[row]
         
         var cell = tableView.makeViewWithIdentifier("programCell", owner: self) as CustomTableView
+        //        cell.layer?.rasterizationScale = 1.0
+        //        cell.layer?.backgroundColor = NSColor.clearColor().CGColor
         
-        tableView.backgroundColor = NSColor.clearColor()
+        //        tableView.backgroundColor = NSColor.clearColor()
         
         /*
         
-        if (programRow.programCurrent) {
-            var rowView = tableView.rowViewAtRow(row, makeIfNecessary: true) as NSTableRowView
-            /* TODO: strange things happening when background color is changed */
-            rowView.backgroundColor = NSColor.lightGrayColor()
+        if (programRow.current) {
+        var rowView = tableView.rowViewAtRow(row, makeIfNecessary: true) as NSTableRowView
+        //TODO: strange things happening when background color is changed
+        rowView.backgroundColor = NSColor.lightGrayColor()
         }
-    
+        
         */
         
-        /* Determine the state of the program and set the icon */
-        if let range = programRow.programTitle.rangeOfString("[L] ") {
-            cell.logoImageView.image = NSImage(named: "LiveIcon")
-            programRow.programTitle.removeRange(range)
-        } else if let range = programRow.programTitle.rangeOfString("[L]") {
-            cell.logoImageView.image = NSImage(named: "LiveIcon")
-            programRow.programTitle.removeRange(range)
-        } else if let range = programRow.programTitle.rangeOfString("[N] ") {
-            cell.logoImageView.image = NSImage(named: "NewIcon")
-            programRow.programTitle.removeRange(range)
-        } else if let range = programRow.programTitle.rangeOfString("[N]") {
-            cell.logoImageView.image = NSImage(named: "NewIcon")
-            programRow.programTitle.removeRange(range)
-        } else {
-            cell.logoImageView.image = NSImage(named: "RerunIcon")
+        
+        
+        /* get title without type tag and get icon name */
+        if let iconName = programRow.iconName() {
+            cell.logoImageView.image = NSImage(named: iconName)
         }
         
         /* Append special state, if the program is currently running */
-        if (programRow.programCurrent) {
-            var rowView = tableView.rowViewAtRow(row, makeIfNecessary: true) as NSTableRowView
-            programRow.programTitle = "(JETZT!) \(programRow.programTitle)"
+        var title = programRow.title()
+        if (programRow.current) {
+            title = "(JETZT) \(title)"
         }
         
         /* Set the final program title */
-        cell.titleTextfield?.stringValue = "\(programRow.programTitle)"
+        cell.titleTextfield?.stringValue = "\(title)"
         
-        /* Formatting the date end setting timezone to local timezone */
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .ShortStyle
-        dateFormatter.timeStyle = .ShortStyle
-        dateFormatter.doesRelativeDateFormatting = true
-        let humanReadableStartDate = dateFormatter.stringFromDate(programRow.programStartDateFormattable)
-        let humanReadableEndDate = dateFormatter.stringFromDate(programRow.programEndDateFormattable)
+        /* get human readable date */
+        let humanReadableStartDate = programRow.humanReadableStartDate()
+        let humanReadableEndDate = programRow.humanReadableEndDate()
         
         /* Set the date label */
         cell.startTimeTextfield?.stringValue = "\(humanReadableStartDate) - \(humanReadableEndDate)"
         
         return cell;
     }
-
-
+    
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
+        
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
 }
-
