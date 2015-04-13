@@ -343,8 +343,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
                 println("JSON Error \(err!.localizedDescription)")
             }
             
-            let newVersion: String = String(stringInterpolationSegment: jsonResult["version"])
-            let link: String = String(stringInterpolationSegment: jsonResult["link"])
+            let newVersion = jsonResult["version"] as! NSString
+            let link = jsonResult["link"] as! NSString
             
             if appVersion != newVersion {
                 println("Update verfügbar!")
