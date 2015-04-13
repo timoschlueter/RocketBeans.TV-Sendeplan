@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7531"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SettingsWindowController" customModule="RocketBeans_TV_Sendeplan" customModuleProvider="target">
             <connections>
                 <outlet property="broadcastNotificationAheadIntervalTextField" destination="GDX-ES-DZD" id="Jbs-oQ-rhT"/>
+                <outlet property="coloredLiveStatusbarIconButton" destination="12l-cn-Ou8" id="Gxx-zv-JvN"/>
                 <outlet property="notificationBeforeBroadcastButton" destination="fau-q6-4Kn" id="ng2-iD-ir1"/>
                 <outlet property="notificationOnChangesButton" destination="rHw-YX-1qV" id="zt9-Pp-TNM"/>
                 <outlet property="updateIntervalTextField" destination="vnD-VT-gLc" id="ExB-6w-w2I"/>
@@ -17,14 +18,24 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Einstellungen" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <rect key="contentRect" x="196" y="240" width="480" height="136"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="154"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="136"/>
+                <rect key="frame" x="0.0" y="7" width="480" height="154"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12l-cn-Ou8">
+                        <rect key="frame" x="18" y="118" width="444" height="18"/>
+                        <buttonCell key="cell" type="check" title="Färbe Statusleisten-Icon, wenn die Bohnen live senden" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="AdH-ez-q2b">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <connections>
+                                <action selector="coloredLiveStatusbarIconChanged:" target="-2" id="Pyo-ot-3wQ"/>
+                            </connections>
+                        </buttonCell>
+                    </button>
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="rHw-YX-1qV">
-                        <rect key="frame" x="18" y="100" width="444" height="18"/>
+                        <rect key="frame" x="18" y="98" width="444" height="18"/>
                         <buttonCell key="cell" type="check" title="Sende Mitteilung bei Änderungen im Sendeplan" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="a5b-id-0a2">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
@@ -34,7 +45,7 @@
                         </connections>
                     </button>
                     <button translatesAutoresizingMaskIntoConstraints="NO" id="fau-q6-4Kn">
-                        <rect key="frame" x="18" y="80" width="444" height="18"/>
+                        <rect key="frame" x="18" y="78" width="444" height="18"/>
                         <buttonCell key="cell" type="check" title="Sende Mitteilung vor Sendestart" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="qQH-S4-qaN">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
@@ -44,7 +55,7 @@
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vnD-VT-gLc">
-                        <rect key="frame" x="20" y="52" width="54" height="22"/>
+                        <rect key="frame" x="20" y="50" width="54" height="22"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="54" id="ntm-kR-Es4"/>
                         </constraints>
@@ -59,7 +70,7 @@
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z1a-Dh-oQZ">
-                        <rect key="frame" x="82" y="55" width="380" height="17"/>
+                        <rect key="frame" x="82" y="53" width="380" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Updateinterval (Google Kalendar) in Minuten" id="Y6P-T6-Q4C">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -100,10 +111,10 @@
                     <constraint firstItem="fau-q6-4Kn" firstAttribute="leading" secondItem="rHw-YX-1qV" secondAttribute="leading" id="Kwk-lu-OGP"/>
                     <constraint firstItem="GDX-ES-DZD" firstAttribute="leading" secondItem="vnD-VT-gLc" secondAttribute="leading" id="Ls8-Iw-2yd"/>
                     <constraint firstItem="fau-q6-4Kn" firstAttribute="width" secondItem="rHw-YX-1qV" secondAttribute="width" id="StC-6a-mM0"/>
-                    <constraint firstItem="rHw-YX-1qV" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="ZUb-kd-FSd"/>
+                    <constraint firstItem="rHw-YX-1qV" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="40" id="ZUb-kd-FSd"/>
                     <constraint firstItem="4WR-Np-TNB" firstAttribute="centerY" secondItem="GDX-ES-DZD" secondAttribute="centerY" constant="-0.5" id="c3d-H8-V34"/>
                     <constraint firstItem="fau-q6-4Kn" firstAttribute="top" secondItem="rHw-YX-1qV" secondAttribute="bottom" constant="6" id="e4Y-si-U4Q"/>
-                    <constraint firstItem="GDX-ES-DZD" firstAttribute="top" secondItem="vnD-VT-gLc" secondAttribute="bottom" constant="10" id="jKj-tS-B1z"/>
+                    <constraint firstItem="GDX-ES-DZD" firstAttribute="top" secondItem="vnD-VT-gLc" secondAttribute="bottom" constant="8" id="jKj-tS-B1z"/>
                     <constraint firstItem="vnD-VT-gLc" firstAttribute="top" secondItem="fau-q6-4Kn" secondAttribute="bottom" constant="8" id="oJT-5M-Mnb"/>
                     <constraint firstItem="Z1a-Dh-oQZ" firstAttribute="leading" secondItem="vnD-VT-gLc" secondAttribute="trailing" constant="10" id="pEB-lE-er2"/>
                     <constraint firstAttribute="trailing" secondItem="rHw-YX-1qV" secondAttribute="trailing" constant="20" id="vcT-ut-qn6"/>
@@ -112,7 +123,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="144" y="321"/>
+            <point key="canvasLocation" x="144" y="330"/>
         </window>
     </objects>
 </document>

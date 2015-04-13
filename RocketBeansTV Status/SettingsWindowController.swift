@@ -10,6 +10,7 @@ import Cocoa
 
 class SettingsWindowController: NSWindowController, NSWindowDelegate {
     
+    @IBOutlet weak var coloredLiveStatusbarIconButton: NSButton!
     @IBOutlet weak var notificationOnChangesButton: NSButton!
     @IBOutlet weak var notificationBeforeBroadcastButton: NSButton!
     @IBOutlet weak var updateIntervalTextField: NSTextField!
@@ -38,6 +39,12 @@ class SettingsWindowController: NSWindowController, NSWindowDelegate {
     /* updates the views - textfields, buttons - with the data from NSUserDefaults */
     func updateViewItems()
     {
+        if NSUserDefaults.standardUserDefaults().boolForKey("ColoredLiveStatusbarIcon") {
+            self.coloredLiveStatusbarIconButton.state = NSOnState
+        } else {
+            self.coloredLiveStatusbarIconButton.state = NSOffState
+        }
+        
         if NSUserDefaults.standardUserDefaults().boolForKey("NotificationOnChanges") {
             self.notificationOnChangesButton.state = NSOnState
         } else {
@@ -57,6 +64,12 @@ class SettingsWindowController: NSWindowController, NSWindowDelegate {
     /* updates the NSUserDefaults with the data from the views */
     func updateUserDefaultsFromViews()
     {
+        if self.coloredLiveStatusbarIconButton.state == NSOnState {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ColoredLiveStatusbarIcon")
+        } else {
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "ColoredLiveStatusbarIcon")
+        }
+        
         if self.notificationOnChangesButton.state == NSOnState {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "NotificationOnChanges")
         } else {
@@ -74,6 +87,15 @@ class SettingsWindowController: NSWindowController, NSWindowDelegate {
     }
     
     // MARK: - IBActions
+    
+    @IBAction func coloredLiveStatusbarIconChanged(sender: AnyObject)
+    {
+        if self.coloredLiveStatusbarIconButton.state == NSOnState {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "ColoredLiveStatusbarIcon")
+        } else {
+            NSUserDefaults.standardUserDefaults().setBool(false, forKey: "ColoredLiveStatusbarIcon")
+        }
+    }
     
     @IBAction func notificationOnChangesChanged(sender: AnyObject)
     {
