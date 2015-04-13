@@ -41,6 +41,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         self.tableViewPrograms = programPlan.currentAndFuturePrograms()
         self.programTableView.reloadData()
         
+        /* Set statusbar icon if current show is live */
+        if NSUserDefaults.standardUserDefaults().boolForKey("ColoredLiveStatusbarIcon") {
+            if self.tableViewPrograms.first?.iconName() == "LiveIcon" {
+                statusItem.image = NSImage(named: "StatusLiveIcon")
+            }
+            else {
+                statusItem.image = NSImage(named: "StatusIcon")
+            }
+        }
+        
         self.checkForNewProgramPlan(self.tableViewPrograms)
         self.checkForNextBroadcastNotification(self.tableViewPrograms)
     }
@@ -215,6 +225,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         
         /* register delivered default settings */
         NSUserDefaults.standardUserDefaults().registerDefaults([
+            "ColoredLiveStatusbarIcon" : true,// enable colored statusbar icon for live shows
             "NotificationOnChanges" : true,   // enable notifications for changes on air dates
             "NotificationOnAir" : true,       // enable notifications for starting broadcasts
             "UpdateInterval" : 1,             // update every minute
