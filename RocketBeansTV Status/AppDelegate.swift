@@ -254,6 +254,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         let appVersion: String = bundle.objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
         
         self.appVersionLabel.stringValue = "Version \(appVersion)"
+        
+        self.checkForAppUpdate(appVersion)
     }
     
     func updateValuesFromUserDefaults()
@@ -322,5 +324,38 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         // Insert code here to tear down your application
         
         NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    func checkForAppUpdate(appVersion: String) {
+        let url = NSURL(string: "http://api.rbtvosx.cvdev.de")
+        let session = NSURLSession.sharedSession()
+        let dataTask = session.dataTaskWithURL(url!, completionHandler: {(data, response, error) in
+            
+            if error != nil {
+                // If there is an error in the web request, print it to the console
+                println(error.localizedDescription)
+            }
+            
+            var err: NSError?
+            var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as! NSDictionary
+            if err != nil {
+                // If there is an error parsing JSON, print it to the console
+                println("JSON Error \(err!.localizedDescription)")
+            }
+            
+            let newVersion: String = String(stringInterpolationSegment: jsonResult["version"])
+            let link: String = String(stringInterpolationSegment: jsonResult["link"])
+            
+            if appVersion != newVersion {
+                println("Update verfügbar!")
+                println("Das Update steht unter \(link) zur verfügung!")
+                
+                //funzt nicht - why?
+                self.sendLocalNotification("Update verfügbar!", text: "Das Update steht unter \(link) zur verfügung!")
+            }
+            
+        })
+        
+        dataTask.resume()
     }
 }
