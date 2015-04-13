@@ -21,7 +21,7 @@ class SettingsWindowController: NSWindowController, NSWindowDelegate {
         self.window?.delegate = self
     }
     
-    func windowWillClose(notification: NSNotification!)
+    func windowWillClose(notification: NSNotification)
     {
         /* store input to NSUserDefaults */
         self.updateUserDefaultsFromViews()

@@ -18,13 +18,14 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
     let refreshInterval: NSTimeInterval = 60
     var programPlan: ProgramPlan
     
-    override init() {
-        self.programPlan = ProgramPlan()
+    /*override init() {
         
         super.init()
         
+        self.programPlan = ProgramPlan()
+        
         self.programPlan.delegate = self
-    }
+    }*/
     
     override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         self.programPlan = ProgramPlan()
