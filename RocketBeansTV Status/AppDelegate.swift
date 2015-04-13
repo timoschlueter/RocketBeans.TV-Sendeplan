@@ -61,7 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
                     /* check if there is already a notification in progress */
                     for n in NSUserNotificationCenter.defaultUserNotificationCenter().scheduledNotifications {
                         
-                        let notification = n as NSUserNotification
+                        let notification = n as! NSUserNotification
                         
                         if program.uid == notification.identifier {
                             found = true
@@ -240,7 +240,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         self.beginParsing()
         
         let bundle:NSBundle = NSBundle.mainBundle()
-        let appVersion: String = bundle.objectForInfoDictionaryKey("CFBundleShortVersionString") as String
+        let appVersion: String = bundle.objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
         
         self.appVersionLabel.stringValue = "Version \(appVersion)"
     }
@@ -255,17 +255,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(self.refreshInterval, target: self, selector: Selector("beginParsing"), userInfo: nil, repeats: true)
     }
     
-    func numberOfRowsInTableView(aTableView: NSTableView!) -> Int
+    func numberOfRowsInTableView(aTableView: NSTableView) -> Int
     {
         return self.tableViewPrograms.count
     }
     
-    func tableView(tableView: NSTableView, viewForTableColumn: NSTableColumn, row: Int) -> NSView
+    func tableView(tableView: NSTableView, viewForTableColumn: NSTableColumn?, row: Int) -> NSView?
     {
         
         let programRow: Program = self.tableViewPrograms[row]
         
-        var cell = tableView.makeViewWithIdentifier("programCell", owner: self) as CustomTableView
+        var cell = tableView.makeViewWithIdentifier("programCell", owner: self) as! CustomTableView
         //        cell.layer?.rasterizationScale = 1.0
         //        cell.layer?.backgroundColor = NSColor.clearColor().CGColor
         

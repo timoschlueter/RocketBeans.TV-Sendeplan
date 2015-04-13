@@ -85,7 +85,7 @@ class ProgramPlan {
                             if let singleProgramItemAttributes = singleProgramItem as? NSDictionary {
                                 
                                 if let startDateObject = singleProgramItemAttributes["start"] as? NSDictionary {
-                                    var startDateString = startDateObject["dateTime"] as String
+                                    var startDateString = startDateObject["dateTime"] as! String
                                     var startDate = dateFormatter.dateFromString(startDateString)!
                                     program.startDateFormattable = startDate
                                     var startEpochDate = startDate.timeIntervalSince1970
@@ -94,15 +94,15 @@ class ProgramPlan {
                                 }
                                 
                                 if let endDateObject = singleProgramItemAttributes["end"] as? NSDictionary {
-                                    var endDateString = endDateObject["dateTime"] as String
+                                    var endDateString = endDateObject["dateTime"] as! String
                                     var endDate = dateFormatter.dateFromString(endDateString)
                                     program.endDateFormattable = endDate!
                                     var endEpochDate = endDate?.timeIntervalSince1970
                                     program.endDateEpoch = endEpochDate!
                                 }
                                 
-                                program.rawTitle = singleProgramItemAttributes["summary"] as String
-                                program.uid = singleProgramItemAttributes["iCalUID"] as String
+                                program.rawTitle = singleProgramItemAttributes["summary"] as! String
+                                program.uid = singleProgramItemAttributes["iCalUID"] as! String
                                 
                                 programList.append(program)
                                 
