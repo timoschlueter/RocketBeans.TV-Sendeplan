@@ -170,6 +170,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         NSWorkspace.sharedWorkspace().openURL(gcalUrl)
     }
     
+    @IBAction func searchForUpdateButtonClicked(sender: AnyObject) {
+        let appVersion = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String
+        let updateUrl: NSURL = NSURL(string: "http://rbtvosx.cvdev.de?v=\(appVersion)")!
+        NSWorkspace.sharedWorkspace().openURL(updateUrl)
+    }
+    
     @IBAction func closeButtonClicked(sender: AnyObject) {
         NSApplication.sharedApplication().terminate(self)
     }
@@ -347,11 +353,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
             let link = jsonResult["link"] as! NSString
             
             if appVersion != newVersion {
-                println("Update verfügbar!")
-                println("Das Update steht unter \(link) zur verfügung!")
-                
-                //funzt nicht - why?
-                self.sendLocalNotification("Update verfügbar!", text: "Das Update steht unter \(link) zur verfügung!")
+                self.sendLocalNotification("Update verfügbar!", text: "Ein Update auf Version \(newVersion) ist verfügbar!")
             }
             
         })
