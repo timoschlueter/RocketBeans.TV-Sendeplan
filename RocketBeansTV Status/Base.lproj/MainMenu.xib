@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -19,8 +19,6 @@
                 <outlet property="programTableView" destination="cog-ar-1hv" id="WNs-Lu-hed"/>
                 <outlet property="programView" destination="EZA-mG-CyN" id="sJs-WR-jZf"/>
                 <outlet property="programViewCell" destination="RXd-26-90m" id="lJS-l1-Bug"/>
-                <outlet property="supportView" destination="LQY-Ao-MCM" id="CCa-fi-AuL"/>
-                <outlet property="supportViewCell" destination="y34-dA-Mie" id="ny4-OI-56p"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -41,8 +39,42 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="ift-CW-0fP"/>
-                <menuItem title="&lt;supportView&gt;" id="y34-dA-Mie">
+                <menuItem title="Support RocketBeans" id="eRy-El-rZo">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Support RocketBeans" id="Wi7-wn-Z3D">
+                        <items>
+                            <menuItem title="Amazon" id="yPD-Lx-5sx">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="amazonButtonClicked:" target="Voe-Tx-rLC" id="1hB-t0-u3J"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="getDigital.de" id="uu4-3j-I1W">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="getDigitalButtonClicked:" target="Voe-Tx-rLC" id="5ke-dZ-zi3"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="lootchest.de" id="s8e-21-Xn9">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="lootchestButtonClicked:" target="Voe-Tx-rLC" id="CDW-k3-xS9"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="G2A.com" id="7Zp-bi-KGf">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="g2aButtonClicked:" target="Voe-Tx-rLC" id="toq-qX-m9h"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="RocketBeans Shop" id="BZ9-jM-iKj">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="rbShopButtonClicked:" target="Voe-Tx-rLC" id="Rug-Ly-BVN"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="4n6-kX-aQs"/>
                 <menuItem title="Informationen" keyEquivalent="i" id="LCw-9N-UOL">
@@ -75,6 +107,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="44" rowSizeStyle="automatic" viewBased="YES" id="cog-ar-1hv">
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -161,47 +194,10 @@
             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
         </textFieldCell>
-        <customView id="LQY-Ao-MCM">
-            <rect key="frame" x="0.0" y="0.0" width="353" height="41"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UiK-dj-dZV">
-                    <rect key="frame" x="252" y="4" width="81" height="32"/>
-                    <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="g2a" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="RBV-aF-mZa">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="g2aButtonClicked:" target="Voe-Tx-rLC" id="vHb-T9-xJa"/>
-                    </connections>
-                </button>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IXx-dS-cab">
-                    <rect key="frame" x="136" y="4" width="81" height="32"/>
-                    <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="rbshop" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="SN3-1P-QKi">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="rbShopButtonClicked:" target="Voe-Tx-rLC" id="lAm-OA-zwU"/>
-                    </connections>
-                </button>
-                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X8Z-Ga-y2m">
-                    <rect key="frame" x="20" y="4" width="81" height="32"/>
-                    <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="amazon_logo_SPOT" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="eS0-yU-7Ql">
-                        <behavior key="behavior" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="amazonButtonClicked:" target="Voe-Tx-rLC" id="JSo-dg-wFj"/>
-                    </connections>
-                </button>
-            </subviews>
-            <point key="canvasLocation" x="384.5" y="816.5"/>
-        </customView>
         <window title="Informationen" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="eEQ-sF-qku">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <rect key="contentRect" x="677" y="380" width="317" height="470"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" id="oZL-a1-c3m">
                 <rect key="frame" x="0.0" y="0.0" width="317" height="470"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -313,13 +309,10 @@ Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inh
     <resources>
         <image name="FacebookIcon" width="32" height="32"/>
         <image name="GithubIcon" width="32" height="32"/>
-        <image name="RBTVIcon" width="84" height="84"/>
+        <image name="RBTVIcon" width="64" height="64"/>
         <image name="RedditIcon" width="32" height="32"/>
         <image name="RerunIcon" width="34" height="34"/>
         <image name="TwitterIcon" width="32" height="32"/>
         <image name="WordpressIcon" width="32" height="32"/>
-        <image name="amazon_logo_SPOT" width="512.4000244140625" height="154.32000732421875"/>
-        <image name="g2a" width="149" height="43"/>
-        <image name="rbshop" width="149" height="54"/>
     </resources>
 </document>

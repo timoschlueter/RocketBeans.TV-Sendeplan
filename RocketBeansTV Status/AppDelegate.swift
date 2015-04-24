@@ -13,11 +13,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
     
     @IBOutlet weak var mainMenu: NSMenu!
     @IBOutlet weak var programViewCell: NSMenuItem!
-    @IBOutlet weak var supportViewCell: NSMenuItem!
     @IBOutlet weak var programView: NSView!
     @IBOutlet weak var programTableView: NSTableView!
     @IBOutlet weak var appVersionLabel: NSTextField!
-    @IBOutlet weak var supportView: NSView!
     
     @IBOutlet weak var informationWindow: NSWindow!
     
@@ -196,6 +194,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         NSWorkspace.sharedWorkspace().openURL(g2aShopUrl)
     }
     
+    @IBAction func getDigitalButtonClicked(sender: AnyObject) {
+        let getDigitalUrl: NSURL = NSURL(string: "https://www.getdigital.de/?her=rocketbeans")!
+        NSWorkspace.sharedWorkspace().openURL(getDigitalUrl)
+    }
+    
+    @IBAction func lootchestButtonClicked(sender: AnyObject) {
+        let lootchestUrl: NSURL = NSURL(string: "http://www.lootchest.de/?affiliates=493")!
+        NSWorkspace.sharedWorkspace().openURL(lootchestUrl)
+    }
+    
     // MARK: -
     
     var statusItem: NSStatusItem
@@ -249,7 +257,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         self.statusItem.menu = mainMenu
         
         self.programViewCell.view = programView
-        self.supportViewCell.view = supportView
         self.programTableView.setDataSource(self)
         
         self.refreshTimer = NSTimer.scheduledTimerWithTimeInterval(self.refreshInterval, target: self, selector: Selector("beginParsing"), userInfo: nil, repeats: true)
