@@ -44,10 +44,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, ProgramPlanDelegate, NSTable
         /* Set statusbar icon if current show is live */
         if NSUserDefaults.standardUserDefaults().boolForKey("ColoredLiveStatusbarIcon") {
             if self.tableViewPrograms.first?.iconName() == "LiveIcon" {
-                statusItem.image = NSImage(named: "StatusLiveIcon")
+                var liveIcon = "StatusLiveIcon"
+                /* is in Dark Mode */
+                if NSAppearance.currentAppearance().name.hasPrefix("NSAppearanceNameVibrantDark") {
+                    liveIcon = liveIcon + "DarkMode"
+                }
+                self.statusItem.image = NSImage(named: liveIcon)
+                //self.statusItem.highlightMode = true // maybe not nessesary?
             }
             else {
-                statusItem.image = NSImage(named: "StatusIcon")
+                self.statusItem.image = NSImage(named: "StatusIcon")
+                //self.statusItem.highlightMode = true // maybe not nessesary?
             }
         }
         
