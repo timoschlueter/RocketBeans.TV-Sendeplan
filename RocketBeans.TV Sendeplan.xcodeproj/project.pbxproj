@@ -14,9 +14,6 @@
 		250AC0AC1A6D9BA6002D2C2E /* RocketBeansTV_StatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250AC0AB1A6D9BA6002D2C2E /* RocketBeansTV_StatusTests.swift */; };
 		256E92D41A72B37500FD7FFB /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256E92D31A72B37500FD7FFB /* Program.swift */; };
 		2575C9E41A6EC425007E7BDC /* CustomTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2575C9E31A6EC425007E7BDC /* CustomTableView.swift */; };
-		258A29941A6F751F004246D8 /* amazon_logo_SPOT.png in Resources */ = {isa = PBXBuildFile; fileRef = 258A29931A6F751F004246D8 /* amazon_logo_SPOT.png */; };
-		258A29961A6F75DD004246D8 /* rbshop.png in Resources */ = {isa = PBXBuildFile; fileRef = 258A29951A6F75DD004246D8 /* rbshop.png */; };
-		258A29981A6F76CF004246D8 /* g2a.png in Resources */ = {isa = PBXBuildFile; fileRef = 258A29971A6F76CF004246D8 /* g2a.png */; };
 		33236C501A7F5F4F0046529B /* ProgramPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33236C4F1A7F5F4F0046529B /* ProgramPlan.swift */; };
 		33236C511A7F98710046529B /* RocketBeans TV.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 336A97721A7E35A10090B4BC /* RocketBeans TV.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		33236C551A7FB52C0046529B /* ProgramPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33236C4F1A7F5F4F0046529B /* ProgramPlan.swift */; };
@@ -70,11 +67,9 @@
 		250AC0A51A6D9BA6002D2C2E /* RocketBeansTV StatusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RocketBeansTV StatusTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		250AC0AA1A6D9BA6002D2C2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		250AC0AB1A6D9BA6002D2C2E /* RocketBeansTV_StatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketBeansTV_StatusTests.swift; sourceTree = "<group>"; };
+		253F12171AEA62BA00B2059F /* RocketBeans.TV Sendeplan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "RocketBeans.TV Sendeplan.entitlements"; sourceTree = "<group>"; };
 		256E92D31A72B37500FD7FFB /* Program.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Program.swift; sourceTree = "<group>"; };
 		2575C9E31A6EC425007E7BDC /* CustomTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
-		258A29931A6F751F004246D8 /* amazon_logo_SPOT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = amazon_logo_SPOT.png; sourceTree = "<group>"; };
-		258A29951A6F75DD004246D8 /* rbshop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rbshop.png; sourceTree = "<group>"; };
-		258A29971A6F76CF004246D8 /* g2a.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = g2a.png; sourceTree = "<group>"; };
 		33236C4F1A7F5F4F0046529B /* ProgramPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlan.swift; sourceTree = "<group>"; };
 		336A97721A7E35A10090B4BC /* RocketBeans TV.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "RocketBeans TV.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		336A97741A7E35A10090B4BC /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -139,6 +134,7 @@
 		250AC0971A6D9BA5002D2C2E /* RocketBeansTV Status */ = {
 			isa = PBXGroup;
 			children = (
+				253F12171AEA62BA00B2059F /* RocketBeans.TV Sendeplan.entitlements */,
 				250AC09A1A6D9BA5002D2C2E /* AppDelegate.swift */,
 				2575C9E31A6EC425007E7BDC /* CustomTableView.swift */,
 				250AC09C1A6D9BA5002D2C2E /* Images.xcassets */,
@@ -155,9 +151,6 @@
 		250AC0981A6D9BA5002D2C2E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				258A29971A6F76CF004246D8 /* g2a.png */,
-				258A29951A6F75DD004246D8 /* rbshop.png */,
-				258A29931A6F751F004246D8 /* amazon_logo_SPOT.png */,
 				250AC0991A6D9BA5002D2C2E /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -276,6 +269,11 @@
 				TargetAttributes = {
 					250AC0941A6D9BA5002D2C2E = {
 						CreatedOnToolsVersion = 6.1.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					250AC0A41A6D9BA6002D2C2E = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -311,11 +309,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				258A29981A6F76CF004246D8 /* g2a.png in Resources */,
 				250AC09D1A6D9BA5002D2C2E /* Images.xcassets in Resources */,
-				258A29941A6F751F004246D8 /* amazon_logo_SPOT.png in Resources */,
 				F8FD27C01A7D093D008062EF /* SettingsWindowController.xib in Resources */,
-				258A29961A6F75DD004246D8 /* rbshop.png in Resources */,
 				250AC0A01A6D9BA5002D2C2E /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +480,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "RocketBeansTV Status/RocketBeans.TV Sendeplan.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "RocketBeansTV Status/Info.plist";
@@ -497,6 +493,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "RocketBeansTV Status/RocketBeans.TV Sendeplan.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "RocketBeansTV Status/Info.plist";
