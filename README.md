@@ -8,13 +8,13 @@ Diese App zeigt den aktuellen Sendeplan von [RocketBeans.TV](http://www.twitch.t
 
 ## Bekannte Probleme
 
-* Beim Scrollen in der Tabelle kommt es zu Grafikfehlern im Scrollbalken, wenn die Transparenz der Menüleiste aktiviert ist
-* Die App aktualisiert die Daten jede Minute. Unter umständen kann es zu dieser Zeit zu Hängern in der App kommen.
+* Beim Scrollen in der Tabelle kommt es zu Grafikfehlern im Scrollbalken, wenn die Transparenz der Menüleiste aktiviert ist.
+* Unter umständen kann es während der Aktualisierung des Sendeplans zu Hängern in der App kommen. Das Zeitintervall ist in den Einstellungen änderbar.
+* Wird während die Bohnen Live senden der Dark Mode der Menüleiste aktiviert, ändert sich das Icon erst nach etwa einer Minute.
 
 ## Geplante Features
 
-* Indikator, ob die Bohnen gerade Live sind
-* Notifikation auf dem Desktop und im Notification Center von OS X
+* Einbindung der kommenden Sendeplan-API von den Bohnen
 
 ## Kontakt
 
