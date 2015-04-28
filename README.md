@@ -4,7 +4,7 @@ Diese App zeigt den aktuellen Sendeplan von [RocketBeans.TV](http://www.twitch.t
 
 ## Screenshot
 
-![Screenshot](http://t-muh.de/pictures/rocketbeanstv_app.png) 
+![Screenshot](http://t-muh.de/pictures/rocketbeanstv_app_new.png) 
 
 ## Bekannte Probleme
 
