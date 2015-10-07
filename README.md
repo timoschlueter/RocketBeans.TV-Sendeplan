@@ -27,5 +27,5 @@ Danksagungen und die Namen der Mitwirkenden an der App lassen sich im dazugehör
 ## Verantwortlichkeiten
 
 Die RocketBeans.TV Sendeplan App ist ein inoffizielles, von Fans erstelltes, Tool zur Anzeige des aktuellen Sendeplans in der Menüleiste von OS X.
-Diese App basiert auf den Daten des Google Kalenders der [RedditBeans](http://www.redditbeans.com).
+Diese App basiert auf den Daten des Google Kalenders der [RedditBeans](http://www.redditbeans.de).
 Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inhalt dieser App verantwortlich.
