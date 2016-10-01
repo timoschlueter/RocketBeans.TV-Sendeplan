@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2504E8961D9D9593003F1B00 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2504E8951D9D9593003F1B00 /* InformationView.swift */; };
 		2504E8981D9D97E8003F1B00 /* InformationWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2504E8971D9D97E8003F1B00 /* InformationWindow.swift */; };
+		250BEDC11D9FCCB6001008B2 /* ProgramPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25190CD81CD3D6E80059CAE5 /* ProgramPlan.swift */; };
+		250BEDC21D9FD644001008B2 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2581B50B1D9F9F4300A6258A /* CryptoSwift.framework */; };
 		25190CD71CD3D2CE0059CAE5 /* ProgramPlanMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25190CD61CD3D2CE0059CAE5 /* ProgramPlanMenu.swift */; };
 		25190CD91CD3D6E80059CAE5 /* ProgramPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25190CD81CD3D6E80059CAE5 /* ProgramPlan.swift */; };
 		251B81E01CD3CFD8009E5FE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251B81DF1CD3CFD8009E5FE6 /* AppDelegate.swift */; };
@@ -18,6 +20,11 @@
 		2581B50E1D9F9F5900A6258A /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2581B50B1D9F9F4300A6258A /* CryptoSwift.framework */; };
 		2581B50F1D9F9F5900A6258A /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2581B50B1D9F9F4300A6258A /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		25BA87181CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BA87171CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift */; };
+		25D720A81D9FCA8B00CBEEDE /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252FA3F61D9FC9A60072F6C8 /* NotificationCenter.framework */; };
+		25D720AD1D9FCA8B00CBEEDE /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D720AC1D9FCA8B00CBEEDE /* TodayViewController.swift */; };
+		25D720B01D9FCA8B00CBEEDE /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25D720AE1D9FCA8B00CBEEDE /* TodayViewController.xib */; };
+		25D720B41D9FCA8B00CBEEDE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25D720B21D9FCA8B00CBEEDE /* InfoPlist.strings */; };
+		25D720B71D9FCA8B00CBEEDE /* Today View Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 25D720A71D9FCA8B00CBEEDE /* Today View Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +49,13 @@
 			remoteGlobalIDString = 754BE45419693E190098E6F3;
 			remoteInfo = CryptoSwift;
 		};
+		25D720B51D9FCA8B00CBEEDE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 251B81D41CD3CFD8009E5FE6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 25D720A61D9FCA8B00CBEEDE;
+			remoteInfo = "Today View Widget";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +68,17 @@
 				2581B50F1D9F9F5900A6258A /* CryptoSwift.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		252FA40B1D9FC9A60072F6C8 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				25D720B71D9FCA8B00CBEEDE /* Today View Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -69,9 +94,16 @@
 		251B81E11CD3CFD8009E5FE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		251B81E41CD3CFD8009E5FE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		251B81E61CD3CFD8009E5FE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		252FA3F61D9FC9A60072F6C8 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		25353B2D1CD9059600F5AF6D /* ProgramPlanTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlanTableViewCell.swift; sourceTree = "<group>"; };
 		2581B5051D9F9F4300A6258A /* CryptoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoSwift.xcodeproj; path = "CryptoSwift-master/CryptoSwift.xcodeproj"; sourceTree = "<group>"; };
 		25BA87171CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlanTableViewCellSimple.swift; sourceTree = "<group>"; };
+		25D720A71D9FCA8B00CBEEDE /* Today View Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Today View Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		25D720AB1D9FCA8B00CBEEDE /* Today_View_Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Today_View_Widget.entitlements; sourceTree = "<group>"; };
+		25D720AC1D9FCA8B00CBEEDE /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		25D720AF1D9FCA8B00CBEEDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TodayViewController.xib; sourceTree = "<group>"; };
+		25D720B11D9FCA8B00CBEEDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		25D720B31D9FCA8B00CBEEDE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +115,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		25D720A41D9FCA8B00CBEEDE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				250BEDC21D9FD644001008B2 /* CryptoSwift.framework in Frameworks */,
+				25D720A81D9FCA8B00CBEEDE /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -91,6 +132,8 @@
 			children = (
 				2504E8991D9D9D68003F1B00 /* Sendeplan für Rocket Beans TV.entitlements */,
 				251B81DE1CD3CFD8009E5FE6 /* Sendeplan fuer Rocket Beans TV */,
+				25D720A91D9FCA8B00CBEEDE /* Today View Widget */,
+				252FA3F51D9FC9A60072F6C8 /* Frameworks */,
 				251B81DD1CD3CFD8009E5FE6 /* Products */,
 				2581B5051D9F9F4300A6258A /* CryptoSwift.xcodeproj */,
 			);
@@ -100,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				251B81DC1CD3CFD8009E5FE6 /* Sendeplan für Rocket Beans TV.app */,
+				25D720A71D9FCA8B00CBEEDE /* Today View Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,10 +159,18 @@
 				25BA87171CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift */,
 				25190CD61CD3D2CE0059CAE5 /* ProgramPlanMenu.swift */,
 				2504E8951D9D9593003F1B00 /* InformationView.swift */,
-				251B81E61CD3CFD8009E5FE6 /* Info.plist */,
 				25190CD81CD3D6E80059CAE5 /* ProgramPlan.swift */,
+				251B81E61CD3CFD8009E5FE6 /* Info.plist */,
 			);
 			path = "Sendeplan fuer Rocket Beans TV";
+			sourceTree = "<group>";
+		};
+		252FA3F51D9FC9A60072F6C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				252FA3F61D9FC9A60072F6C8 /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		2581B5061D9F9F4300A6258A /* Products */ = {
@@ -128,6 +180,26 @@
 				2581B50D1D9F9F4300A6258A /* Tests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		25D720A91D9FCA8B00CBEEDE /* Today View Widget */ = {
+			isa = PBXGroup;
+			children = (
+				25D720AC1D9FCA8B00CBEEDE /* TodayViewController.swift */,
+				25D720AE1D9FCA8B00CBEEDE /* TodayViewController.xib */,
+				25D720B11D9FCA8B00CBEEDE /* Info.plist */,
+				25D720B21D9FCA8B00CBEEDE /* InfoPlist.strings */,
+				25D720AA1D9FCA8B00CBEEDE /* Supporting Files */,
+			);
+			path = "Today View Widget";
+			sourceTree = "<group>";
+		};
+		25D720AA1D9FCA8B00CBEEDE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				25D720AB1D9FCA8B00CBEEDE /* Today_View_Widget.entitlements */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,16 +213,35 @@
 				251B81D91CD3CFD8009E5FE6 /* Frameworks */,
 				251B81DA1CD3CFD8009E5FE6 /* Resources */,
 				25190CF11CD3DEC40059CAE5 /* Embed Frameworks */,
+				252FA40B1D9FC9A60072F6C8 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				2581B5111D9F9F5900A6258A /* PBXTargetDependency */,
+				25D720B61D9FCA8B00CBEEDE /* PBXTargetDependency */,
 			);
 			name = "Sendeplan für Rocket Beans TV";
 			productName = "Sendeplan fuer Rocket Beans TV";
 			productReference = 251B81DC1CD3CFD8009E5FE6 /* Sendeplan für Rocket Beans TV.app */;
 			productType = "com.apple.product-type.application";
+		};
+		25D720A61D9FCA8B00CBEEDE /* Today View Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 25D720B81D9FCA8B00CBEEDE /* Build configuration list for PBXNativeTarget "Today View Widget" */;
+			buildPhases = (
+				25D720A31D9FCA8B00CBEEDE /* Sources */,
+				25D720A41D9FCA8B00CBEEDE /* Frameworks */,
+				25D720A51D9FCA8B00CBEEDE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Today View Widget";
+			productName = "Today View Widget";
+			productReference = 25D720A71D9FCA8B00CBEEDE /* Today View Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -158,7 +249,7 @@
 		251B81D41CD3CFD8009E5FE6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Timo Schlüter";
 				TargetAttributes = {
@@ -172,6 +263,11 @@
 								enabled = 1;
 							};
 						};
+					};
+					25D720A61D9FCA8B00CBEEDE = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = L8B42963X8;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -195,6 +291,7 @@
 			projectRoot = "";
 			targets = (
 				251B81DB1CD3CFD8009E5FE6 /* Sendeplan für Rocket Beans TV */,
+				25D720A61D9FCA8B00CBEEDE /* Today View Widget */,
 			);
 		};
 /* End PBXProject section */
@@ -226,6 +323,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		25D720A51D9FCA8B00CBEEDE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25D720B01D9FCA8B00CBEEDE /* TodayViewController.xib in Resources */,
+				25D720B41D9FCA8B00CBEEDE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -243,6 +349,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		25D720A31D9FCA8B00CBEEDE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25D720AD1D9FCA8B00CBEEDE /* TodayViewController.swift in Sources */,
+				250BEDC11D9FCCB6001008B2 /* ProgramPlan.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -250,6 +365,11 @@
 			isa = PBXTargetDependency;
 			name = CryptoSwift;
 			targetProxy = 2581B5101D9F9F5900A6258A /* PBXContainerItemProxy */;
+		};
+		25D720B61D9FCA8B00CBEEDE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 25D720A61D9FCA8B00CBEEDE /* Today View Widget */;
+			targetProxy = 25D720B51D9FCA8B00CBEEDE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -260,6 +380,22 @@
 				251B81E41CD3CFD8009E5FE6 /* Base */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		25D720AE1D9FCA8B00CBEEDE /* TodayViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				25D720AF1D9FCA8B00CBEEDE /* Base */,
+			);
+			name = TodayViewController.xib;
+			sourceTree = "<group>";
+		};
+		25D720B21D9FCA8B00CBEEDE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				25D720B31D9FCA8B00CBEEDE /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -386,6 +522,45 @@
 			};
 			name = Release;
 		};
+		25D720B91D9FCA8B00CBEEDE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Today View Widget/Today_View_Widget.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L8B42963X8;
+				INFOPLIST_FILE = "Today View Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "in.timo.macos.Sendeplan-fuer-Rocket-Beans-TV.Today-View-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		25D720BA1D9FCA8B00CBEEDE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Today View Widget/Today_View_Widget.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L8B42963X8;
+				INFOPLIST_FILE = "Today View Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "in.timo.macos.Sendeplan-fuer-Rocket-Beans-TV.Today-View-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -403,6 +578,15 @@
 			buildConfigurations = (
 				251B81EA1CD3CFD8009E5FE6 /* Debug */,
 				251B81EB1CD3CFD8009E5FE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		25D720B81D9FCA8B00CBEEDE /* Build configuration list for PBXNativeTarget "Today View Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25D720B91D9FCA8B00CBEEDE /* Debug */,
+				25D720BA1D9FCA8B00CBEEDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

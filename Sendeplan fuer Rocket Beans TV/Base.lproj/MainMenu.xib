@@ -242,7 +242,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="207" width="382" height="437"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" id="c2t-aF-fky" customClass="InformationView" customModule="Sendeplan_fu_r_Rocket_Beans_TV" customModuleProvider="target">
                 <rect key="frame" x="0.0" y="0.0" width="382" height="437"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -352,17 +352,6 @@ Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inh
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Bw-w6-QAy">
-                        <rect key="frame" x="310" y="45" width="22" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="FacebookIcon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="oFi-je-iGj">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="buttonFacebook:" target="c2t-aF-fky" id="vgB-sN-Lem"/>
-                        </connections>
-                    </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="doS-mN-SaI">
                         <rect key="frame" x="280" y="19" width="22" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -403,6 +392,17 @@ Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inh
                         </buttonCell>
                         <connections>
                             <action selector="buttonFacebook:" target="c2t-aF-fky" id="HAP-Wv-IQS"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Bw-w6-QAy">
+                        <rect key="frame" x="310" y="46" width="22" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="FacebookIcon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="oFi-je-iGj">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="buttonFacebook:" target="c2t-aF-fky" id="vgB-sN-Lem"/>
                         </connections>
                     </button>
                 </subviews>

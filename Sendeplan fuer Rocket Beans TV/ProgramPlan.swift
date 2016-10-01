@@ -45,12 +45,13 @@ protocol ProgramPlanDelegate {
     func didFinishRefresh(_ data: [Dictionary<String,AnyObject>])
 }
 
-class ProgramPlan {
+public class ProgramPlan {
     
     var apiUsername: String = ""
     var apiPassword: String = ""
-    var apiScheduleEndpoint: String = ""
-    var apiCurrentEndpoint: String = ""
+    var apiScheduleEndpoint: String = "https://api.rocketmgmt.de/schedule"
+    var apiCurrentEndpoint: String = "https://api.rocketmgmt.de/schedule/current"
+
             
     let apiCheckInterval: Double = 60.0
     var apiCheckTimer: Timer!

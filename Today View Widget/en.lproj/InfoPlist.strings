@@ -1,0 +1,4 @@
+/* Display name and description for this extension. */
+"CFBundleDisplayName" = "Sendeplan für Rocket Beans TV";
+"com.apple.notificationcenter.widget.description" = "Sendeplan für Rocket Beans TV";
+
