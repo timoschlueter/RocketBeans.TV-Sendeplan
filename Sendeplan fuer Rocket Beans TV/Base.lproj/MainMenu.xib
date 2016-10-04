@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -14,11 +15,10 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Sendeplan_fu_r_Rocket_Beans_TV" customModuleProvider="target">
             <connections>
-                <outlet property="informationWindow" destination="bfs-Yp-fMb" id="5Vd-nr-tev"/>
                 <outlet property="programPlanMenu" destination="y2J-nN-j6U" id="mof-E9-DyJ"/>
                 <outlet property="programPlanMenuItem" destination="Drf-nv-NHq" id="45P-QT-CnW"/>
                 <outlet property="programPlanScrollView" destination="Ecc-6U-KIp" id="Sxu-Ie-LoW"/>
-                <outlet property="programPlanTableView" destination="qVF-fX-7oC" id="qHb-I0-qO5"/>
+                <outlet property="programPlanTableView" destination="qVF-fX-7oC" id="dFZ-HI-WrZ"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -53,14 +53,14 @@
             </connections>
             <point key="canvasLocation" x="683" y="206"/>
         </menu>
-        <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="63" horizontalPageScroll="10" verticalLineScroll="63" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="Ecc-6U-KIp">
+        <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="71" horizontalPageScroll="10" verticalLineScroll="71" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="Ecc-6U-KIp">
             <rect key="frame" x="0.0" y="0.0" width="426" height="329"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Ys0-uq-5mu">
                 <rect key="frame" x="0.0" y="0.0" width="426" height="329"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="61" rowSizeStyle="automatic" viewBased="YES" id="qVF-fX-7oC">
+                    <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="69" rowSizeStyle="automatic" viewBased="YES" id="qVF-fX-7oC" customClass="ProgramPlanTableView" customModule="Sendeplan_fu_r_Rocket_Beans_TV" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="426" height="329"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <size key="intercellSpacing" width="3" height="2"/>
@@ -82,29 +82,15 @@
                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                 <prototypeCellViews>
                                     <tableCellView identifier="ProgramPlanTableViewCell" id="b4a-5t-qpz" customClass="ProgramPlanTableViewCell" customModule="Sendeplan_fu_r_Rocket_Beans_TV" customModuleProvider="target">
-                                        <rect key="frame" x="1" y="1" width="423" height="61"/>
+                                        <rect key="frame" x="1" y="1" width="423" height="69"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Twt-ao-qjR">
-                                                <rect key="frame" x="1" y="23" width="421" height="16"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Subtitle" id="hwN-qt-f6Q">
-                                                    <font key="font" metaFont="smallSystem"/>
-                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                                <connections>
-                                                    <binding destination="b4a-5t-qpz" name="displayPatternValue1" keyPath="objectValue.programPlanScheduleItemSubtitle" id="cgt-Bb-TuD">
-                                                        <dictionary key="options">
-                                                            <string key="NSDisplayPattern">%{value1}@</string>
-                                                        </dictionary>
-                                                    </binding>
-                                                </connections>
-                                            </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5EG-A9-6YP">
-                                                <rect key="frame" x="1" y="3" width="66" height="17"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="LIVE" id="HPI-6V-Ygh">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5EG-A9-6YP">
+                                                <rect key="frame" x="338" y="7" width="84" height="14"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="YaG-0O-QTD"/>
+                                                </constraints>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="LIVE" id="HPI-6V-Ygh">
                                                     <font key="font" metaFont="smallSystemBold"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -117,9 +103,8 @@
                                                     </binding>
                                                 </connections>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lVS-N6-dkJ">
-                                                <rect key="frame" x="77" y="3" width="343" height="17"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lVS-N6-dkJ">
+                                                <rect key="frame" x="1" y="7" width="333" height="14"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Date/Time" id="ptx-Vu-wpD">
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -133,11 +118,13 @@
                                                     </binding>
                                                 </connections>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cUt-YO-Gs3">
-                                                <rect key="frame" x="1" y="37" width="421" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cUt-YO-Gs3">
+                                                <rect key="frame" x="1" y="41" width="421" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="5y1-b4-7si"/>
+                                                </constraints>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Title" id="Oi3-Qj-sGe">
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" metaFont="systemSemibold" size="15"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
@@ -149,7 +136,39 @@
                                                     </binding>
                                                 </connections>
                                             </textField>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Twt-ao-qjR">
+                                                <rect key="frame" x="1" y="24" width="421" height="16"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="16" id="Mot-oI-dbn"/>
+                                                </constraints>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Subtitle" id="hwN-qt-f6Q">
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                                <connections>
+                                                    <binding destination="b4a-5t-qpz" name="displayPatternValue1" keyPath="objectValue.programPlanScheduleItemSubtitle" id="cgt-Bb-TuD">
+                                                        <dictionary key="options">
+                                                            <string key="NSDisplayPattern">%{value1}@</string>
+                                                        </dictionary>
+                                                    </binding>
+                                                </connections>
+                                            </textField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="cUt-YO-Gs3" firstAttribute="leading" secondItem="Twt-ao-qjR" secondAttribute="leading" id="5ff-1Q-kY2"/>
+                                            <constraint firstAttribute="bottom" secondItem="5EG-A9-6YP" secondAttribute="bottom" constant="7" id="LFy-bv-Xtc"/>
+                                            <constraint firstItem="cUt-YO-Gs3" firstAttribute="leading" secondItem="b4a-5t-qpz" secondAttribute="leading" constant="3" id="Wv4-gI-uFl"/>
+                                            <constraint firstItem="lVS-N6-dkJ" firstAttribute="top" secondItem="Twt-ao-qjR" secondAttribute="bottom" constant="3" id="bX2-KR-tK9"/>
+                                            <constraint firstAttribute="trailing" secondItem="cUt-YO-Gs3" secondAttribute="trailing" constant="3" id="bix-vs-thw"/>
+                                            <constraint firstItem="Twt-ao-qjR" firstAttribute="top" secondItem="cUt-YO-Gs3" secondAttribute="bottom" constant="1" id="bw5-HP-h1E"/>
+                                            <constraint firstItem="Twt-ao-qjR" firstAttribute="leading" secondItem="lVS-N6-dkJ" secondAttribute="leading" id="gtl-B8-PnP"/>
+                                            <constraint firstItem="cUt-YO-Gs3" firstAttribute="top" secondItem="b4a-5t-qpz" secondAttribute="top" constant="7" id="k8g-qK-Zd0"/>
+                                            <constraint firstItem="5EG-A9-6YP" firstAttribute="leading" secondItem="lVS-N6-dkJ" secondAttribute="trailing" constant="8" symbolic="YES" id="lS7-Wj-LyX"/>
+                                            <constraint firstItem="Twt-ao-qjR" firstAttribute="trailing" secondItem="5EG-A9-6YP" secondAttribute="trailing" id="nAH-6H-ySl"/>
+                                            <constraint firstAttribute="bottom" secondItem="lVS-N6-dkJ" secondAttribute="bottom" constant="7" id="qLb-LQ-j3t"/>
+                                            <constraint firstItem="cUt-YO-Gs3" firstAttribute="trailing" secondItem="Twt-ao-qjR" secondAttribute="trailing" id="uZ8-fq-TcM"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="programPlanScheduleItemDate" destination="lVS-N6-dkJ" id="J8F-VK-e0Q"/>
                                             <outlet property="programPlanScheduleItemSubtitle" destination="Twt-ao-qjR" id="VDj-je-KBi"/>
@@ -159,14 +178,13 @@
                                         </connections>
                                     </tableCellView>
                                     <tableCellView identifier="ProgramPlanTableViewCellSimple" id="iPz-iw-WLi" customClass="ProgramPlanTableViewCellSimple" customModule="Sendeplan_fu_r_Rocket_Beans_TV" customModuleProvider="target">
-                                        <rect key="frame" x="1" y="64" width="423" height="44"/>
+                                        <rect key="frame" x="1" y="72" width="423" height="45"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KyW-Yj-FYK">
-                                                <rect key="frame" x="1" y="20" width="421" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KyW-Yj-FYK">
+                                                <rect key="frame" x="1" y="19" width="421" height="19"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Title" id="ODA-V0-3Z0">
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" metaFont="systemSemibold" size="15"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
@@ -178,9 +196,8 @@
                                                     </binding>
                                                 </connections>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NEm-Fd-kKQ">
-                                                <rect key="frame" x="79" y="3" width="343" height="17"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NEm-Fd-kKQ">
+                                                <rect key="frame" x="1" y="7" width="297" height="14"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Date/Time" id="qa2-0h-imY">
                                                     <font key="font" metaFont="smallSystem"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -194,10 +211,12 @@
                                                     </binding>
                                                 </connections>
                                             </textField>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xml-tP-4rC">
-                                                <rect key="frame" x="1" y="3" width="70" height="17"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="LIVE" id="oG0-Sg-gcp">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xml-tP-4rC">
+                                                <rect key="frame" x="338" y="7" width="84" height="14"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="PTh-tK-n71"/>
+                                                </constraints>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="LIVE" id="oG0-Sg-gcp">
                                                     <font key="font" metaFont="smallSystemBold"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -211,6 +230,16 @@
                                                 </connections>
                                             </textField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="KyW-Yj-FYK" firstAttribute="top" secondItem="iPz-iw-WLi" secondAttribute="top" constant="7" id="2aj-tp-haj"/>
+                                            <constraint firstItem="KyW-Yj-FYK" firstAttribute="leading" secondItem="iPz-iw-WLi" secondAttribute="leading" constant="3" id="9N6-NV-7cT"/>
+                                            <constraint firstAttribute="bottom" secondItem="NEm-Fd-kKQ" secondAttribute="bottom" constant="7" id="UCX-ly-wIm"/>
+                                            <constraint firstItem="xml-tP-4rC" firstAttribute="leading" secondItem="NEm-Fd-kKQ" secondAttribute="trailing" constant="44" id="a0N-eU-45a"/>
+                                            <constraint firstItem="KyW-Yj-FYK" firstAttribute="leading" secondItem="NEm-Fd-kKQ" secondAttribute="leading" id="j9F-df-3a1"/>
+                                            <constraint firstAttribute="trailing" secondItem="KyW-Yj-FYK" secondAttribute="trailing" constant="3" id="mcD-Ut-Emq"/>
+                                            <constraint firstItem="KyW-Yj-FYK" firstAttribute="trailing" secondItem="xml-tP-4rC" secondAttribute="trailing" id="nDH-Mq-FAS"/>
+                                            <constraint firstAttribute="bottom" secondItem="xml-tP-4rC" secondAttribute="bottom" constant="7" id="wNi-Jy-Vad"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="programPlanScheduleItemDate" destination="NEm-Fd-kKQ" id="NzE-VF-ZuX"/>
                                             <outlet property="programPlanScheduleItemTitle" destination="KyW-Yj-FYK" id="hNm-CC-bLX"/>
@@ -220,10 +249,6 @@
                                 </prototypeCellViews>
                             </tableColumn>
                         </tableColumns>
-                        <connections>
-                            <outlet property="dataSource" destination="Voe-Tx-rLC" id="O4W-NF-o72"/>
-                            <outlet property="delegate" destination="Voe-Tx-rLC" id="7cB-un-u1p"/>
-                        </connections>
                     </tableView>
                 </subviews>
                 <nil key="backgroundColor"/>
@@ -236,24 +261,23 @@
                 <rect key="frame" x="-100" y="-100" width="15" height="102"/>
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
-            <point key="canvasLocation" x="-80" y="560"/>
+            <point key="canvasLocation" x="-80" y="559.5"/>
         </scrollView>
         <window title="Informationen" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="bfs-Yp-fMb" customClass="InformationWindow" customModule="Sendeplan_fu_r_Rocket_Beans_TV" customModuleProvider="target">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="207" width="382" height="437"/>
+            <rect key="contentRect" x="196" y="207" width="382" height="435"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <view key="contentView" id="c2t-aF-fky" customClass="InformationView" customModule="Sendeplan_fu_r_Rocket_Beans_TV" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="382" height="437"/>
+                <rect key="frame" x="0.0" y="0.0" width="382" height="435"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iz0-WU-sHA">
-                        <rect key="frame" x="124" y="293" width="135" height="144"/>
+                    <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="N8D-OC-87M">
+                        <rect key="frame" x="12" y="70" width="358" height="5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="MenuBarIcon" id="z1V-Cg-igR"/>
-                    </imageView>
+                    </box>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fdl-Zq-whF">
-                        <rect key="frame" x="18" y="132" width="346" height="153"/>
+                        <rect key="frame" x="18" y="104" width="346" height="153"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="sjX-cU-1P5">
                             <font key="font" metaFont="system"/>
@@ -266,12 +290,8 @@ Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inh
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="N8D-OC-87M">
-                        <rect key="frame" x="12" y="121" width="358" height="5"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </box>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avk-Dg-OAC">
-                        <rect key="frame" x="167" y="98" width="48" height="17"/>
+                        <rect key="frame" x="167" y="47" width="48" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Credits" id="V5p-7a-8zf">
                             <font key="font" metaFont="systemBold"/>
@@ -280,7 +300,7 @@ Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inh
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gGg-SC-lwE">
-                        <rect key="frame" x="280" y="71" width="22" height="19"/>
+                        <rect key="frame" x="280" y="20" width="22" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="TwitterIcon" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="tz0-UO-nHt">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -290,19 +310,8 @@ Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inh
                             <action selector="buttonTwitter:" target="c2t-aF-fky" id="Yha-ul-k2O"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b8B-jf-qpG">
-                        <rect key="frame" x="340" y="71" width="22" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="GithubIcon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="sI5-mL-VAW">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="buttonGitHub:" target="c2t-aF-fky" id="4of-K7-sva"/>
-                        </connections>
-                    </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oAF-ja-ZOd">
-                        <rect key="frame" x="18" y="72" width="256" height="17"/>
+                        <rect key="frame" x="18" y="21" width="256" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Timo Schlüter" id="jom-yq-TRC">
                             <font key="font" metaFont="system"/>
@@ -311,7 +320,7 @@ Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inh
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Fh-83-zAv">
-                        <rect key="frame" x="310" y="71" width="22" height="19"/>
+                        <rect key="frame" x="310" y="20" width="22" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="FacebookIcon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="Y6I-Ua-wBB">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -321,93 +330,25 @@ Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inh
                             <action selector="buttonFacebook:" target="c2t-aF-fky" id="7aF-82-xdM"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DSs-5J-sy6">
-                        <rect key="frame" x="280" y="45" width="22" height="19"/>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b8B-jf-qpG">
+                        <rect key="frame" x="340" y="20" width="22" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="TwitterIcon" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="wOj-k1-OdA">
+                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="GithubIcon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="sI5-mL-VAW">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="buttonTwitter:" target="c2t-aF-fky" id="Qxl-de-wUw"/>
+                            <action selector="buttonGitHub:" target="c2t-aF-fky" id="4of-K7-sva"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fSL-Kv-05k">
-                        <rect key="frame" x="340" y="45" width="22" height="19"/>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iz0-WU-sHA">
+                        <rect key="frame" x="124" y="271" width="135" height="144"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="GithubIcon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="rkF-tE-Uzv">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="buttonGitHub:" target="c2t-aF-fky" id="9kz-nk-sOC"/>
-                        </connections>
-                    </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3N3-xe-2ic">
-                        <rect key="frame" x="18" y="46" width="256" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Max Mustermann" id="DAg-1o-1gV">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="doS-mN-SaI">
-                        <rect key="frame" x="280" y="19" width="22" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="TwitterIcon" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="qgq-1K-lsH">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="buttonTwitter:" target="c2t-aF-fky" id="kUA-wV-TJq"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xgf-UA-Qwx">
-                        <rect key="frame" x="340" y="19" width="22" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="GithubIcon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="T6Q-mx-4jT">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="buttonGitHub:" target="c2t-aF-fky" id="Amv-8L-XLa"/>
-                        </connections>
-                    </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RUN-h9-rbX">
-                        <rect key="frame" x="18" y="20" width="256" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Melanie Mustermann" id="iug-kp-u3A">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LXv-Rp-xX0">
-                        <rect key="frame" x="310" y="19" width="22" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="FacebookIcon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="tx1-JB-9tG">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="buttonFacebook:" target="c2t-aF-fky" id="HAP-Wv-IQS"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Bw-w6-QAy">
-                        <rect key="frame" x="310" y="46" width="22" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="FacebookIcon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="oFi-je-iGj">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="buttonFacebook:" target="c2t-aF-fky" id="vgB-sN-Lem"/>
-                        </connections>
-                    </button>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="MenuBarIcon" id="z1V-Cg-igR"/>
+                    </imageView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="511" y="578.5"/>
+            <point key="canvasLocation" x="511" y="577.5"/>
         </window>
     </objects>
     <resources>

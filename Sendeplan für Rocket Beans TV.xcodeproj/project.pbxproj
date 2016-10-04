@@ -17,6 +17,7 @@
 		251B81E21CD3CFD8009E5FE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 251B81E11CD3CFD8009E5FE6 /* Assets.xcassets */; };
 		251B81E51CD3CFD8009E5FE6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 251B81E31CD3CFD8009E5FE6 /* MainMenu.xib */; };
 		25353B2E1CD9059600F5AF6D /* ProgramPlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25353B2D1CD9059600F5AF6D /* ProgramPlanTableViewCell.swift */; };
+		2568288A1DA0D835008BF40A /* ProgramPlanTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256828891DA0D835008BF40A /* ProgramPlanTableView.swift */; };
 		2581B50E1D9F9F5900A6258A /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2581B50B1D9F9F4300A6258A /* CryptoSwift.framework */; };
 		2581B50F1D9F9F5900A6258A /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2581B50B1D9F9F4300A6258A /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		25BA87181CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BA87171CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift */; };
@@ -96,6 +97,7 @@
 		251B81E61CD3CFD8009E5FE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		252FA3F61D9FC9A60072F6C8 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		25353B2D1CD9059600F5AF6D /* ProgramPlanTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlanTableViewCell.swift; sourceTree = "<group>"; };
+		256828891DA0D835008BF40A /* ProgramPlanTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlanTableView.swift; sourceTree = "<group>"; };
 		2581B5051D9F9F4300A6258A /* CryptoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoSwift.xcodeproj; path = "CryptoSwift-master/CryptoSwift.xcodeproj"; sourceTree = "<group>"; };
 		25BA87171CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlanTableViewCellSimple.swift; sourceTree = "<group>"; };
 		25D720A71D9FCA8B00CBEEDE /* Today View Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Today View Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,16 +153,17 @@
 		251B81DE1CD3CFD8009E5FE6 /* Sendeplan fuer Rocket Beans TV */ = {
 			isa = PBXGroup;
 			children = (
-				251B81DF1CD3CFD8009E5FE6 /* AppDelegate.swift */,
 				251B81E11CD3CFD8009E5FE6 /* Assets.xcassets */,
 				251B81E31CD3CFD8009E5FE6 /* MainMenu.xib */,
-				2504E8971D9D97E8003F1B00 /* InformationWindow.swift */,
+				251B81E61CD3CFD8009E5FE6 /* Info.plist */,
+				251B81DF1CD3CFD8009E5FE6 /* AppDelegate.swift */,
+				25190CD81CD3D6E80059CAE5 /* ProgramPlan.swift */,
+				256828891DA0D835008BF40A /* ProgramPlanTableView.swift */,
 				25353B2D1CD9059600F5AF6D /* ProgramPlanTableViewCell.swift */,
 				25BA87171CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift */,
 				25190CD61CD3D2CE0059CAE5 /* ProgramPlanMenu.swift */,
 				2504E8951D9D9593003F1B00 /* InformationView.swift */,
-				25190CD81CD3D6E80059CAE5 /* ProgramPlan.swift */,
-				251B81E61CD3CFD8009E5FE6 /* Info.plist */,
+				2504E8971D9D97E8003F1B00 /* InformationWindow.swift */,
 			);
 			path = "Sendeplan fuer Rocket Beans TV";
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				2504E8981D9D97E8003F1B00 /* InformationWindow.swift in Sources */,
 				25BA87181CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift in Sources */,
 				25190CD71CD3D2CE0059CAE5 /* ProgramPlanMenu.swift in Sources */,
+				2568288A1DA0D835008BF40A /* ProgramPlanTableView.swift in Sources */,
 				25190CD91CD3D6E80059CAE5 /* ProgramPlan.swift in Sources */,
 				2504E8961D9D9593003F1B00 /* InformationView.swift in Sources */,
 				251B81E01CD3CFD8009E5FE6 /* AppDelegate.swift in Sources */,

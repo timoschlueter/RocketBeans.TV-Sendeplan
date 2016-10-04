@@ -18,24 +18,11 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
     
     var programPlanScheduleItems: Int = 0
     var programPlanSchedule = Dictionary<String,AnyObject>()
+    
+    let programPlan = ProgramPlan()
 
     override var nibName: String? {
         return "TodayViewController"
-    }
-    
-    func convertDoHumanDate(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .short
-        dateFormatter.doesRelativeDateFormatting = true
-        return dateFormatter.string(from: date)
-    }
-    
-    func convertDate(date: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZ" /* ISO 8601 */
-        let parsedDate: Date = dateFormatter.date(from: date)!
-        return parsedDate
     }
 
     var lastCompletionHandler: ((NCUpdateResult) -> Void)!
@@ -50,7 +37,6 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
         programPlanScheduleItemSubtitle?.stringValue = ""
         programPlanScheduleItemDate?.stringValue = ""
         
-        let programPlan = ProgramPlan()
         programPlan.delegate = self
         programPlan.refresh();
     }
@@ -97,8 +83,8 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
         let scheduleTimeStart: String = programPlanSchedule["timeStart"] as! String
         let scheduleTimeEnd: String = programPlanSchedule["timeEnd"] as! String
         
-        let timeStartParsed: Date = convertDate(date: scheduleTimeStart)
-        let timeEndParsed: Date = convertDate(date: scheduleTimeEnd)
+        let timeStartParsed: Date = programPlan.convertDate(date: scheduleTimeStart)
+        let timeEndParsed: Date = programPlan.convertDate(date: scheduleTimeEnd)
         
         programPlanScheduleItemTitle?.stringValue = scheduleItemTitle
         programPlanScheduleItemType?.stringValue = scheduleItemType
@@ -106,7 +92,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
         programPlanScheduleItemSubtitle?.stringValue = scheduleItemTopic
         
         programPlanScheduleItemType?.textColor = scheduleItemTypeColor
-        programPlanScheduleItemDate?.stringValue = "\(convertDoHumanDate(date: timeStartParsed)) Uhr - \(convertDoHumanDate(date: timeEndParsed)) Uhr"
+        programPlanScheduleItemDate?.stringValue = "\(programPlan.convertDoHumanDate(date: timeStartParsed)) Uhr - \(programPlan.convertDoHumanDate(date: timeEndParsed)) Uhr"
         
         self.lastCompletionHandler(.newData)
     }

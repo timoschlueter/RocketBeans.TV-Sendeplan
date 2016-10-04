@@ -9,6 +9,84 @@
 import Foundation
 import CryptoSwift
 
+protocol ProgramPlanDelegate {
+    func didFinishRefresh(_ data: [Dictionary<String,AnyObject>])
+}
+
+public class ProgramPlan {
+    
+    var apiUsername: String = ""
+    var apiPassword: String = ""
+    var apiScheduleEndpoint: String = "https://api.rocketmgmt.de/schedule"
+    var apiCurrentEndpoint: String = "https://api.rocketmgmt.de/schedule/current"
+
+    var apiCheckTimer: Timer!
+    
+    let requestSession = URLSession.shared
+    
+    var delegate: ProgramPlanDelegate?
+    
+    @objc func refresh() {
+        
+        let date = Date().formattedISO8601
+        let nonce = UUID().uuidString.sha1()
+        let digest = (nonce + date + apiPassword).sha1()
+        
+        var request = URLRequest(url: URL(string: apiScheduleEndpoint)!)
+        
+        request.setValue("WSSE profile=\"UsernameToken\"", forHTTPHeaderField: "Authorization")
+        request.setValue("UsernameToken Username=\"\(apiUsername)\", PasswordDigest=\"\(digest.toBase64())\", Nonce=\"\(nonce.toBase64())\", Created=\"\(date)\"", forHTTPHeaderField: "X-WSSE")
+        request.httpMethod = "GET"
+        
+        let task : URLSessionDataTask = requestSession.dataTask(with: request, completionHandler: {(data, response, error) in
+            if let HTTPResponse = response as? HTTPURLResponse {
+                let statusCode = HTTPResponse.statusCode
+
+                if statusCode == 200 {
+                    do {
+                        if let data = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as? Dictionary<String, AnyObject> {
+                            DispatchQueue.main.async {
+                                
+                                if let programPlanSchedule: [Dictionary<String,AnyObject>] = data["schedule"] as? [Dictionary<String,AnyObject>]  {
+                                    self.delegate?.didFinishRefresh(programPlanSchedule)
+                                }
+                            }
+                        }
+                    }
+                    catch let error as NSError {
+                        print("A JSON parsing error occurred, here are the details:\n \(error)")
+                    }
+                }
+            }
+        }) 
+        task.resume()
+    }
+    
+    func startTimer(_ interval: Double) {
+        self.apiCheckTimer = Timer.scheduledTimer(timeInterval: interval,target: self,selector: #selector(ProgramPlan.refresh) ,userInfo: nil,repeats: true)
+    }
+    
+    func stopTimer() {
+        self.apiCheckTimer.invalidate()
+    }
+    
+    func convertDoHumanDate(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .short
+        dateFormatter.doesRelativeDateFormatting = true
+        return dateFormatter.string(from: date)
+    }
+    
+    func convertDate(date: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZ" /* ISO 8601 */
+        let parsedDate: Date = dateFormatter.date(from: date)!
+        return parsedDate
+    }
+    
+}
+
 /* NSDate extension (http://stackoverflow.com/a/28016692/3118311) */
 extension Foundation.Date {
     struct Date {
@@ -39,69 +117,4 @@ extension String
         let data = self.data(using: String.Encoding.utf8)
         return data!.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
     }
-}
-
-protocol ProgramPlanDelegate {
-    func didFinishRefresh(_ data: [Dictionary<String,AnyObject>])
-}
-
-public class ProgramPlan {
-    
-    var apiUsername: String = ""
-    var apiPassword: String = ""
-    var apiScheduleEndpoint: String = "https://api.rocketmgmt.de/schedule"
-    var apiCurrentEndpoint: String = "https://api.rocketmgmt.de/schedule/current"
-
-            
-    let apiCheckInterval: Double = 60.0
-    var apiCheckTimer: Timer!
-    
-    let requestSession = URLSession.shared
-    
-    var delegate: ProgramPlanDelegate?
-    
-    @objc func refresh() {
-        
-        let date = Date().formattedISO8601
-        let nonce = UUID().uuidString.sha1()
-        let digest = (nonce + date + apiPassword).sha1()
-        
-        var request = URLRequest(url: URL(string: apiScheduleEndpoint)!)
-        
-        request.setValue("WSSE profile=\"UsernameToken\"", forHTTPHeaderField: "Authorization")
-        request.setValue("UsernameToken Username=\"\(apiUsername)\", PasswordDigest=\"\(digest.toBase64())\", Nonce=\"\(nonce.toBase64())\", Created=\"\(date)\"", forHTTPHeaderField: "X-WSSE")
-        request.httpMethod = "GET"
-        
-        let task : URLSessionDataTask = requestSession.dataTask(with: request, completionHandler: {(data, response, error) in
-            if let HTTPResponse = response as? HTTPURLResponse {
-                let statusCode = HTTPResponse.statusCode
-                
-                if statusCode == 200 {
-                    do {
-                        if let data = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as? Dictionary<String, AnyObject> {
-                            DispatchQueue.main.async {
-                                
-                                if let programPlanSchedule: [Dictionary<String,AnyObject>] = data["schedule"] as? [Dictionary<String,AnyObject>]  {
-                                    self.delegate?.didFinishRefresh(programPlanSchedule)
-                                }
-                            }
-                        }
-                    }
-                    catch let error as NSError {
-                        print("A JSON parsing error occurred, here are the details:\n \(error)")
-                    }
-                }
-            }
-        }) 
-        task.resume()
-    }
-    
-    func startTimer(_ interval: Double) {
-        self.apiCheckTimer = Timer.scheduledTimer(timeInterval: interval,target: self,selector: #selector(ProgramPlan.refresh) ,userInfo: nil,repeats: true)
-    }
-    
-    func stopTimer() {
-        self.apiCheckTimer.invalidate()
-    }
-    
 }

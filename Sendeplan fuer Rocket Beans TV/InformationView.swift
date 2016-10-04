@@ -11,6 +11,8 @@ import AppKit
 
 class InformationView: NSView {
     
+    @IBOutlet var versionLabel: NSTextField!
+        
     @IBAction func buttonTwitter(_ sender: AnyObject) {
         NSWorkspace.shared().open(NSURL(string: "https://twitter.com/tmuuh")! as URL)
     }
