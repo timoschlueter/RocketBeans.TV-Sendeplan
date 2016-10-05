@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11201" systemVersion="16A320" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="TodayViewController" customModule="Today_View_Widget" customModuleProvider="target">
+            <connections>
+                <outlet property="programPlanScheduleItemDate" destination="y29-ge-rop" id="CY6-Zv-qFt"/>
+                <outlet property="programPlanScheduleItemSubtitle" destination="Stn-HO-0Pi" id="qgo-1I-D6g"/>
+                <outlet property="programPlanScheduleItemTitle" destination="Jw9-W5-3mn" id="B1n-YC-C9A"/>
+                <outlet property="programPlanScheduleItemType" destination="CdN-ut-G7W" id="WST-KO-9NM"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView simulatedAppContext="notificationCenter" translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="317" height="60"/>
+            <subviews>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Stn-HO-0Pi">
+                    <rect key="frame" x="-2" y="20" width="301" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="aww-eU-iPZ"/>
+                    </constraints>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Subtitle" id="qGZ-7X-X5X">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jw9-W5-3mn">
+                    <rect key="frame" x="-2" y="39" width="301" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="oCC-gv-rUv"/>
+                    </constraints>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Title" id="exZ-8o-au7">
+                        <font key="font" metaFont="systemBold" size="15"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y29-ge-rop">
+                    <rect key="frame" x="-2" y="0.0" width="59" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Date/Time" id="p2e-pC-spm">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CdN-ut-G7W">
+                    <rect key="frame" x="269" y="0.0" width="30" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="LIVE" id="wVU-Rq-SUd">
+                        <font key="font" metaFont="smallSystemBold"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstItem="y29-ge-rop" firstAttribute="top" secondItem="Stn-HO-0Pi" secondAttribute="bottom" constant="3" id="0To-yP-ENM"/>
+                <constraint firstItem="Jw9-W5-3mn" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="3Aa-Kz-i3k"/>
+                <constraint firstItem="Stn-HO-0Pi" firstAttribute="trailing" secondItem="CdN-ut-G7W" secondAttribute="trailing" id="QWX-zy-eFR"/>
+                <constraint firstItem="y29-ge-rop" firstAttribute="firstBaseline" secondItem="CdN-ut-G7W" secondAttribute="firstBaseline" id="UPq-Me-hs0"/>
+                <constraint firstAttribute="height" constant="60" id="Vgw-7Q-tXb"/>
+                <constraint firstItem="y29-ge-rop" firstAttribute="baseline" secondItem="CdN-ut-G7W" secondAttribute="baseline" id="Xmo-NX-H8z"/>
+                <constraint firstItem="Jw9-W5-3mn" firstAttribute="leading" secondItem="Stn-HO-0Pi" secondAttribute="leading" id="c7X-3v-Vgd"/>
+                <constraint firstItem="Jw9-W5-3mn" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="dT5-qK-fiQ"/>
+                <constraint firstAttribute="trailing" secondItem="Jw9-W5-3mn" secondAttribute="trailing" constant="20" id="h2y-7c-Ad1"/>
+                <constraint firstAttribute="bottom" secondItem="Stn-HO-0Pi" secondAttribute="bottom" constant="20" symbolic="YES" id="iyt-RT-u8D"/>
+                <constraint firstItem="y29-ge-rop" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="jpa-cz-btA"/>
+                <constraint firstAttribute="bottom" secondItem="y29-ge-rop" secondAttribute="bottom" id="lpW-uQ-oQx"/>
+                <constraint firstItem="Jw9-W5-3mn" firstAttribute="trailing" secondItem="Stn-HO-0Pi" secondAttribute="trailing" id="qIx-lP-bae"/>
+                <constraint firstItem="Stn-HO-0Pi" firstAttribute="leading" secondItem="y29-ge-rop" secondAttribute="leading" id="rQH-lj-gvE"/>
+            </constraints>
+            <point key="canvasLocation" x="128.5" y="52"/>
+        </customView>
+    </objects>
+</document>

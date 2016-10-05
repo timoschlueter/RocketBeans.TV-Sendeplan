@@ -1,0 +1,601 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2504E8961D9D9593003F1B00 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2504E8951D9D9593003F1B00 /* InformationView.swift */; };
+		2504E8981D9D97E8003F1B00 /* InformationWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2504E8971D9D97E8003F1B00 /* InformationWindow.swift */; };
+		250BEDC11D9FCCB6001008B2 /* ProgramPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25190CD81CD3D6E80059CAE5 /* ProgramPlan.swift */; };
+		250BEDC21D9FD644001008B2 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2581B50B1D9F9F4300A6258A /* CryptoSwift.framework */; };
+		25190CD71CD3D2CE0059CAE5 /* ProgramPlanMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25190CD61CD3D2CE0059CAE5 /* ProgramPlanMenu.swift */; };
+		25190CD91CD3D6E80059CAE5 /* ProgramPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25190CD81CD3D6E80059CAE5 /* ProgramPlan.swift */; };
+		251B81E01CD3CFD8009E5FE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251B81DF1CD3CFD8009E5FE6 /* AppDelegate.swift */; };
+		251B81E21CD3CFD8009E5FE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 251B81E11CD3CFD8009E5FE6 /* Assets.xcassets */; };
+		251B81E51CD3CFD8009E5FE6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 251B81E31CD3CFD8009E5FE6 /* MainMenu.xib */; };
+		25353B2E1CD9059600F5AF6D /* ProgramPlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25353B2D1CD9059600F5AF6D /* ProgramPlanTableViewCell.swift */; };
+		2568288A1DA0D835008BF40A /* ProgramPlanTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256828891DA0D835008BF40A /* ProgramPlanTableView.swift */; };
+		2581B50E1D9F9F5900A6258A /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2581B50B1D9F9F4300A6258A /* CryptoSwift.framework */; };
+		2581B50F1D9F9F5900A6258A /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2581B50B1D9F9F4300A6258A /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		25BA87181CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BA87171CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift */; };
+		25D720A81D9FCA8B00CBEEDE /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252FA3F61D9FC9A60072F6C8 /* NotificationCenter.framework */; };
+		25D720AD1D9FCA8B00CBEEDE /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D720AC1D9FCA8B00CBEEDE /* TodayViewController.swift */; };
+		25D720B01D9FCA8B00CBEEDE /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25D720AE1D9FCA8B00CBEEDE /* TodayViewController.xib */; };
+		25D720B41D9FCA8B00CBEEDE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 25D720B21D9FCA8B00CBEEDE /* InfoPlist.strings */; };
+		25D720B71D9FCA8B00CBEEDE /* Today View Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 25D720A71D9FCA8B00CBEEDE /* Today View Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2581B50A1D9F9F4300A6258A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2581B5051D9F9F4300A6258A /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 754BE45519693E190098E6F3;
+			remoteInfo = CryptoSwift;
+		};
+		2581B50C1D9F9F4300A6258A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2581B5051D9F9F4300A6258A /* CryptoSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 754BE46019693E190098E6F3;
+			remoteInfo = Tests;
+		};
+		2581B5101D9F9F5900A6258A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2581B5051D9F9F4300A6258A /* CryptoSwift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 754BE45419693E190098E6F3;
+			remoteInfo = CryptoSwift;
+		};
+		25D720B51D9FCA8B00CBEEDE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 251B81D41CD3CFD8009E5FE6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 25D720A61D9FCA8B00CBEEDE;
+			remoteInfo = "Today View Widget";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		25190CF11CD3DEC40059CAE5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2581B50F1D9F9F5900A6258A /* CryptoSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		252FA40B1D9FC9A60072F6C8 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				25D720B71D9FCA8B00CBEEDE /* Today View Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2504E8951D9D9593003F1B00 /* InformationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
+		2504E8971D9D97E8003F1B00 /* InformationWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationWindow.swift; sourceTree = "<group>"; };
+		2504E8991D9D9D68003F1B00 /* Sendeplan für Rocket Beans TV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sendeplan für Rocket Beans TV.entitlements"; sourceTree = "<group>"; };
+		25190CD61CD3D2CE0059CAE5 /* ProgramPlanMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlanMenu.swift; sourceTree = "<group>"; };
+		25190CD81CD3D6E80059CAE5 /* ProgramPlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlan.swift; sourceTree = "<group>"; };
+		251B81DC1CD3CFD8009E5FE6 /* Sendeplan für Rocket Beans TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sendeplan für Rocket Beans TV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		251B81DF1CD3CFD8009E5FE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		251B81E11CD3CFD8009E5FE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		251B81E41CD3CFD8009E5FE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		251B81E61CD3CFD8009E5FE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		252FA3F61D9FC9A60072F6C8 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		25353B2D1CD9059600F5AF6D /* ProgramPlanTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlanTableViewCell.swift; sourceTree = "<group>"; };
+		256828891DA0D835008BF40A /* ProgramPlanTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlanTableView.swift; sourceTree = "<group>"; };
+		2581B5051D9F9F4300A6258A /* CryptoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoSwift.xcodeproj; path = "CryptoSwift-master/CryptoSwift.xcodeproj"; sourceTree = "<group>"; };
+		25BA87171CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlanTableViewCellSimple.swift; sourceTree = "<group>"; };
+		25D720A71D9FCA8B00CBEEDE /* Today View Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Today View Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		25D720AB1D9FCA8B00CBEEDE /* Today_View_Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Today_View_Widget.entitlements; sourceTree = "<group>"; };
+		25D720AC1D9FCA8B00CBEEDE /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		25D720AF1D9FCA8B00CBEEDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TodayViewController.xib; sourceTree = "<group>"; };
+		25D720B11D9FCA8B00CBEEDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		25D720B31D9FCA8B00CBEEDE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		251B81D91CD3CFD8009E5FE6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2581B50E1D9F9F5900A6258A /* CryptoSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		25D720A41D9FCA8B00CBEEDE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				250BEDC21D9FD644001008B2 /* CryptoSwift.framework in Frameworks */,
+				25D720A81D9FCA8B00CBEEDE /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		251B81D31CD3CFD8009E5FE6 = {
+			isa = PBXGroup;
+			children = (
+				2504E8991D9D9D68003F1B00 /* Sendeplan für Rocket Beans TV.entitlements */,
+				251B81DE1CD3CFD8009E5FE6 /* Sendeplan fuer Rocket Beans TV */,
+				25D720A91D9FCA8B00CBEEDE /* Today View Widget */,
+				252FA3F51D9FC9A60072F6C8 /* Frameworks */,
+				251B81DD1CD3CFD8009E5FE6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		251B81DD1CD3CFD8009E5FE6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				251B81DC1CD3CFD8009E5FE6 /* Sendeplan für Rocket Beans TV.app */,
+				25D720A71D9FCA8B00CBEEDE /* Today View Widget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		251B81DE1CD3CFD8009E5FE6 /* Sendeplan fuer Rocket Beans TV */ = {
+			isa = PBXGroup;
+			children = (
+				251B81E11CD3CFD8009E5FE6 /* Assets.xcassets */,
+				251B81E31CD3CFD8009E5FE6 /* MainMenu.xib */,
+				251B81E61CD3CFD8009E5FE6 /* Info.plist */,
+				251B81DF1CD3CFD8009E5FE6 /* AppDelegate.swift */,
+				25190CD81CD3D6E80059CAE5 /* ProgramPlan.swift */,
+				256828891DA0D835008BF40A /* ProgramPlanTableView.swift */,
+				25353B2D1CD9059600F5AF6D /* ProgramPlanTableViewCell.swift */,
+				25BA87171CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift */,
+				25190CD61CD3D2CE0059CAE5 /* ProgramPlanMenu.swift */,
+				2504E8951D9D9593003F1B00 /* InformationView.swift */,
+				2504E8971D9D97E8003F1B00 /* InformationWindow.swift */,
+			);
+			path = "Sendeplan fuer Rocket Beans TV";
+			sourceTree = "<group>";
+		};
+		252FA3F51D9FC9A60072F6C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2581B5051D9F9F4300A6258A /* CryptoSwift.xcodeproj */,
+				252FA3F61D9FC9A60072F6C8 /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2581B5061D9F9F4300A6258A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2581B50B1D9F9F4300A6258A /* CryptoSwift.framework */,
+				2581B50D1D9F9F4300A6258A /* Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		25D720A91D9FCA8B00CBEEDE /* Today View Widget */ = {
+			isa = PBXGroup;
+			children = (
+				25D720AC1D9FCA8B00CBEEDE /* TodayViewController.swift */,
+				25D720AE1D9FCA8B00CBEEDE /* TodayViewController.xib */,
+				25D720B11D9FCA8B00CBEEDE /* Info.plist */,
+				25D720B21D9FCA8B00CBEEDE /* InfoPlist.strings */,
+				25D720AA1D9FCA8B00CBEEDE /* Supporting Files */,
+			);
+			path = "Today View Widget";
+			sourceTree = "<group>";
+		};
+		25D720AA1D9FCA8B00CBEEDE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				25D720AB1D9FCA8B00CBEEDE /* Today_View_Widget.entitlements */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		251B81DB1CD3CFD8009E5FE6 /* Sendeplan für Rocket Beans TV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 251B81E91CD3CFD8009E5FE6 /* Build configuration list for PBXNativeTarget "Sendeplan für Rocket Beans TV" */;
+			buildPhases = (
+				251B81D81CD3CFD8009E5FE6 /* Sources */,
+				251B81D91CD3CFD8009E5FE6 /* Frameworks */,
+				251B81DA1CD3CFD8009E5FE6 /* Resources */,
+				25190CF11CD3DEC40059CAE5 /* Embed Frameworks */,
+				252FA40B1D9FC9A60072F6C8 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2581B5111D9F9F5900A6258A /* PBXTargetDependency */,
+				25D720B61D9FCA8B00CBEEDE /* PBXTargetDependency */,
+			);
+			name = "Sendeplan für Rocket Beans TV";
+			productName = "Sendeplan fuer Rocket Beans TV";
+			productReference = 251B81DC1CD3CFD8009E5FE6 /* Sendeplan für Rocket Beans TV.app */;
+			productType = "com.apple.product-type.application";
+		};
+		25D720A61D9FCA8B00CBEEDE /* Today View Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 25D720B81D9FCA8B00CBEEDE /* Build configuration list for PBXNativeTarget "Today View Widget" */;
+			buildPhases = (
+				25D720A31D9FCA8B00CBEEDE /* Sources */,
+				25D720A41D9FCA8B00CBEEDE /* Frameworks */,
+				25D720A51D9FCA8B00CBEEDE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Today View Widget";
+			productName = "Today View Widget";
+			productReference = 25D720A71D9FCA8B00CBEEDE /* Today View Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		251B81D41CD3CFD8009E5FE6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Timo Schlüter";
+				TargetAttributes = {
+					251B81DB1CD3CFD8009E5FE6 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = L8B42963X8;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+					25D720A61D9FCA8B00CBEEDE = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = L8B42963X8;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 251B81D71CD3CFD8009E5FE6 /* Build configuration list for PBXProject "Sendeplan für Rocket Beans TV" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 251B81D31CD3CFD8009E5FE6;
+			productRefGroup = 251B81DD1CD3CFD8009E5FE6 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2581B5061D9F9F4300A6258A /* Products */;
+					ProjectRef = 2581B5051D9F9F4300A6258A /* CryptoSwift.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				251B81DB1CD3CFD8009E5FE6 /* Sendeplan für Rocket Beans TV */,
+				25D720A61D9FCA8B00CBEEDE /* Today View Widget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		2581B50B1D9F9F4300A6258A /* CryptoSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = CryptoSwift.framework;
+			remoteRef = 2581B50A1D9F9F4300A6258A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2581B50D1D9F9F4300A6258A /* Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Tests.xctest;
+			remoteRef = 2581B50C1D9F9F4300A6258A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		251B81DA1CD3CFD8009E5FE6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				251B81E21CD3CFD8009E5FE6 /* Assets.xcassets in Resources */,
+				251B81E51CD3CFD8009E5FE6 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		25D720A51D9FCA8B00CBEEDE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25D720B01D9FCA8B00CBEEDE /* TodayViewController.xib in Resources */,
+				25D720B41D9FCA8B00CBEEDE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		251B81D81CD3CFD8009E5FE6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2504E8981D9D97E8003F1B00 /* InformationWindow.swift in Sources */,
+				25BA87181CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift in Sources */,
+				25190CD71CD3D2CE0059CAE5 /* ProgramPlanMenu.swift in Sources */,
+				2568288A1DA0D835008BF40A /* ProgramPlanTableView.swift in Sources */,
+				25190CD91CD3D6E80059CAE5 /* ProgramPlan.swift in Sources */,
+				2504E8961D9D9593003F1B00 /* InformationView.swift in Sources */,
+				251B81E01CD3CFD8009E5FE6 /* AppDelegate.swift in Sources */,
+				25353B2E1CD9059600F5AF6D /* ProgramPlanTableViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		25D720A31D9FCA8B00CBEEDE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				25D720AD1D9FCA8B00CBEEDE /* TodayViewController.swift in Sources */,
+				250BEDC11D9FCCB6001008B2 /* ProgramPlan.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2581B5111D9F9F5900A6258A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CryptoSwift;
+			targetProxy = 2581B5101D9F9F5900A6258A /* PBXContainerItemProxy */;
+		};
+		25D720B61D9FCA8B00CBEEDE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 25D720A61D9FCA8B00CBEEDE /* Today View Widget */;
+			targetProxy = 25D720B51D9FCA8B00CBEEDE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		251B81E31CD3CFD8009E5FE6 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				251B81E41CD3CFD8009E5FE6 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		25D720AE1D9FCA8B00CBEEDE /* TodayViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				25D720AF1D9FCA8B00CBEEDE /* Base */,
+			);
+			name = TodayViewController.xib;
+			sourceTree = "<group>";
+		};
+		25D720B21D9FCA8B00CBEEDE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				25D720B31D9FCA8B00CBEEDE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		251B81E71CD3CFD8009E5FE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		251B81E81CD3CFD8009E5FE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		251B81EA1CD3CFD8009E5FE6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Sendeplan für Rocket Beans TV.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L8B42963X8;
+				INFOPLIST_FILE = "Sendeplan fuer Rocket Beans TV/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "in.timo.macos.Sendeplan-fuer-Rocket-Beans-TV";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		251B81EB1CD3CFD8009E5FE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Sendeplan für Rocket Beans TV.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L8B42963X8;
+				INFOPLIST_FILE = "Sendeplan fuer Rocket Beans TV/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "in.timo.macos.Sendeplan-fuer-Rocket-Beans-TV";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		25D720B91D9FCA8B00CBEEDE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Today View Widget/Today_View_Widget.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L8B42963X8;
+				INFOPLIST_FILE = "Today View Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "in.timo.macos.Sendeplan-fuer-Rocket-Beans-TV.Today-View-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		25D720BA1D9FCA8B00CBEEDE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Today View Widget/Today_View_Widget.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = L8B42963X8;
+				INFOPLIST_FILE = "Today View Widget/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "in.timo.macos.Sendeplan-fuer-Rocket-Beans-TV.Today-View-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		251B81D71CD3CFD8009E5FE6 /* Build configuration list for PBXProject "Sendeplan für Rocket Beans TV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				251B81E71CD3CFD8009E5FE6 /* Debug */,
+				251B81E81CD3CFD8009E5FE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		251B81E91CD3CFD8009E5FE6 /* Build configuration list for PBXNativeTarget "Sendeplan für Rocket Beans TV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				251B81EA1CD3CFD8009E5FE6 /* Debug */,
+				251B81EB1CD3CFD8009E5FE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		25D720B81D9FCA8B00CBEEDE /* Build configuration list for PBXNativeTarget "Today View Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				25D720B91D9FCA8B00CBEEDE /* Debug */,
+				25D720BA1D9FCA8B00CBEEDE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 251B81D41CD3CFD8009E5FE6 /* Project object */;
+}

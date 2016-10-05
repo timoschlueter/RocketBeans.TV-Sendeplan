@@ -1,31 +1,40 @@
-# RocketBeans.TV Sendeplan
+# Sendeplan für Rocket Beans TV
 
-Diese App zeigt den aktuellen Sendeplan von [RocketBeans.TV](http://www.twitch.tv/rocketbeanstv) in der Menüleiste von Mac OS X an.
+Diese App zeigt den aktuellen Wochenplan von [Rocket Beans TV](https://www.rocketbeans.tv) in der Menüleiste von macOS an.
 
 ## Screenshot
 
-![Screenshot](http://t-muh.de/pictures/rocketbeanstv_app_new.png) 
+![Screenshot](https://raw.githubusercontent.com/timoschlueter/RocketBeans.TV-Sendeplan/official-api-rewrite/rbtv-screenshot1.png)
+
+## Download
+
+[![Available on the App Store](https://devimages.apple.com.edgekey.net/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg)](https://itunes.apple.com/de/app/sendeplan-fur-rocket-beans-tv/id1160411162?mt=12)
 
 ## Bekannte Probleme
 
-* Beim Scrollen in der Tabelle kommt es zu Grafikfehlern im Scrollbalken, wenn die Transparenz der Menüleiste aktiviert ist.
-* Unter umständen kann es während der Aktualisierung des Sendeplans zu Hängern in der App kommen. Das Zeitintervall ist in den Einstellungen änderbar.
-* Wird während die Bohnen Live senden der Dark Mode der Menüleiste aktiviert, ändert sich das Icon erst nach etwa einer Minute.
+* Derzeot keine
 
 ## Geplante Features
 
-* Einbindung der kommenden Sendeplan-API von den Bohnen
+* Benutzerdefinierte Notifications
 
 ## Kontakt
 
-* Timo Schlüter (Twitter: [@tmuuh](http://twitter.com/tmuuh) / reddit: [/u/t-muh](http://www.reddit.com/u/t-muh))
+* Timo Schlüter (Twitter: [@tmuuh](http://twitter.com/tmuuh) / Rocket Beans TV Forum: [t-muh](https://forum.rocketbeans.tv/users/t-muh/summary))
 
 ## Credits
 
-Danksagungen und die Namen der Mitwirkenden an der App lassen sich im dazugehörigen [Reddit-Post](http://www.reddit.com/r/rocketbeans/comments/2thoaj/rocketbeanstv_sendeplan_app_für_mac_os_x/) finden.
+* [Shobba](https://github.com/Shobba)
+* [TheVaan](https://github.com/TheVaan)
+* [Manromen](https://github.com/Manromen)
+* [BlackWolf](https://github.com/BlackWolf)
+* [timbooo](https://github.com/timbooo)
+
+
+Danksagungen und die Namen der Mitwirkenden an der App lassen sich im dazugehörigen finden.
 
 ## Verantwortlichkeiten
 
-Die RocketBeans.TV Sendeplan App ist ein inoffizielles, von Fans erstelltes, Tool zur Anzeige des aktuellen Sendeplans in der Menüleiste von OS X.
-Diese App basiert auf den Daten des Google Kalenders der [RedditBeans](http://www.redditbeans.de).
-Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inhalt dieser App verantwortlich.
+Diese App ist ein inoffizielles, von Fans erstelltes, Tool zur Anzeige des aktuellen Sendeplans in der Menüleiste von macOS.
+Diese App basiert auf der offiziellen Rocket Beans TV API.
+Die Mitarbeiter der Rocket Beans Entertainment GmbH sind weder für die Funktionalität noch den Inhalt dieser App verantwortlich.
