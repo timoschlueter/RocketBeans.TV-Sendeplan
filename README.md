@@ -1,6 +1,7 @@
 # Sendeplan für Rocket Beans TV
 
 Diese App zeigt den aktuellen Wochenplan von [Rocket Beans TV](https://www.rocketbeans.tv) in der Menüleiste von macOS an.
+Zusätzlich steht ein "Today View"-Widget für das Notification Center zur Verfügung.
 
 ## Screenshot
 
@@ -12,7 +13,7 @@ Diese App zeigt den aktuellen Wochenplan von [Rocket Beans TV](https://www.rocke
 
 ## Bekannte Probleme
 
-* Derzeot keine
+* Derzeit keine
 
 ## Geplante Features
 
@@ -35,6 +36,6 @@ Danksagungen und die Namen der Mitwirkenden an der App lassen sich im dazugehör
 
 ## Verantwortlichkeiten
 
-Diese App ist ein inoffizielles, von Fans erstelltes, Tool zur Anzeige des aktuellen Sendeplans in der Menüleiste von macOS.
+Diese App ist ein inoffizielles, von Fans erstelltes, Tool zur Anzeige des aktuellen Wochenplans in der Menüleiste von macOS.
 Diese App basiert auf der offiziellen Rocket Beans TV API.
 Die Mitarbeiter der Rocket Beans Entertainment GmbH sind weder für die Funktionalität noch den Inhalt dieser App verantwortlich.
