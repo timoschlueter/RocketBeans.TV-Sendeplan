@@ -137,7 +137,6 @@
 				25D720A91D9FCA8B00CBEEDE /* Today View Widget */,
 				252FA3F51D9FC9A60072F6C8 /* Frameworks */,
 				251B81DD1CD3CFD8009E5FE6 /* Products */,
-				2581B5051D9F9F4300A6258A /* CryptoSwift.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,6 +170,7 @@
 		252FA3F51D9FC9A60072F6C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2581B5051D9F9F4300A6258A /* CryptoSwift.xcodeproj */,
 				252FA3F61D9FC9A60072F6C8 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
@@ -444,7 +444,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -485,7 +485,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -537,7 +537,7 @@
 				DEVELOPMENT_TEAM = L8B42963X8;
 				INFOPLIST_FILE = "Today View Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "in.timo.macos.Sendeplan-fuer-Rocket-Beans-TV.Today-View-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -557,7 +557,7 @@
 				DEVELOPMENT_TEAM = L8B42963X8;
 				INFOPLIST_FILE = "Today View Widget/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "in.timo.macos.Sendeplan-fuer-Rocket-Beans-TV.Today-View-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
