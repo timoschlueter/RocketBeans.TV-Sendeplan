@@ -20,6 +20,7 @@
 		2568288A1DA0D835008BF40A /* ProgramPlanTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256828891DA0D835008BF40A /* ProgramPlanTableView.swift */; };
 		2581B50E1D9F9F5900A6258A /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2581B50B1D9F9F4300A6258A /* CryptoSwift.framework */; };
 		2581B50F1D9F9F5900A6258A /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2581B50B1D9F9F4300A6258A /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		25B902281DA7AF3D00F69855 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25B902261DA7AF3D00F69855 /* Fabric.framework */; };
 		25BA87181CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BA87171CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift */; };
 		25D720A81D9FCA8B00CBEEDE /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252FA3F61D9FC9A60072F6C8 /* NotificationCenter.framework */; };
 		25D720AD1D9FCA8B00CBEEDE /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D720AC1D9FCA8B00CBEEDE /* TodayViewController.swift */; };
@@ -99,6 +100,8 @@
 		25353B2D1CD9059600F5AF6D /* ProgramPlanTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlanTableViewCell.swift; sourceTree = "<group>"; };
 		256828891DA0D835008BF40A /* ProgramPlanTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlanTableView.swift; sourceTree = "<group>"; };
 		2581B5051D9F9F4300A6258A /* CryptoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoSwift.xcodeproj; path = "CryptoSwift-master/CryptoSwift.xcodeproj"; sourceTree = "<group>"; };
+		25B902261DA7AF3D00F69855 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		25B902271DA7AF3D00F69855 /* Answers.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Answers.framework; sourceTree = "<group>"; };
 		25BA87171CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlanTableViewCellSimple.swift; sourceTree = "<group>"; };
 		25D720A71D9FCA8B00CBEEDE /* Today View Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Today View Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25D720AB1D9FCA8B00CBEEDE /* Today_View_Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Today_View_Widget.entitlements; sourceTree = "<group>"; };
@@ -114,6 +117,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2581B50E1D9F9F5900A6258A /* CryptoSwift.framework in Frameworks */,
+				25B902281DA7AF3D00F69855 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +174,8 @@
 		252FA3F51D9FC9A60072F6C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				25B902261DA7AF3D00F69855 /* Fabric.framework */,
+				25B902271DA7AF3D00F69855 /* Answers.framework */,
 				2581B5051D9F9F4300A6258A /* CryptoSwift.xcodeproj */,
 				252FA3F61D9FC9A60072F6C8 /* NotificationCenter.framework */,
 			);
@@ -217,6 +223,7 @@
 				251B81DA1CD3CFD8009E5FE6 /* Resources */,
 				25190CF11CD3DEC40059CAE5 /* Embed Frameworks */,
 				252FA40B1D9FC9A60072F6C8 /* Embed App Extensions */,
+				25B902241DA7AEFE00F69855 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -336,6 +343,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		25B902241DA7AEFE00F69855 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 1eb531a3d51fe2d77bc5cd9b99ac71cea01e8a8a dfd4feacc5abd1f2a213a9e02f247fadffcf59f13fa6f1396a7a00433a961739";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		251B81D81CD3CFD8009E5FE6 /* Sources */ = {
@@ -501,6 +524,10 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = L8B42963X8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Sendeplan fuer Rocket Beans TV/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "in.timo.macos.Sendeplan-fuer-Rocket-Beans-TV";
@@ -518,6 +545,10 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = L8B42963X8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Sendeplan fuer Rocket Beans TV/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "in.timo.macos.Sendeplan-fuer-Rocket-Beans-TV";

@@ -70,6 +70,26 @@ public class ProgramPlan {
         self.apiCheckTimer.invalidate()
     }
     
+    func calculateProgress(startDate: Date, endDate: Date) -> Double {
+        
+        let currentDateEpoch: Double = Date().timeIntervalSince1970
+        let startDateEpoch: Double = startDate.timeIntervalSince1970
+        let endDateEpoch:Double = endDate.timeIntervalSince1970
+        
+        let totalSeconds: Double = endDateEpoch - startDateEpoch
+        let elapsedSeconds: Double = currentDateEpoch - startDateEpoch
+        
+        let progressPercent: Double = round((elapsedSeconds/totalSeconds)*100)
+        
+        if (progressPercent >= 100.0) {
+            return 99.0
+        } else if (progressPercent < 0.0) {
+            return 0.1
+        } else {
+            return progressPercent
+        }
+    }
+    
     func convertDoHumanDate(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short

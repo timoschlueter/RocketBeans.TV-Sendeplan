@@ -15,6 +15,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
     @IBOutlet var programPlanScheduleItemSubtitle: NSTextField!
     @IBOutlet var programPlanScheduleItemType: NSTextField!
     @IBOutlet var programPlanScheduleItemDate: NSTextField!
+    @IBOutlet var progremPlanScheduleItemProgress: NSProgressIndicator!
     
     @IBOutlet var programPlanNextScheduleItemTitle: NSTextField!
     @IBOutlet var programPlanNextScheduleItemSubtitle: NSTextField!
@@ -27,6 +28,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
     let programPlan = ProgramPlan()
 
     override var nibName: String? {
+        
         return "TodayViewController"
     }
 
@@ -41,6 +43,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
         programPlanScheduleItemType?.stringValue = ""
         programPlanScheduleItemSubtitle?.stringValue = ""
         programPlanScheduleItemDate?.stringValue = ""
+        progremPlanScheduleItemProgress?.isHidden = true
         
         programPlanNextScheduleItemTitle?.stringValue = ""
         programPlanNextScheduleItemSubtitle?.stringValue = ""
@@ -142,6 +145,10 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
         programPlanScheduleItemType?.textColor = scheduleItemTypeColor
         programPlanScheduleItemSubtitle?.stringValue = scheduleItemTopic
         programPlanScheduleItemDate?.stringValue = "\(programPlan.convertDoHumanDate(date: timeStartParsed)) Uhr - \(programPlan.convertDoHumanDate(date: timeEndParsed)) Uhr"
+        
+        /* Progress indicator */
+        progremPlanScheduleItemProgress?.doubleValue = programPlan.calculateProgress(startDate: timeStartParsed, endDate: timeEndParsed)
+        progremPlanScheduleItemProgress?.isHidden = false
         
         /* Next */
         programPlanNextScheduleItemTitle?.stringValue = nextScheduleItemTitle

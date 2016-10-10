@@ -14,5 +14,6 @@ class ProgramPlanTableViewCellSimple: NSTableCellView {
     @IBOutlet weak var programPlanScheduleItemTitle: NSTextField!
     @IBOutlet weak var programPlanScheduleItemType: NSTextField!
     @IBOutlet weak var programPlanScheduleItemDate: NSTextField!
+    @IBOutlet weak internal var programPlanScheduleItemProgress: NSProgressIndicator!
     
 }

@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var programPlanMenuItem: NSMenuItem!
     @IBOutlet weak var programPlanTableView: ProgramPlanTableView!
     
-    var statusItem: NSStatusItem = NSStatusItem()
+    public var statusItem: NSStatusItem = NSStatusItem()
     var programPlanScheduleItems: Int = 0
     var programPlanSchedule = [Dictionary<String,AnyObject>]()
     
@@ -36,7 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.statusItem.image?.isTemplate = true
         self.statusItem.highlightMode = true
         self.statusItem.menu = programPlanMenu
-        
+                
         programPlan.refresh()
         programPlan.startTimer(60.0)
         programPlan.delegate = programPlanTableView
@@ -45,6 +45,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         self.programPlanTableView.dataSource = programPlanTableView
         self.programPlanTableView.delegate = programPlanTableView
+                
+        UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions" : true])
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
