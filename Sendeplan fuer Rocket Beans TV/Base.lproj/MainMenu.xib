@@ -152,9 +152,13 @@
                                                     </binding>
                                                 </connections>
                                             </textField>
+                                            <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" doubleValue="65" bezeled="NO" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="e1n-tu-19j">
+                                                <rect key="frame" x="400" y="44" width="16" height="16"/>
+                                            </progressIndicator>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="cUt-YO-Gs3" firstAttribute="leading" secondItem="Twt-ao-qjR" secondAttribute="leading" id="5ff-1Q-kY2"/>
+                                            <constraint firstAttribute="trailing" secondItem="e1n-tu-19j" secondAttribute="trailing" constant="7" id="BBM-hk-h9s"/>
                                             <constraint firstItem="lVS-N6-dkJ" firstAttribute="leading" secondItem="b4a-5t-qpz" secondAttribute="leading" constant="7" id="K1g-1C-nFp"/>
                                             <constraint firstAttribute="bottom" secondItem="5EG-A9-6YP" secondAttribute="bottom" constant="7" id="LFy-bv-Xtc"/>
                                             <constraint firstAttribute="trailing" secondItem="5EG-A9-6YP" secondAttribute="trailing" constant="7" id="Rc7-VM-Ytt"/>
@@ -164,10 +168,12 @@
                                             <constraint firstItem="Twt-ao-qjR" firstAttribute="leading" secondItem="lVS-N6-dkJ" secondAttribute="leading" id="gtl-B8-PnP"/>
                                             <constraint firstItem="cUt-YO-Gs3" firstAttribute="top" secondItem="b4a-5t-qpz" secondAttribute="top" constant="10" id="k8g-qK-Zd0"/>
                                             <constraint firstItem="5EG-A9-6YP" firstAttribute="leading" secondItem="lVS-N6-dkJ" secondAttribute="trailing" constant="8" symbolic="YES" id="lS7-Wj-LyX"/>
+                                            <constraint firstItem="e1n-tu-19j" firstAttribute="top" secondItem="b4a-5t-qpz" secondAttribute="top" constant="12" id="pvf-XW-syl"/>
                                             <constraint firstAttribute="bottom" secondItem="lVS-N6-dkJ" secondAttribute="bottom" constant="7" id="qLb-LQ-j3t"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="programPlanScheduleItemDate" destination="lVS-N6-dkJ" id="J8F-VK-e0Q"/>
+                                            <outlet property="programPlanScheduleItemProgress" destination="e1n-tu-19j" id="lzo-Qy-ltB"/>
                                             <outlet property="programPlanScheduleItemSubtitle" destination="Twt-ao-qjR" id="VDj-je-KBi"/>
                                             <outlet property="programPlanScheduleItemTitle" destination="cUt-YO-Gs3" id="T2S-GP-tJX"/>
                                             <outlet property="programPlanScheduleItemType" destination="5EG-A9-6YP" id="T3F-9t-UMI"/>
@@ -226,18 +232,24 @@
                                                     </binding>
                                                 </connections>
                                             </textField>
+                                            <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" doubleValue="65" bezeled="NO" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="pBm-xG-8Y7">
+                                                <rect key="frame" x="400" y="21" width="16" height="16"/>
+                                            </progressIndicator>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="KyW-Yj-FYK" firstAttribute="top" secondItem="iPz-iw-WLi" secondAttribute="top" constant="7" id="2aj-tp-haj"/>
+                                            <constraint firstAttribute="trailing" secondItem="pBm-xG-8Y7" secondAttribute="trailing" constant="7" id="6n7-EE-grw"/>
                                             <constraint firstAttribute="bottom" secondItem="NEm-Fd-kKQ" secondAttribute="bottom" constant="7" id="UCX-ly-wIm"/>
                                             <constraint firstItem="xml-tP-4rC" firstAttribute="leading" secondItem="NEm-Fd-kKQ" secondAttribute="trailing" constant="44" id="a0N-eU-45a"/>
                                             <constraint firstItem="NEm-Fd-kKQ" firstAttribute="leading" secondItem="iPz-iw-WLi" secondAttribute="leading" constant="7" id="g2G-v1-Imb"/>
                                             <constraint firstItem="KyW-Yj-FYK" firstAttribute="leading" secondItem="NEm-Fd-kKQ" secondAttribute="leading" id="j9F-df-3a1"/>
+                                            <constraint firstItem="pBm-xG-8Y7" firstAttribute="top" secondItem="iPz-iw-WLi" secondAttribute="top" constant="8" id="neo-zm-97m"/>
                                             <constraint firstAttribute="trailing" secondItem="xml-tP-4rC" secondAttribute="trailing" constant="7" id="vsM-h1-iDL"/>
                                             <constraint firstAttribute="bottom" secondItem="xml-tP-4rC" secondAttribute="bottom" constant="7" id="wNi-Jy-Vad"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="programPlanScheduleItemDate" destination="NEm-Fd-kKQ" id="NzE-VF-ZuX"/>
+                                            <outlet property="programPlanScheduleItemProgress" destination="pBm-xG-8Y7" id="qWH-xo-zJM"/>
                                             <outlet property="programPlanScheduleItemTitle" destination="KyW-Yj-FYK" id="hNm-CC-bLX"/>
                                             <outlet property="programPlanScheduleItemType" destination="xml-tP-4rC" id="wxG-Aw-1ud"/>
                                         </connections>

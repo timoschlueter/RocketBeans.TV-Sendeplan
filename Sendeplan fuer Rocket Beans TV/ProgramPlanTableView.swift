@@ -15,10 +15,37 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
     var programPlanSchedule = [Dictionary<String,AnyObject>]()
     
     let programPlan = ProgramPlan()
-        
+    
     func didFinishRefresh(_ data: [Dictionary<String,AnyObject>]) {
+                
         self.programPlanScheduleItems = data.count
         self.programPlanSchedule = data
+        
+        /* Change the Menu Bar Item to Red, if the current show is live. */
+        let appDelegate:AppDelegate = NSApplication.shared().delegate as! AppDelegate
+        let appearance = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
+        
+        switch ((self.programPlanSchedule[0]["type"] as! String).uppercased()) {
+        case "LIVE":
+            /* Set special Live-Icon for Dark Mode */
+            if (appearance == "Dark") {
+                appDelegate.statusItem.image = NSImage(named: "StatusItemLIVE-Dark")
+            } else {
+                appDelegate.statusItem.image = NSImage(named: "StatusItemLIVE-Light")
+            }
+            break
+        case "PREMIERE":
+            /* Set special Premiere-Icon for Dark Mode */
+            if (appearance == "Dark") {
+                appDelegate.statusItem.image = NSImage(named: "StatusItemNEU-Dark")
+            } else {
+                appDelegate.statusItem.image = NSImage(named: "StatusItemNEU-Light")
+            }
+            break
+        default:
+            appDelegate.statusItem.image = NSImage(named: "StatusIcon")
+            break
+        }
         
         self.reloadData()
     }
@@ -86,6 +113,15 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
                 cell.programPlanScheduleItemType?.stringValue = scheduleItemType
                 cell.programPlanScheduleItemType?.textColor = scheduleItemTypeColor
                 cell.programPlanScheduleItemDate?.stringValue = "\(programPlan.convertDoHumanDate(date: timeStartParsed)) Uhr - \(programPlan.convertDoHumanDate(date: timeEndParsed)) Uhr"
+
+                
+                /* Show progress indicator for currently running show */
+                if (row == 0) {
+                    cell.programPlanScheduleItemProgress?.doubleValue = programPlan.calculateProgress(startDate: timeStartParsed, endDate: timeEndParsed)
+                    cell.programPlanScheduleItemProgress?.isHidden = false
+                } else {
+                    cell.programPlanScheduleItemProgress?.isHidden = true
+                }
                 
                 return cell
                 
@@ -98,6 +134,16 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
                 cell.programPlanScheduleItemType?.backgroundColor = NSColor.clear
                 cell.programPlanScheduleItemSubtitle?.stringValue = "\((self.programPlanSchedule[row]["topic"] as! String))"
                 cell.programPlanScheduleItemDate?.stringValue = "\(programPlan.convertDoHumanDate(date: timeStartParsed)) Uhr - \(programPlan.convertDoHumanDate(date: timeEndParsed)) Uhr"
+                
+                
+                /* Show progress indicator for currently running show */
+                if (row == 0) {
+                    cell.programPlanScheduleItemProgress?.doubleValue = programPlan.calculateProgress(startDate: timeStartParsed, endDate: timeEndParsed)
+                    cell.programPlanScheduleItemProgress?.isHidden = false
+                } else {
+                    cell.programPlanScheduleItemProgress?.isHidden = true
+                }
+                
                 return cell
             }
         }

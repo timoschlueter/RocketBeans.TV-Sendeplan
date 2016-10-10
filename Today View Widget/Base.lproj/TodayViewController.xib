@@ -14,6 +14,7 @@
                 <outlet property="programPlanScheduleItemSubtitle" destination="Stn-HO-0Pi" id="qgo-1I-D6g"/>
                 <outlet property="programPlanScheduleItemTitle" destination="Jw9-W5-3mn" id="B1n-YC-C9A"/>
                 <outlet property="programPlanScheduleItemType" destination="CdN-ut-G7W" id="WST-KO-9NM"/>
+                <outlet property="progremPlanScheduleItemProgress" destination="HPk-YY-8kv" id="a3k-Am-JrH"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -135,6 +136,9 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" doubleValue="65" bezeled="NO" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="HPk-YY-8kv">
+                    <rect key="frame" x="281" y="156" width="16" height="16"/>
+                </progressIndicator>
             </subviews>
             <constraints>
                 <constraint firstItem="Stn-HO-0Pi" firstAttribute="top" secondItem="Jw9-W5-3mn" secondAttribute="bottom" constant="3" id="1xD-WP-9BP"/>
@@ -153,11 +157,13 @@
                 <constraint firstItem="PPI-fs-6zV" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="M7d-sK-IUI"/>
                 <constraint firstAttribute="height" constant="173" id="Oqs-84-NMz"/>
                 <constraint firstItem="zmb-xi-CFg" firstAttribute="top" secondItem="PPI-fs-6zV" secondAttribute="bottom" constant="3" id="P5T-2Q-Z2A"/>
+                <constraint firstItem="HPk-YY-8kv" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="1" id="Pdb-Sl-QtY"/>
                 <constraint firstItem="c6I-k8-dZw" firstAttribute="trailing" secondItem="Stn-HO-0Pi" secondAttribute="trailing" id="Rng-Jv-dek"/>
                 <constraint firstItem="zmb-xi-CFg" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="S4j-8k-hEz"/>
                 <constraint firstItem="D7u-h3-KeK" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="Sfk-rv-y2e"/>
                 <constraint firstItem="PPI-fs-6zV" firstAttribute="top" secondItem="D7u-h3-KeK" secondAttribute="bottom" constant="3" id="bd9-AY-Xmu"/>
                 <constraint firstItem="c6I-k8-dZw" firstAttribute="top" secondItem="CdN-ut-G7W" secondAttribute="bottom" constant="8" id="fF7-86-nS6"/>
+                <constraint firstAttribute="trailing" secondItem="HPk-YY-8kv" secondAttribute="trailing" constant="20" id="hnl-dt-mAa"/>
                 <constraint firstItem="7d0-bv-cwj" firstAttribute="top" secondItem="c6I-k8-dZw" secondAttribute="bottom" constant="8" id="mHN-CI-Bha"/>
                 <constraint firstItem="c6I-k8-dZw" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="nMx-Nt-GXN"/>
                 <constraint firstItem="r7K-jp-p3D" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="oHN-8b-e3Q"/>
