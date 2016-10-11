@@ -117,9 +117,10 @@
                                                 </connections>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cUt-YO-Gs3">
-                                                <rect key="frame" x="5" y="41" width="37" height="21"/>
+                                                <rect key="frame" x="5" y="41" width="369" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="5y1-b4-7si"/>
+                                                    <constraint firstAttribute="width" constant="365" id="IZD-5C-Gfd"/>
                                                 </constraints>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Title" id="Oi3-Qj-sGe">
                                                     <font key="font" metaFont="systemBold" size="15"/>
@@ -185,7 +186,10 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KyW-Yj-FYK">
-                                                <rect key="frame" x="5" y="19" width="37" height="19"/>
+                                                <rect key="frame" x="5" y="19" width="369" height="19"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="365" id="OUh-xq-YNM"/>
+                                                </constraints>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Title" id="ODA-V0-3Z0">
                                                     <font key="font" metaFont="systemBold" size="15"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
