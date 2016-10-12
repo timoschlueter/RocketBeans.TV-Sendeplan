@@ -32,7 +32,11 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="Xwu-Qy-6t2"/>
-                <menuItem title="Einstellungen" hidden="YES" keyEquivalent="," id="3t4-m5-9i1"/>
+                <menuItem title="Einstellungen" keyEquivalent="," id="3t4-m5-9i1">
+                    <connections>
+                        <action selector="itemOpenSettings:" target="y2J-nN-j6U" id="Swa-eS-UuX"/>
+                    </connections>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" id="G33-1m-xKK"/>
                 <menuItem title="Informationen" keyEquivalent="i" id="kF1-2v-gC3">
                     <connections>
@@ -48,6 +52,7 @@
             </items>
             <connections>
                 <outlet property="informationWindow" destination="bfs-Yp-fMb" id="U22-XS-bcP"/>
+                <outlet property="settingsWindow" destination="QXi-cJ-6H8" id="vJG-f8-u2B"/>
             </connections>
             <point key="canvasLocation" x="682.5" y="205.5"/>
         </menu>
@@ -56,7 +61,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Ys0-uq-5mu">
                 <rect key="frame" x="0.0" y="0.0" width="426" height="329"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="72" rowSizeStyle="automatic" viewBased="YES" id="qVF-fX-7oC" customClass="ProgramPlanTableView" customModule="Sendeplan_fu_r_Rocket_Beans_TV" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="426" height="329"/>
@@ -278,18 +283,18 @@
         <window title="Informationen" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="bfs-Yp-fMb" customClass="InformationWindow" customModule="Sendeplan_fu_r_Rocket_Beans_TV" customModuleProvider="target">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="207" width="382" height="435"/>
+            <rect key="contentRect" x="196" y="207" width="382" height="430"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
-            <view key="contentView" id="c2t-aF-fky" customClass="InformationView" customModule="Sendeplan_fu_r_Rocket_Beans_TV" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="382" height="435"/>
+            <view key="contentView" id="c2t-aF-fky">
+                <rect key="frame" x="0.0" y="0.0" width="382" height="430"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="N8D-OC-87M">
-                        <rect key="frame" x="12" y="70" width="358" height="5"/>
+                        <rect key="frame" x="12" y="69" width="358" height="5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </box>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fdl-Zq-whF">
-                        <rect key="frame" x="18" y="104" width="346" height="153"/>
+                        <rect key="frame" x="18" y="80" width="346" height="153"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="sjX-cU-1P5">
                             <font key="font" metaFont="system"/>
@@ -303,10 +308,33 @@ Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inh
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avk-Dg-OAC">
-                        <rect key="frame" x="167" y="47" width="48" height="17"/>
+                        <rect key="frame" x="167" y="46" width="48" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Credits" id="V5p-7a-8zf">
                             <font key="font" metaFont="systemBold"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oAF-ja-ZOd">
+                        <rect key="frame" x="18" y="21" width="256" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Timo Schlüter" id="jom-yq-TRC">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iz0-WU-sHA">
+                        <rect key="frame" x="124" y="266" width="135" height="144"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="MenuBarIcon" id="z1V-Cg-igR"/>
+                    </imageView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qyp-pQ-IQh">
+                        <rect key="frame" x="122" y="241" width="139" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Version (Build)" id="tsi-HM-phA">
+                            <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -319,18 +347,9 @@ Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inh
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="buttonTwitter:" target="c2t-aF-fky" id="Yha-ul-k2O"/>
+                            <action selector="buttonTwitter:" target="bfs-Yp-fMb" id="kTY-aS-9Rk"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oAF-ja-ZOd">
-                        <rect key="frame" x="18" y="21" width="256" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Timo Schlüter" id="jom-yq-TRC">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Fh-83-zAv">
                         <rect key="frame" x="310" y="20" width="22" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -339,7 +358,7 @@ Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inh
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="buttonFacebook:" target="c2t-aF-fky" id="7aF-82-xdM"/>
+                            <action selector="buttonFacebook:" target="bfs-Yp-fMb" id="m5L-Wj-vEu"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b8B-jf-qpG">
@@ -350,17 +369,50 @@ Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inh
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="buttonGitHub:" target="c2t-aF-fky" id="4of-K7-sva"/>
+                            <action selector="buttonGitHub:" target="bfs-Yp-fMb" id="4gV-cv-yuv"/>
                         </connections>
                     </button>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iz0-WU-sHA">
-                        <rect key="frame" x="124" y="271" width="135" height="144"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="MenuBarIcon" id="z1V-Cg-igR"/>
-                    </imageView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="511" y="577.5"/>
+            <connections>
+                <outlet property="versionLabel" destination="qyp-pQ-IQh" id="gMy-9M-BbG"/>
+            </connections>
+            <point key="canvasLocation" x="744" y="566"/>
+        </window>
+        <window title="Einstellungen" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="QXi-cJ-6H8" customClass="SettingsWindow" customModule="Sendeplan_fu_r_Rocket_Beans_TV" customModuleProvider="target">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="207" width="277" height="95"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+            <view key="contentView" id="7Da-a5-Ji1">
+                <rect key="frame" x="0.0" y="0.0" width="277" height="95"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pOc-JX-yO6">
+                        <rect key="frame" x="18" y="59" width="216" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="Icon in der Menüleiste einfärben" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="hKO-Ru-DHe">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SkZ-jG-K5b">
+                        <rect key="frame" x="161" y="13" width="102" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Speichern" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mWJ-lm-N4S">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="buttonSave:" target="QXi-cJ-6H8" id="aSZ-Qv-znT"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <connections>
+                <outlet property="checkboxColoredIcon" destination="pOc-JX-yO6" id="qR2-QU-2my"/>
+            </connections>
+            <point key="canvasLocation" x="214.5" y="398.5"/>
         </window>
     </objects>
     <resources>
