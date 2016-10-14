@@ -17,6 +17,11 @@ class SettingsWindow: NSWindow {
     }
     
     override func awakeFromNib() {
-        checkboxColoredIcon.state = UserDefaults.standard.value(forKey: "coloredIcon") as! Int
+        
+        if (UserDefaults.standard.value(forKey: "coloredIcon") == nil) {
+            checkboxColoredIcon.state = 1
+        } else {
+            checkboxColoredIcon.state = UserDefaults.standard.value(forKey: "coloredIcon") as! Int
+        }
     }
 }

@@ -24,29 +24,33 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
         let appDelegate:AppDelegate = NSApplication.shared().delegate as! AppDelegate
         let appearance = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
         
-        if UserDefaults.standard.value(forKey: "coloredIcon") as! Int == 0 {
+        if (UserDefaults.standard.value(forKey: "coloredIcon") == nil) {
             appDelegate.statusItem.image = NSImage(named: "StatusIcon")
         } else {
-            switch ((self.programPlanSchedule[0]["type"] as! String).uppercased()) {
-            case "LIVE":
-                /* Set special Live-Icon for Dark Mode */
-                if (appearance == "Dark") {
-                    appDelegate.statusItem.image = NSImage(named: "StatusItemLIVE-Dark")
-                } else {
-                    appDelegate.statusItem.image = NSImage(named: "StatusItemLIVE-Light")
-                }
-                break
-            case "PREMIERE":
-                /* Set special Premiere-Icon for Dark Mode */
-                if (appearance == "Dark") {
-                    appDelegate.statusItem.image = NSImage(named: "StatusItemNEU-Dark")
-                } else {
-                    appDelegate.statusItem.image = NSImage(named: "StatusItemNEU-Light")
-                }
-                break
-            default:
+            if UserDefaults.standard.value(forKey: "coloredIcon") as! Int == 0 {
                 appDelegate.statusItem.image = NSImage(named: "StatusIcon")
-                break
+            } else {
+                switch ((self.programPlanSchedule[0]["type"] as! String).uppercased()) {
+                case "LIVE":
+                    /* Set special Live-Icon for Dark Mode */
+                    if (appearance == "Dark") {
+                        appDelegate.statusItem.image = NSImage(named: "StatusItemLIVE-Dark")
+                    } else {
+                        appDelegate.statusItem.image = NSImage(named: "StatusItemLIVE-Light")
+                    }
+                    break
+                case "PREMIERE":
+                    /* Set special Premiere-Icon for Dark Mode */
+                    if (appearance == "Dark") {
+                        appDelegate.statusItem.image = NSImage(named: "StatusItemNEU-Dark")
+                    } else {
+                        appDelegate.statusItem.image = NSImage(named: "StatusItemNEU-Light")
+                    }
+                    break
+                default:
+                    appDelegate.statusItem.image = NSImage(named: "StatusIcon")
+                    break
+                }
             }
         }
         
