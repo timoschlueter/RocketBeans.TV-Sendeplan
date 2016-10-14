@@ -28,6 +28,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        
+        /* If there are no settings yet, set the default value */
+        if (UserDefaults.standard.value(forKey: "coloredIcon") == nil) {
+            UserDefaults.standard.setValue(1, forKey: "coloredIcon")
+        }
 
         let statusBar = NSStatusBar.system()
         self.statusItem = statusBar.statusItem(withLength: 25.0)

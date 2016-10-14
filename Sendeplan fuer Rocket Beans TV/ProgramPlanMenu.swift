@@ -13,12 +13,19 @@ class ProgramPlanMenu: NSMenu {
     
     @IBOutlet weak var informationWindow: InformationWindow!
 
+    @IBOutlet weak var settingsWindow: SettingsWindow!
+    
     @IBAction func itemQuit(_ sender: AnyObject) {
         NSApplication.shared().terminate(self)
     }
     
     @IBAction func itemOpenStream(_ sender: AnyObject) {
         NSWorkspace.shared().open(NSURL(string: "https://www.rocketbeans.tv")! as URL)
+    }
+    @IBAction func itemOpenSettings(_ sender: AnyObject) {
+        NSApp.activate(ignoringOtherApps: true)
+        self.settingsWindow.center()
+        self.settingsWindow.makeKeyAndOrderFront(self)
     }
     
     @IBAction func itemOpenInfo(_ sender: AnyObject) {
