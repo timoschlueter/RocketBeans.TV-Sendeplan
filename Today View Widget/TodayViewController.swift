@@ -111,7 +111,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
             scheduleItemTypeColor = NSColor(red:0.09, green:0.58, blue:0.70, alpha:1.0)
             break
         default:
-            scheduleItemTypeColor = NSColor.black
+            scheduleItemTypeColor = NSColor.labelColor
             break
         }
         
@@ -124,7 +124,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
             nextScheduleItemTypeColor = NSColor(red:0.09, green:0.58, blue:0.70, alpha:1.0)
             break
         default:
-            nextScheduleItemTypeColor = NSColor.black
+            nextScheduleItemTypeColor = NSColor.labelColor
             break
         }
         
