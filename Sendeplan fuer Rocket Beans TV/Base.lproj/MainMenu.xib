@@ -2,6 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -162,24 +164,39 @@
                                             <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" doubleValue="65" bezeled="NO" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="e1n-tu-19j">
                                                 <rect key="frame" x="400" y="44" width="16" height="16"/>
                                             </progressIndicator>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="4hh-dH-eCd">
+                                                <rect key="frame" x="400" y="44" width="16" height="16"/>
+                                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="BellOff" imagePosition="left" alternateImage="BellOn" imageScaling="axesIndependently" inset="2" id="Pcm-L9-gE4">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="toggleNotification:" target="b4a-5t-qpz" id="uYk-mE-FP8"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="cUt-YO-Gs3" firstAttribute="leading" secondItem="Twt-ao-qjR" secondAttribute="leading" id="5ff-1Q-kY2"/>
                                             <constraint firstAttribute="trailing" secondItem="e1n-tu-19j" secondAttribute="trailing" constant="7" id="BBM-hk-h9s"/>
+                                            <constraint firstItem="4hh-dH-eCd" firstAttribute="baseline" secondItem="cUt-YO-Gs3" secondAttribute="firstBaseline" id="H6e-Kc-1tR"/>
                                             <constraint firstItem="lVS-N6-dkJ" firstAttribute="leading" secondItem="b4a-5t-qpz" secondAttribute="leading" constant="7" id="K1g-1C-nFp"/>
                                             <constraint firstAttribute="bottom" secondItem="5EG-A9-6YP" secondAttribute="bottom" constant="7" id="LFy-bv-Xtc"/>
                                             <constraint firstAttribute="trailing" secondItem="5EG-A9-6YP" secondAttribute="trailing" constant="7" id="Rc7-VM-Ytt"/>
                                             <constraint firstItem="Twt-ao-qjR" firstAttribute="leading" secondItem="b4a-5t-qpz" secondAttribute="leading" constant="7" id="UsU-gY-Cp9"/>
+                                            <constraint firstItem="4hh-dH-eCd" firstAttribute="top" secondItem="b4a-5t-qpz" secondAttribute="top" constant="12" id="X4a-n9-8lA"/>
                                             <constraint firstItem="lVS-N6-dkJ" firstAttribute="top" secondItem="Twt-ao-qjR" secondAttribute="bottom" constant="3" id="bX2-KR-tK9"/>
                                             <constraint firstItem="Twt-ao-qjR" firstAttribute="top" secondItem="cUt-YO-Gs3" secondAttribute="bottom" constant="1" id="bw5-HP-h1E"/>
                                             <constraint firstItem="Twt-ao-qjR" firstAttribute="leading" secondItem="lVS-N6-dkJ" secondAttribute="leading" id="gtl-B8-PnP"/>
                                             <constraint firstItem="cUt-YO-Gs3" firstAttribute="top" secondItem="b4a-5t-qpz" secondAttribute="top" constant="10" id="k8g-qK-Zd0"/>
                                             <constraint firstItem="5EG-A9-6YP" firstAttribute="leading" secondItem="lVS-N6-dkJ" secondAttribute="trailing" constant="8" symbolic="YES" id="lS7-Wj-LyX"/>
+                                            <constraint firstAttribute="trailing" secondItem="4hh-dH-eCd" secondAttribute="trailing" constant="7" id="m88-ec-kmq"/>
                                             <constraint firstItem="e1n-tu-19j" firstAttribute="top" secondItem="b4a-5t-qpz" secondAttribute="top" constant="12" id="pvf-XW-syl"/>
                                             <constraint firstAttribute="bottom" secondItem="lVS-N6-dkJ" secondAttribute="bottom" constant="7" id="qLb-LQ-j3t"/>
+                                            <constraint firstItem="4hh-dH-eCd" firstAttribute="leading" secondItem="e1n-tu-19j" secondAttribute="leading" id="wAm-fE-6M6"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="programPlanScheduleItemDate" destination="lVS-N6-dkJ" id="J8F-VK-e0Q"/>
+                                            <outlet property="programPlanScheduleItemNotificationToggle" destination="4hh-dH-eCd" id="RQR-2H-8Sk"/>
                                             <outlet property="programPlanScheduleItemProgress" destination="e1n-tu-19j" id="lzo-Qy-ltB"/>
                                             <outlet property="programPlanScheduleItemSubtitle" destination="Twt-ao-qjR" id="VDj-je-KBi"/>
                                             <outlet property="programPlanScheduleItemTitle" destination="cUt-YO-Gs3" id="T2S-GP-tJX"/>
@@ -245,20 +262,35 @@
                                             <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" doubleValue="65" bezeled="NO" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="pBm-xG-8Y7">
                                                 <rect key="frame" x="400" y="21" width="16" height="16"/>
                                             </progressIndicator>
+                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="Ptd-LD-eEF">
+                                                <rect key="frame" x="400" y="21" width="16" height="16"/>
+                                                <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="BellOff" imagePosition="left" alternateImage="BellOn" imageScaling="axesIndependently" inset="2" id="2bS-eF-MYg">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="toggleNotification:" target="iPz-iw-WLi" id="cH3-SQ-Pda"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="KyW-Yj-FYK" firstAttribute="top" secondItem="iPz-iw-WLi" secondAttribute="top" constant="7" id="2aj-tp-haj"/>
+                                            <constraint firstItem="Ptd-LD-eEF" firstAttribute="top" secondItem="iPz-iw-WLi" secondAttribute="top" constant="8" id="2z7-Kx-Ppf"/>
                                             <constraint firstAttribute="trailing" secondItem="pBm-xG-8Y7" secondAttribute="trailing" constant="7" id="6n7-EE-grw"/>
                                             <constraint firstAttribute="bottom" secondItem="NEm-Fd-kKQ" secondAttribute="bottom" constant="7" id="UCX-ly-wIm"/>
                                             <constraint firstItem="xml-tP-4rC" firstAttribute="leading" secondItem="NEm-Fd-kKQ" secondAttribute="trailing" constant="44" id="a0N-eU-45a"/>
+                                            <constraint firstItem="Ptd-LD-eEF" firstAttribute="leading" secondItem="pBm-xG-8Y7" secondAttribute="leading" id="afZ-vD-ZrO"/>
                                             <constraint firstItem="NEm-Fd-kKQ" firstAttribute="leading" secondItem="iPz-iw-WLi" secondAttribute="leading" constant="7" id="g2G-v1-Imb"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ptd-LD-eEF" secondAttribute="trailing" constant="7" id="i9g-nT-oBA"/>
                                             <constraint firstItem="KyW-Yj-FYK" firstAttribute="leading" secondItem="NEm-Fd-kKQ" secondAttribute="leading" id="j9F-df-3a1"/>
                                             <constraint firstItem="pBm-xG-8Y7" firstAttribute="top" secondItem="iPz-iw-WLi" secondAttribute="top" constant="8" id="neo-zm-97m"/>
+                                            <constraint firstItem="Ptd-LD-eEF" firstAttribute="bottom" secondItem="pBm-xG-8Y7" secondAttribute="bottom" id="qTy-Ar-61x"/>
                                             <constraint firstAttribute="trailing" secondItem="xml-tP-4rC" secondAttribute="trailing" constant="7" id="vsM-h1-iDL"/>
                                             <constraint firstAttribute="bottom" secondItem="xml-tP-4rC" secondAttribute="bottom" constant="7" id="wNi-Jy-Vad"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="programPlanScheduleItemDate" destination="NEm-Fd-kKQ" id="NzE-VF-ZuX"/>
+                                            <outlet property="programPlanScheduleItemNotificationToggle" destination="Ptd-LD-eEF" id="eKj-NG-UpY"/>
                                             <outlet property="programPlanScheduleItemProgress" destination="pBm-xG-8Y7" id="qWH-xo-zJM"/>
                                             <outlet property="programPlanScheduleItemTitle" destination="KyW-Yj-FYK" id="hNm-CC-bLX"/>
                                             <outlet property="programPlanScheduleItemType" destination="xml-tP-4rC" id="wxG-Aw-1ud"/>
@@ -279,7 +311,7 @@
                 <rect key="frame" x="-100" y="-100" width="15" height="102"/>
                 <autoresizingMask key="autoresizingMask"/>
             </scroller>
-            <point key="canvasLocation" x="-263" y="567"/>
+            <point key="canvasLocation" x="-263" y="566.5"/>
         </scrollView>
         <window title="Informationen" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="bfs-Yp-fMb" customClass="InformationWindow" customModule="Sendeplan_fu_r_Rocket_Beans_TV" customModuleProvider="target">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
@@ -417,6 +449,8 @@ Die Mitarbeiter der RocketBeans sind weder für die Funktionalität noch den Inh
         </window>
     </objects>
     <resources>
+        <image name="BellOff" width="32" height="32"/>
+        <image name="BellOn" width="32" height="32"/>
         <image name="FacebookIcon" width="32" height="32"/>
         <image name="GithubIcon" width="32" height="32"/>
         <image name="MenuBarIcon" width="155" height="176"/>

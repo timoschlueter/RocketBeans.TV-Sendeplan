@@ -23,6 +23,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let programPlan = ProgramPlan()
     
+    var enabledNotifications = [Dictionary<String,AnyObject>]()
+    var currentEnabledNotifications: [Dictionary<String,AnyObject>] = []
+    
     override init() {
         /* Nothing for now */
     }
@@ -32,6 +35,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         /* If there are no settings yet, set the default value */
         if (UserDefaults.standard.value(forKey: "coloredIcon") == nil) {
             UserDefaults.standard.setValue(1, forKey: "coloredIcon")
+        }
+        
+        if (UserDefaults.standard.value(forKey: "enabledNotifications") == nil) {
+            UserDefaults.standard.setValue(enabledNotifications, forKey: "enabledNotifications")
         }
 
         let statusBar = NSStatusBar.system()
@@ -52,6 +59,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.programPlanTableView.delegate = programPlanTableView
                 
         UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions" : true])
+        
+        currentEnabledNotifications = UserDefaults.standard.value(forKey: "enabledNotifications") as! [Dictionary<String, AnyObject>]
+        //Swift.print(currentEnabledNotifications)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
