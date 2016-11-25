@@ -90,6 +90,17 @@ public class ProgramPlan {
         }
     }
     
+    func notificationIsDue(startDate: Date) -> Bool {
+        let currentDateEpoch: Double = Date().timeIntervalSince1970
+        let startDateEpoch: Double = startDate.timeIntervalSince1970
+        /* Check if we are within a window of 15 and 15.5 minutes before the next enabled notification */
+        if startDateEpoch - currentDateEpoch >= 900.0 && startDateEpoch - currentDateEpoch <= 930.0 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     func convertDoHumanDate(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short

@@ -13,6 +13,7 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
     
     var programPlanScheduleItems: Int = 0
     var programPlanSchedule = [Dictionary<String,AnyObject>]()
+    var enabledNotifications: [Dictionary<String,AnyObject>] = []
     
     let programPlan = ProgramPlan()
     
@@ -23,6 +24,42 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
         
         let appDelegate:AppDelegate = NSApplication.shared().delegate as! AppDelegate
         let appearance = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
+        
+        enabledNotifications = UserDefaults.standard.value(forKey: "enabledNotifications") as! [Dictionary<String, AnyObject>]
+        
+        /* Go through all saved notifications */
+        for (index, enabledNotification) in enabledNotifications.enumerated() {
+            let foundElementIndex = self.programPlanSchedule.index(where: {$0["id"] as! Int == enabledNotification["id"] as! Int})
+            /* Clean up notifications that are no longer possible to trigger */
+            if (foundElementIndex == nil) {
+                enabledNotifications.remove(at: index)
+            } else {
+                let scheduleTimeStart: String = enabledNotification["timeStart"] as! String
+                let timeStartParsed: Date = programPlan.convertDate(date: scheduleTimeStart)
+                
+                /* Check if a notification is due */
+                if programPlan.notificationIsDue(startDate: timeStartParsed) {
+                    
+                    /* Send notification */
+                    let notification = NSUserNotification()
+                    
+                    if (enabledNotification["topic"] as! String == "") {
+                        notification.title = enabledNotification["title"] as? String
+                    } else {
+                        notification.title = "\(enabledNotification["title"] as! String) - \(enabledNotification["topic"] as! String)"
+                    }
+                    
+                    notification.informativeText = "Beginnt \(programPlan.convertDoHumanDate(date: timeStartParsed)) Uhr"
+                    notification.soundName = NSUserNotificationDefaultSoundName
+                    NSUserNotificationCenter.default.deliver(notification)
+                    
+                    /* Since we did send the notification, we can remove it from the saved ones */
+                    enabledNotifications.remove(at: index)
+                }
+            }
+        }
+        
+        UserDefaults.standard.setValue(enabledNotifications, forKey: "enabledNotifications")
         
         if (UserDefaults.standard.value(forKey: "coloredIcon") == nil) {
             appDelegate.statusItem.image = NSImage(named: "StatusIcon")
@@ -113,8 +150,10 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
             
             
             if ((self.programPlanSchedule[row]["topic"] as! String) == "") {
-                
                 let cell: ProgramPlanTableViewCellSimple = tableView.make(withIdentifier: "ProgramPlanTableViewCellSimple", owner: self) as! ProgramPlanTableViewCellSimple
+                
+                /* Pass the item id to the row in order to manage notifications */
+                cell.currentItem = self.programPlanSchedule[row]
                 
                 cell.programPlanScheduleItemTitle?.stringValue = scheduleItemTitle
                 cell.programPlanScheduleItemType?.stringValue = scheduleItemType
@@ -126,14 +165,26 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
                 if (row == 0) {
                     cell.programPlanScheduleItemProgress?.doubleValue = programPlan.calculateProgress(startDate: timeStartParsed, endDate: timeEndParsed)
                     cell.programPlanScheduleItemProgress?.isHidden = false
+                    cell.programPlanScheduleItemNotificationToggle?.isHidden = true
                 } else {
                     cell.programPlanScheduleItemProgress?.isHidden = true
+                    cell.programPlanScheduleItemNotificationToggle?.isHidden = false
+                }
+                
+                /* Set the notification toggle to active if notifications are enabled */
+                if enabledNotifications.contains(where: {$0["id"] as! Int == self.programPlanSchedule[row]["id"] as! Int}) {
+                    cell.programPlanScheduleItemNotificationToggle.state = 1
+                } else {
+                    cell.programPlanScheduleItemNotificationToggle.state = 0
                 }
                 
                 return cell
                 
             } else {
                 let cell: ProgramPlanTableViewCell = tableView.make(withIdentifier: "ProgramPlanTableViewCell", owner: self) as! ProgramPlanTableViewCell
+                
+                /* Pass the item id to the row in order to manage notifications */
+                cell.currentItem = self.programPlanSchedule[row]
                 
                 cell.programPlanScheduleItemTitle?.stringValue = scheduleItemTitle
                 cell.programPlanScheduleItemType?.stringValue = scheduleItemType
@@ -147,8 +198,17 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
                 if (row == 0) {
                     cell.programPlanScheduleItemProgress?.doubleValue = programPlan.calculateProgress(startDate: timeStartParsed, endDate: timeEndParsed)
                     cell.programPlanScheduleItemProgress?.isHidden = false
+                    cell.programPlanScheduleItemNotificationToggle?.isHidden = true
                 } else {
                     cell.programPlanScheduleItemProgress?.isHidden = true
+                    cell.programPlanScheduleItemNotificationToggle?.isHidden = false
+                }
+                
+                /* Set the notification toggle to active if notifications are enabled */
+                if enabledNotifications.contains(where: {$0["id"] as! Int == self.programPlanSchedule[row]["id"] as! Int}) {
+                    cell.programPlanScheduleItemNotificationToggle.state = 1
+                } else {
+                    cell.programPlanScheduleItemNotificationToggle.state = 0
                 }
                 
                 return cell
