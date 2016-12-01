@@ -18,7 +18,7 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
     let programPlan = ProgramPlan()
     
     func didFinishRefresh(_ data: [Dictionary<String,AnyObject>]) {
-                
+        
         self.programPlanScheduleItems = data.count
         self.programPlanSchedule = data
         
@@ -50,7 +50,29 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
                     }
                     
                     notification.informativeText = "Beginnt \(programPlan.convertDoHumanDate(date: timeStartParsed)) Uhr"
-                    notification.soundName = NSUserNotificationDefaultSoundName
+                    
+                    if (UserDefaults.standard.string(forKey: "notificationSound") == nil) {
+                        notification.soundName = NSUserNotificationDefaultSoundName
+                    } else {
+                        notification.soundName = nil
+                        
+                        switch UserDefaults.standard.integer(forKey: "notificationSound") {
+                        case 0:
+                            notification.soundName = NSUserNotificationDefaultSoundName
+                        case 1:
+                            let notificationSound = NSSound(named: "NotificationNicenstein")
+                            notificationSound?.play()
+                        case 2:
+                            let notificationSound = NSSound(named: "NotificationMaximaleRealitaet")
+                            notificationSound?.play()
+                        case 3:
+                            let notificationSound = NSSound(named: "NotificationKappa")
+                            notificationSound?.play()
+                        default:
+                            notification.soundName = NSUserNotificationDefaultSoundName
+                        }
+                    }
+                    
                     NSUserNotificationCenter.default.deliver(notification)
                     
                     /* Since we did send the notification, we can remove it from the saved ones */
