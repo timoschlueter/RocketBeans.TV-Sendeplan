@@ -36,9 +36,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if (UserDefaults.standard.value(forKey: "coloredIcon") == nil) {
             UserDefaults.standard.setValue(1, forKey: "coloredIcon")
         }
-        
+                
         if (UserDefaults.standard.value(forKey: "enabledNotifications") == nil) {
             UserDefaults.standard.setValue(enabledNotifications, forKey: "enabledNotifications")
+        }
+        
+        if (UserDefaults.standard.value(forKey: "notificationSound") == nil) {
+            UserDefaults.standard.setValue(0, forKey: "notificationSound")
         }
 
         let statusBar = NSStatusBar.system()

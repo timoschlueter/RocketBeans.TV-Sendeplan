@@ -93,8 +93,16 @@ public class ProgramPlan {
     func notificationIsDue(startDate: Date) -> Bool {
         let currentDateEpoch: Double = Date().timeIntervalSince1970
         let startDateEpoch: Double = startDate.timeIntervalSince1970
-        /* Check if we are within a window of 15 and 15.5 minutes before the next enabled notification */
-        if startDateEpoch - currentDateEpoch >= 900.0 && startDateEpoch - currentDateEpoch <= 930.0 {
+        var notificationTime:Double = 0.0
+        
+        if (UserDefaults.standard.value(forKey: "notificationTime") == nil) {
+            notificationTime = 15 * 60.0
+        } else {
+            notificationTime = Double(UserDefaults.standard.integer(forKey: "notificationTime")) * 60.0
+        }
+        
+        /* Check if we have to trigger the notification */
+        if ((startDateEpoch - currentDateEpoch) <= notificationTime) {
             return true
         } else {
             return false
