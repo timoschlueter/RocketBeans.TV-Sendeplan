@@ -1,0 +1,105 @@
+
+/* Class = "NSTextFieldCell"; title = "Zeitpunkt für Benachrichtungen:"; ObjectID = "1iG-4c-lVg"; */
+"1iG-4c-lVg.title" = "Zeitpunkt für Benachrichtungen:";
+
+/* Class = "NSMenuItem"; title = "Einstellungen"; ObjectID = "3t4-m5-9i1"; */
+"3t4-m5-9i1.title" = "Einstellungen";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@"; ObjectID = "5DD-fm-tgW"; */
+"5DD-fm-tgW.ibShadowedDisplayPattern" = "%{value1}@";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@"; ObjectID = "8yI-mg-Koh"; */
+"8yI-mg-Koh.ibShadowedDisplayPattern" = "%{value1}@";
+
+/* Class = "NSMenuItem"; title = "Item 2"; ObjectID = "DDv-h7-7ah"; */
+"DDv-h7-7ah.title" = "Item 2";
+
+/* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "Drf-nv-NHq"; */
+"Drf-nv-NHq.title" = "Item 1";
+
+/* Class = "NSTextFieldCell"; title = "LIVE"; ObjectID = "HPI-6V-Ygh"; */
+"HPI-6V-Ygh.title" = "LIVE";
+
+/* Class = "NSTextFieldCell"; placeholderString = "15"; ObjectID = "NiJ-e1-aKM"; */
+"NiJ-e1-aKM.placeholderString" = "15";
+
+/* Class = "NSTextFieldCell"; title = "Title"; ObjectID = "ODA-V0-3Z0"; */
+"ODA-V0-3Z0.title" = "Title";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "OT3-jH-qT1"; */
+"OT3-jH-qT1.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Title"; ObjectID = "Oi3-Qj-sGe"; */
+"Oi3-Qj-sGe.title" = "Title";
+
+/* Class = "NSTextFieldCell"; title = "Ton für Benachrichtigungen:"; ObjectID = "Q2v-5l-e53"; */
+"Q2v-5l-e53.title" = "Ton für Benachrichtigungen:";
+
+/* Class = "NSWindow"; title = "Einstellungen"; ObjectID = "QXi-cJ-6H8"; */
+"QXi-cJ-6H8.title" = "Einstellungen";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@"; ObjectID = "SwM-lX-yi2"; */
+"SwM-lX-yi2.ibShadowedDisplayPattern" = "%{value1}@";
+
+/* Class = "NSTextFieldCell"; title = "Credits"; ObjectID = "V5p-7a-8zf"; */
+"V5p-7a-8zf.title" = "Credits";
+
+/* Class = "NSWindow"; title = "Informationen"; ObjectID = "bfs-Yp-fMb"; */
+"bfs-Yp-fMb.title" = "Informationen";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@"; ObjectID = "cgt-Bb-TuD"; */
+"cgt-Bb-TuD.ibShadowedDisplayPattern" = "%{value1}@";
+
+/* Class = "NSTextFieldCell"; title = "Minuten vor Beginn"; ObjectID = "gfu-dL-5kv"; */
+"gfu-dL-5kv.title" = "Minuten vor Beginn";
+
+/* Class = "NSButtonCell"; title = "Icon in der Menüleiste einfärben"; ObjectID = "hKO-Ru-DHe"; */
+"hKO-Ru-DHe.title" = "Icon in der Menüleiste einfärben";
+
+/* Class = "NSTextFieldCell"; title = "Subtitle"; ObjectID = "hwN-qt-f6Q"; */
+"hwN-qt-f6Q.title" = "Subtitle";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@"; ObjectID = "ilX-zS-OOO"; */
+"ilX-zS-OOO.ibShadowedDisplayPattern" = "%{value1}@";
+
+/* Class = "NSTextFieldCell"; title = "Timo Schlüter"; ObjectID = "jom-yq-TRC"; */
+"jom-yq-TRC.title" = "Timo Schlüter";
+
+/* Class = "NSMenuItem"; title = "Informationen"; ObjectID = "kF1-2v-gC3"; */
+"kF1-2v-gC3.title" = "Informationen";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@"; ObjectID = "lBo-hU-1A9"; */
+"lBo-hU-1A9.ibShadowedDisplayPattern" = "%{value1}@";
+
+/* Class = "NSButtonCell"; title = "Speichern"; ObjectID = "mWJ-lm-N4S"; */
+"mWJ-lm-N4S.title" = "Speichern";
+
+/* Class = "NSTextFieldCell"; title = "LIVE"; ObjectID = "oG0-Sg-gcp"; */
+"oG0-Sg-gcp.title" = "LIVE";
+
+/* Class = "NSMenuItem"; title = "Beenden"; ObjectID = "oXz-PJ-C4Y"; */
+"oXz-PJ-C4Y.title" = "Beenden";
+
+/* Class = "NSMenuItem"; title = "Item 3"; ObjectID = "obT-JE-xdY"; */
+"obT-JE-xdY.title" = "Item 3";
+
+/* Class = "NSTextFieldCell"; title = "Date/Time"; ObjectID = "ptx-Vu-wpD"; */
+"ptx-Vu-wpD.title" = "Date/Time";
+
+/* Class = "NSTextFieldCell"; title = "Date/Time"; ObjectID = "qa2-0h-imY"; */
+"qa2-0h-imY.title" = "Date/Time";
+
+/* Class = "NSMenuItem"; title = "Stream öffnen"; ObjectID = "sAa-b9-eWi"; */
+"sAa-b9-eWi.title" = "Stream öffnen";
+
+/* Class = "NSTextFieldCell"; title = "Diese App ist ein inoffizielles, von Fans erstelltes, Tool zur Anzeige des aktuellen Sendeplans in der Menüleiste von macOS.\n\nDiese App basiert auf der offiziellen Rocket Beans TV API.\n\nDie Rocket Beans Entertainment GmbH ist weder für die Funktionalität noch den Inhalt dieser App verantwortlich."; ObjectID = "sjX-cU-1P5"; */
+"sjX-cU-1P5.title" = "Diese App ist ein inoffizielles, von Fans erstelltes, Tool zur Anzeige des aktuellen Sendeplans in der Menüleiste von macOS.\n\nDiese App basiert auf der offiziellen Rocket Beans TV API.\n\nDie Rocket Beans Entertainment GmbH ist weder für die Funktionalität noch den Inhalt dieser App verantwortlich.";
+
+/* Class = "NSTextFieldCell"; title = "Version (Build)"; ObjectID = "tsi-HM-phA"; */
+"tsi-HM-phA.title" = "Version (Build)";
+
+/* Class = "NSMenuItem"; title = "Item 1"; ObjectID = "w5Z-wq-6gH"; */
+"w5Z-wq-6gH.title" = "Item 1";
+
+/* Class = "CocoaBindingsConnection"; ibShadowedDisplayPattern = "%{value1}@"; ObjectID = "zh0-nu-UMc"; */
+"zh0-nu-UMc.ibShadowedDisplayPattern" = "%{value1}@";

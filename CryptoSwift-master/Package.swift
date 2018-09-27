@@ -1,5 +1,12 @@
+// swift-tools-version:4.0
+
 import PackageDescription
 
-let package = Package(name: "CryptoSwift")
-
-package.exclude.append("Tests/CryptoSwiftTests/CommonCryptoTests.swift")
+_ = Package(name: "CryptoSwift",
+            products: [.library(name: "CryptoSwift", targets: ["CryptoSwift"])],
+            targets: [
+                .target(name: "CryptoSwift"),
+                .testTarget(name: "Tests", dependencies: ["CryptoSwift"]),
+                .testTarget(name: "TestsPerformance", dependencies: ["CryptoSwift"]),
+            ],
+            swiftLanguageVersions: [4])

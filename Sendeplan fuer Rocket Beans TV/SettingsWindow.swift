@@ -3,7 +3,7 @@
 //  Sendeplan für Rocket Beans TV
 //
 //  Created by Timo Schlüter on 12.10.16.
-//  Copyright © 2016 Timo Schlüter. All rights reserved.
+//  Copyright © 2018 Timo Schlüter. All rights reserved.
 //
 
 import Foundation
@@ -43,9 +43,9 @@ class SettingsWindow: NSWindow, NSTextFieldDelegate {
         }
         
         if (UserDefaults.standard.value(forKey: "coloredIcon") == nil) {
-            checkboxColoredIcon.state = 1
+            checkboxColoredIcon.state = NSControl.StateValue(rawValue: 1)
         } else {
-            checkboxColoredIcon.state = UserDefaults.standard.value(forKey: "coloredIcon") as! Int
+            checkboxColoredIcon.state = NSControl.StateValue(rawValue: UserDefaults.standard.value(forKey: "coloredIcon") as! Int)
         }
         
         if (UserDefaults.standard.value(forKey: "notificationTime") == nil) {
@@ -63,7 +63,7 @@ class SettingsWindow: NSWindow, NSTextFieldDelegate {
             saveButton.isEnabled = true
         } else {
             saveButton.isEnabled = false
-            NSBeep()
+            NSSound.beep()
         }
     }
 }

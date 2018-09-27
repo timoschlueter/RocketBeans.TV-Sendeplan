@@ -3,7 +3,7 @@
 //  Sendeplan fuer Rocket Beans TV
 //
 //  Created by Timo Schlüter on 29.04.16.
-//  Copyright © 2016 Timo Schlüter. All rights reserved.
+//  Copyright © 2018 Timo Schlüter. All rights reserved.
 //
 
 import Cocoa
@@ -45,11 +45,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             UserDefaults.standard.setValue(0, forKey: "notificationSound")
         }
 
-        let statusBar = NSStatusBar.system()
+        let statusBar = NSStatusBar.system
         self.statusItem = statusBar.statusItem(withLength: 25.0)
         self.statusItem.toolTip = "Sendeplan für Rocket Beans TV"
-        self.statusItem.image = NSImage(named: "StatusIcon")
-        self.statusItem.image?.isTemplate = true
+        self.statusItem.image = NSImage(named: NSImage.Name(rawValue: "StatusIcon"))
+        /* self.statusItem.image?.isTemplate = true */
         self.statusItem.highlightMode = true
         self.statusItem.menu = programPlanMenu
                 

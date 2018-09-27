@@ -3,7 +3,7 @@
 //  Sendeplan fuer Rocket Beans TV
 //
 //  Created by Timo Schlüter on 03.05.16.
-//  Copyright © 2016 Timo Schlüter. All rights reserved.
+//  Copyright © 2018 Timo Schlüter. All rights reserved.
 //
 
 import Foundation
@@ -24,7 +24,7 @@ class ProgramPlanTableViewCell: NSTableCellView {
     @IBAction func toggleNotification(_ sender: AnyObject) {
         enabledNotifications = UserDefaults.standard.value(forKey: "enabledNotifications") as! [Dictionary<String, AnyObject>]
         
-        if (programPlanScheduleItemNotificationToggle.state == 0) {
+        if (programPlanScheduleItemNotificationToggle.state.rawValue == 0) {
             enabledNotifications = enabledNotifications.filter(){$0["id"] as! Int != currentItem["id"] as! Int}
             UserDefaults.standard.setValue(enabledNotifications, forKey: "enabledNotifications")
         } else {

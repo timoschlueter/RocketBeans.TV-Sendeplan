@@ -26,10 +26,9 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
     var programPlanNextSchedule = Dictionary<String,AnyObject>()
     
     let programPlan = ProgramPlan()
-
-    override var nibName: String? {
-        
-        return "TodayViewController"
+    
+    override var nibName: NSNib.Name? {
+        return NSNib.Name("TodayViewController")
     }
 
     var lastCompletionHandler: ((NCUpdateResult) -> Void)!
@@ -108,7 +107,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
             scheduleItemTypeColor = NSColor(red:1.00, green:0.13, blue:0.49, alpha:1.0)
             break
         case "PREMIERE":
-            scheduleItemTypeColor = NSColor(red:0.09, green:0.58, blue:0.70, alpha:1.0)
+            scheduleItemTypeColor = NSColor(red:0.15, green:0.44, blue:0.61, alpha:1.0)
             break
         default:
             scheduleItemTypeColor = NSColor.labelColor
@@ -121,7 +120,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
             nextScheduleItemTypeColor = NSColor(red:1.00, green:0.13, blue:0.49, alpha:1.0)
             break
         case "PREMIERE":
-            nextScheduleItemTypeColor = NSColor(red:0.09, green:0.58, blue:0.70, alpha:1.0)
+            nextScheduleItemTypeColor = NSColor(red:0.15, green:0.44, blue:0.61, alpha:1.0)
             break
         default:
             nextScheduleItemTypeColor = NSColor.labelColor

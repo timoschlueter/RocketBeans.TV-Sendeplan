@@ -3,7 +3,7 @@
 //  Sendeplan fuer Rocket Beans TV
 //
 //  Created by Timo Schlüter on 29.04.16.
-//  Copyright © 2016 Timo Schlüter. All rights reserved.
+//  Copyright © 2018 Timo Schlüter. All rights reserved.
 //
 
 import Foundation

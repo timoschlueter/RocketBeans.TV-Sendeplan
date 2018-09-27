@@ -3,7 +3,7 @@
 //  Sendeplan fuer Rocket Beans TV
 //
 //  Created by Timo Schlüter on 29.04.16.
-//  Copyright © 2016 Timo Schlüter. All rights reserved.
+//  Copyright © 2018 Timo Schlüter. All rights reserved.
 //
 
 import Foundation
@@ -16,11 +16,11 @@ class ProgramPlanMenu: NSMenu {
     @IBOutlet weak var settingsWindow: SettingsWindow!
     
     @IBAction func itemQuit(_ sender: AnyObject) {
-        NSApplication.shared().terminate(self)
+        NSApplication.shared.terminate(self)
     }
     
     @IBAction func itemOpenStream(_ sender: AnyObject) {
-        NSWorkspace.shared().open(NSURL(string: "https://www.rocketbeans.tv")! as URL)
+        NSWorkspace.shared.open(NSURL(string: "https://www.rocketbeans.tv")! as URL)
     }
     @IBAction func itemOpenSettings(_ sender: AnyObject) {
         NSApp.activate(ignoringOtherApps: true)

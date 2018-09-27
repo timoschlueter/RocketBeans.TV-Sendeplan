@@ -3,7 +3,7 @@
 //  Sendeplan fuer Rocket Beans TV
 //
 //  Created by Timo Schlüter on 29.09.16.
-//  Copyright © 2016 Timo Schlüter. All rights reserved.
+//  Copyright © 2018 Timo Schlüter. All rights reserved.
 //
 
 import Foundation
@@ -14,15 +14,15 @@ class InformationWindow: NSWindow {
     @IBOutlet weak var versionLabel: NSTextField!
     
     @IBAction func buttonTwitter(_ sender: AnyObject) {
-        NSWorkspace.shared().open(NSURL(string: "https://twitter.com/tmuuh")! as URL)
+        NSWorkspace.shared.open(NSURL(string: "https://twitter.com/tmuuh")! as URL)
     }
     
     @IBAction func buttonFacebook(_ sender: AnyObject) {
-        NSWorkspace.shared().open(NSURL(string: "https://www.facebook.com/timo.schlueter")! as URL)
+        NSWorkspace.shared.open(NSURL(string: "https://www.facebook.com/timo.schlueter")! as URL)
     }
     
     @IBAction func buttonGitHub(_ sender: AnyObject) {
-        NSWorkspace.shared().open(NSURL(string: "https://github.com/timoschlueter/RocketBeans.TV-Sendeplan")! as URL)
+        NSWorkspace.shared.open(NSURL(string: "https://github.com/timoschlueter/RocketBeans.TV-Sendeplan")! as URL)
         
     }
     

@@ -3,7 +3,7 @@
 //  Sendeplan für Rocket Beans TV
 //
 //  Created by Timo Schlüter on 02.10.16.
-//  Copyright © 2016 Timo Schlüter. All rights reserved.
+//  Copyright © 2018 Timo Schlüter. All rights reserved.
 //
 
 import Foundation
@@ -22,7 +22,7 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
         self.programPlanScheduleItems = data.count
         self.programPlanSchedule = data
         
-        let appDelegate:AppDelegate = NSApplication.shared().delegate as! AppDelegate
+        let appDelegate:AppDelegate = NSApplication.shared.delegate as! AppDelegate
         let appearance = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
         
         enabledNotifications = UserDefaults.standard.value(forKey: "enabledNotifications") as! [Dictionary<String, AnyObject>]
@@ -60,13 +60,13 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
                         case 0:
                             notification.soundName = NSUserNotificationDefaultSoundName
                         case 1:
-                            let notificationSound = NSSound(named: "NotificationNicenstein")
+                            let notificationSound = NSSound(named: NSSound.Name(rawValue: "NotificationNicenstein"))
                             notificationSound?.play()
                         case 2:
-                            let notificationSound = NSSound(named: "NotificationMaximaleRealitaet")
+                            let notificationSound = NSSound(named: NSSound.Name(rawValue: "NotificationMaximaleRealitaet"))
                             notificationSound?.play()
                         case 3:
-                            let notificationSound = NSSound(named: "NotificationKappa")
+                            let notificationSound = NSSound(named: NSSound.Name(rawValue: "NotificationKappa"))
                             notificationSound?.play()
                         default:
                             notification.soundName = NSUserNotificationDefaultSoundName
@@ -84,30 +84,30 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
         UserDefaults.standard.setValue(enabledNotifications, forKey: "enabledNotifications")
         
         if (UserDefaults.standard.value(forKey: "coloredIcon") == nil) {
-            appDelegate.statusItem.image = NSImage(named: "StatusIcon")
+            appDelegate.statusItem.image = NSImage(named: NSImage.Name(rawValue: "StatusIcon"))
         } else {
             if UserDefaults.standard.value(forKey: "coloredIcon") as! Int == 0 {
-                appDelegate.statusItem.image = NSImage(named: "StatusIcon")
+                appDelegate.statusItem.image = NSImage(named: NSImage.Name(rawValue: "StatusIcon"))
             } else {
                 switch ((self.programPlanSchedule[0]["type"] as! String).uppercased()) {
                 case "LIVE":
                     /* Set special Live-Icon for Dark Mode */
                     if (appearance == "Dark") {
-                        appDelegate.statusItem.image = NSImage(named: "StatusItemLIVE-Dark")
+                        appDelegate.statusItem.image = NSImage(named: NSImage.Name(rawValue: "StatusItemLIVE-Dark"))
                     } else {
-                        appDelegate.statusItem.image = NSImage(named: "StatusItemLIVE-Light")
+                        appDelegate.statusItem.image = NSImage(named: NSImage.Name(rawValue: "StatusItemLIVE-Light"))
                     }
                     break
                 case "PREMIERE":
                     /* Set special Premiere-Icon for Dark Mode */
                     if (appearance == "Dark") {
-                        appDelegate.statusItem.image = NSImage(named: "StatusItemNEU-Dark")
+                        appDelegate.statusItem.image = NSImage(named: NSImage.Name(rawValue: "StatusItemNEU-Dark"))
                     } else {
-                        appDelegate.statusItem.image = NSImage(named: "StatusItemNEU-Light")
+                        appDelegate.statusItem.image = NSImage(named: NSImage.Name(rawValue: "StatusItemNEU-Light"))
                     }
                     break
                 default:
-                    appDelegate.statusItem.image = NSImage(named: "StatusIcon")
+                    appDelegate.statusItem.image = NSImage(named: NSImage.Name(rawValue: "StatusIcon"))
                     break
                 }
             }
@@ -133,7 +133,7 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let identifier: String = (tableColumn?.identifier)!
+        let identifier: String = (tableColumn?.identifier)!.rawValue
         
         if (identifier == "ProgramPlanTableViewColumn") {
             
@@ -153,10 +153,10 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
             
             switch ((self.programPlanSchedule[row]["type"] as! String).uppercased()) {
             case "LIVE":
-                scheduleItemTypeColor = NSColor(red:1.00, green:0.13, blue:0.49, alpha:1.0)
+                scheduleItemTypeColor = NSColor(red:0.99, green:0.08, blue:0.13, alpha:1.0)
                 break
             case "PREMIERE":
-                scheduleItemTypeColor = NSColor(red:0.09, green:0.58, blue:0.70, alpha:1.0)
+                scheduleItemTypeColor = NSColor(red:0.15, green:0.44, blue:0.61, alpha:1.0)
                 break
             default:
                 scheduleItemTypeColor = NSColor.labelColor
@@ -172,7 +172,7 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
             
             
             if ((self.programPlanSchedule[row]["topic"] as! String) == "") {
-                let cell: ProgramPlanTableViewCellSimple = tableView.make(withIdentifier: "ProgramPlanTableViewCellSimple", owner: self) as! ProgramPlanTableViewCellSimple
+                let cell: ProgramPlanTableViewCellSimple = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ProgramPlanTableViewCellSimple"), owner: self) as! ProgramPlanTableViewCellSimple
                 
                 /* Pass the item id to the row in order to manage notifications */
                 cell.currentItem = self.programPlanSchedule[row]
@@ -195,15 +195,15 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
                 
                 /* Set the notification toggle to active if notifications are enabled */
                 if enabledNotifications.contains(where: {$0["id"] as! Int == self.programPlanSchedule[row]["id"] as! Int}) {
-                    cell.programPlanScheduleItemNotificationToggle.state = 1
+                    cell.programPlanScheduleItemNotificationToggle.state = NSControl.StateValue(rawValue: 1)
                 } else {
-                    cell.programPlanScheduleItemNotificationToggle.state = 0
+                    cell.programPlanScheduleItemNotificationToggle.state = NSControl.StateValue(rawValue: 0)
                 }
                 
                 return cell
                 
             } else {
-                let cell: ProgramPlanTableViewCell = tableView.make(withIdentifier: "ProgramPlanTableViewCell", owner: self) as! ProgramPlanTableViewCell
+                let cell: ProgramPlanTableViewCell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ProgramPlanTableViewCell"), owner: self) as! ProgramPlanTableViewCell
                 
                 /* Pass the item id to the row in order to manage notifications */
                 cell.currentItem = self.programPlanSchedule[row]
@@ -228,9 +228,9 @@ class ProgramPlanTableView: NSTableView, ProgramPlanDelegate, NSTableViewDataSou
                 
                 /* Set the notification toggle to active if notifications are enabled */
                 if enabledNotifications.contains(where: {$0["id"] as! Int == self.programPlanSchedule[row]["id"] as! Int}) {
-                    cell.programPlanScheduleItemNotificationToggle.state = 1
+                    cell.programPlanScheduleItemNotificationToggle.state = NSControl.StateValue(rawValue: 1)
                 } else {
-                    cell.programPlanScheduleItemNotificationToggle.state = 0
+                    cell.programPlanScheduleItemNotificationToggle.state = NSControl.StateValue(rawValue: 0)
                 }
                 
                 return cell
