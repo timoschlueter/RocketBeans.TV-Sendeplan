@@ -104,7 +104,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
         /* Current */
         switch ((programPlanSchedule["type"] as! String).uppercased()) {
         case "LIVE":
-            scheduleItemTypeColor = NSColor(red:1.00, green:0.13, blue:0.49, alpha:1.0)
+            scheduleItemTypeColor = NSColor(red:0.99, green:0.08, blue:0.13, alpha:1.0)
             break
         case "PREMIERE":
             scheduleItemTypeColor = NSColor(red:0.15, green:0.44, blue:0.61, alpha:1.0)
@@ -117,7 +117,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
         /* Next */
         switch ((programPlanNextSchedule["type"] as! String).uppercased()) {
         case "LIVE":
-            nextScheduleItemTypeColor = NSColor(red:1.00, green:0.13, blue:0.49, alpha:1.0)
+            nextScheduleItemTypeColor = NSColor(red:0.99, green:0.08, blue:0.13, alpha:1.0)
             break
         case "PREMIERE":
             nextScheduleItemTypeColor = NSColor(red:0.15, green:0.44, blue:0.61, alpha:1.0)

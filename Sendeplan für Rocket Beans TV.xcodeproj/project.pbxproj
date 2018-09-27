@@ -20,6 +20,7 @@
 		2568288A1DA0D835008BF40A /* ProgramPlanTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256828891DA0D835008BF40A /* ProgramPlanTableView.swift */; };
 		2581B50E1D9F9F5900A6258A /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2581B50B1D9F9F4300A6258A /* CryptoSwift.framework */; };
 		2581B50F1D9F9F5900A6258A /* CryptoSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2581B50B1D9F9F4300A6258A /* CryptoSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		258745D7215CE9100009D824 /* SHA1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 258745D6215CE9100009D824 /* SHA1.swift */; };
 		25BA87181CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25BA87171CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift */; };
 		25D720A81D9FCA8B00CBEEDE /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 252FA3F61D9FC9A60072F6C8 /* NotificationCenter.framework */; };
 		25D720AD1D9FCA8B00CBEEDE /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D720AC1D9FCA8B00CBEEDE /* TodayViewController.swift */; };
@@ -120,6 +121,7 @@
 		25374CAE1DADFC8C00C6F8F4 /* SettingsWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
 		256828891DA0D835008BF40A /* ProgramPlanTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlanTableView.swift; sourceTree = "<group>"; };
 		2581B5051D9F9F4300A6258A /* CryptoSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CryptoSwift.xcodeproj; path = "CryptoSwift-master/CryptoSwift.xcodeproj"; sourceTree = "<group>"; };
+		258745D6215CE9100009D824 /* SHA1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA1.swift; sourceTree = "<group>"; };
 		25BA87171CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramPlanTableViewCellSimple.swift; sourceTree = "<group>"; };
 		25D720A71D9FCA8B00CBEEDE /* Today View Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Today View Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		25D720AB1D9FCA8B00CBEEDE /* Today_View_Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Today_View_Widget.entitlements; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				25190CD61CD3D2CE0059CAE5 /* ProgramPlanMenu.swift */,
 				2504E8971D9D97E8003F1B00 /* InformationWindow.swift */,
 				25374CAE1DADFC8C00C6F8F4 /* SettingsWindow.swift */,
+				258745D6215CE9100009D824 /* SHA1.swift */,
 			);
 			path = "Sendeplan fuer Rocket Beans TV";
 			sourceTree = "<group>";
@@ -393,6 +396,7 @@
 				25BA87181CD9A62A00055D2E /* ProgramPlanTableViewCellSimple.swift in Sources */,
 				25190CD71CD3D2CE0059CAE5 /* ProgramPlanMenu.swift in Sources */,
 				2568288A1DA0D835008BF40A /* ProgramPlanTableView.swift in Sources */,
+				258745D7215CE9100009D824 /* SHA1.swift in Sources */,
 				25190CD91CD3D6E80059CAE5 /* ProgramPlan.swift in Sources */,
 				251B81E01CD3CFD8009E5FE6 /* AppDelegate.swift in Sources */,
 				25353B2E1CD9059600F5AF6D /* ProgramPlanTableViewCell.swift in Sources */,
