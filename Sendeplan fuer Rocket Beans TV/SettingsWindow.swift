@@ -55,7 +55,7 @@ class SettingsWindow: NSWindow, NSTextFieldDelegate {
         }
     }
     
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         let textField: NSTextField = obj.object as! NSTextField
         let stringValue = textField.stringValue
         

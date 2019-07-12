@@ -11,8 +11,8 @@ import AppKit
 
 class ProgramPlanTableViewCellSimple: NSTableCellView {
     
-    var currentItem: Dictionary<String,AnyObject> = [:]
-    var enabledNotifications: [Dictionary<String,AnyObject>] = []
+    var currentItem: Program!
+    var enabledNotifications = [Program]()
     
     @IBOutlet weak var programPlanScheduleItemTitle: NSTextField!
     @IBOutlet weak var programPlanScheduleItemType: NSTextField!
@@ -21,18 +21,21 @@ class ProgramPlanTableViewCellSimple: NSTableCellView {
     @IBOutlet weak var programPlanScheduleItemNotificationToggle: NSButton!
     
     @IBAction func toggleNotification(_ sender: AnyObject) {
-        enabledNotifications = UserDefaults.standard.value(forKey: "enabledNotifications") as! [Dictionary<String, AnyObject>]
-        
+        if let data = UserDefaults.standard.value(forKey:"enabledNotifications") as? Data {
+            enabledNotifications = try! PropertyListDecoder().decode([Program].self, from: data)
+        }
+                
         if (programPlanScheduleItemNotificationToggle.state.rawValue == 0) {
-            enabledNotifications = enabledNotifications.filter(){$0["id"] as! Int != currentItem["id"] as! Int}
-            UserDefaults.standard.setValue(enabledNotifications, forKey: "enabledNotifications")
+            enabledNotifications = enabledNotifications.filter(){$0.id != currentItem.id}
+            UserDefaults.standard.set(try? PropertyListEncoder().encode(enabledNotifications), forKey:"enabledNotifications")
         } else {
-            if enabledNotifications.contains(where: {$0["id"] as! Int == currentItem["id"] as! Int}) {
+            enabledNotifications.append(currentItem)
+            if enabledNotifications.contains(where: {$0.id == currentItem.id}) {
                 /* Do nothing */
             } else {
                 enabledNotifications.append(currentItem)
             }
-            UserDefaults.standard.setValue(enabledNotifications, forKey: "enabledNotifications")
+            UserDefaults.standard.set(try? PropertyListEncoder().encode(enabledNotifications), forKey:"enabledNotifications")
         }
     }
     

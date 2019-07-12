@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -314,9 +314,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="382" height="430"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fdl-Zq-whF">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fdl-Zq-whF">
                         <rect key="frame" x="18" y="80" width="346" height="153"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="sjX-cU-1P5">
                             <font key="font" metaFont="system"/>
                             <string key="title">Diese App ist ein inoffizielles, von Fans erstelltes, Tool zur Anzeige des aktuellen Sendeplans in der Menüleiste von macOS.
@@ -328,45 +327,56 @@ Die Rocket Beans Entertainment GmbH ist weder für die Funktionalität noch den 
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iz0-WU-sHA">
+                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iz0-WU-sHA">
                         <rect key="frame" x="124" y="266" width="135" height="144"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="144" id="LqQ-zb-NcT"/>
+                            <constraint firstAttribute="width" constant="135" id="r75-zW-4f6"/>
+                        </constraints>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="MenuBarIcon" id="z1V-Cg-igR"/>
                     </imageView>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qyp-pQ-IQh">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qyp-pQ-IQh">
                         <rect key="frame" x="122" y="241" width="139" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Version (Build)" id="tsi-HM-phA">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="N8D-OC-87M">
-                        <rect key="frame" x="12" y="69" width="358" height="5"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="N8D-OC-87M">
+                        <rect key="frame" x="12" y="69" width="358" height="9"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="5" id="czM-hJ-27e"/>
+                        </constraints>
                     </box>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="avk-Dg-OAC">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="avk-Dg-OAC">
                         <rect key="frame" x="167" y="46" width="48" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="Foz-3M-NbF"/>
+                        </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Credits" id="V5p-7a-8zf">
                             <font key="font" metaFont="systemBold"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oAF-ja-ZOd">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oAF-ja-ZOd">
                         <rect key="frame" x="18" y="21" width="256" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="dtk-d9-4vY"/>
+                            <constraint firstAttribute="width" constant="252" id="jVg-DV-y7g"/>
+                        </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Timo Schlüter" id="jom-yq-TRC">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gGg-SC-lwE">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gGg-SC-lwE">
                         <rect key="frame" x="280" y="20" width="22" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="22" id="FaE-aL-hDv"/>
+                        </constraints>
                         <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="TwitterIcon" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="tz0-UO-nHt">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -375,9 +385,11 @@ Die Rocket Beans Entertainment GmbH ist weder für die Funktionalität noch den 
                             <action selector="buttonTwitter:" target="bfs-Yp-fMb" id="kTY-aS-9Rk"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Fh-83-zAv">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Fh-83-zAv">
                         <rect key="frame" x="310" y="20" width="22" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="22" id="L5z-pJ-WfM"/>
+                        </constraints>
                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="FacebookIcon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="Y6I-Ua-wBB">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -386,9 +398,11 @@ Die Rocket Beans Entertainment GmbH ist weder für die Funktionalität noch den 
                             <action selector="buttonFacebook:" target="bfs-Yp-fMb" id="m5L-Wj-vEu"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b8B-jf-qpG">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b8B-jf-qpG">
                         <rect key="frame" x="340" y="20" width="22" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="22" id="ghg-ux-8Qg"/>
+                        </constraints>
                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="GithubIcon" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="sI5-mL-VAW">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -398,6 +412,32 @@ Die Rocket Beans Entertainment GmbH ist weder für die Funktionalität noch den 
                         </connections>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="N8D-OC-87M" firstAttribute="centerX" secondItem="avk-Dg-OAC" secondAttribute="centerX" id="2ms-NI-JXq"/>
+                    <constraint firstAttribute="bottom" secondItem="gGg-SC-lwE" secondAttribute="bottom" constant="20" symbolic="YES" id="5IL-YG-W9O"/>
+                    <constraint firstItem="qyp-pQ-IQh" firstAttribute="centerX" secondItem="fdl-Zq-whF" secondAttribute="centerX" id="7ZZ-92-7cW"/>
+                    <constraint firstItem="fdl-Zq-whF" firstAttribute="top" secondItem="qyp-pQ-IQh" secondAttribute="bottom" constant="8" symbolic="YES" id="9BB-7g-FeP"/>
+                    <constraint firstItem="gGg-SC-lwE" firstAttribute="top" secondItem="6Fh-83-zAv" secondAttribute="top" id="FbY-ST-g7h"/>
+                    <constraint firstItem="N8D-OC-87M" firstAttribute="leading" secondItem="c2t-aF-fky" secondAttribute="leading" constant="12" symbolic="YES" id="Ulp-I1-la6"/>
+                    <constraint firstItem="qyp-pQ-IQh" firstAttribute="top" secondItem="iz0-WU-sHA" secondAttribute="bottom" constant="8" symbolic="YES" id="VNN-Df-jDW"/>
+                    <constraint firstItem="oAF-ja-ZOd" firstAttribute="centerY" secondItem="gGg-SC-lwE" secondAttribute="centerY" id="Xed-Mc-s79"/>
+                    <constraint firstItem="6Fh-83-zAv" firstAttribute="baseline" secondItem="b8B-jf-qpG" secondAttribute="baseline" id="Xh8-kX-5OU"/>
+                    <constraint firstItem="iz0-WU-sHA" firstAttribute="trailing" secondItem="qyp-pQ-IQh" secondAttribute="trailing" id="Xi1-Pk-yGg"/>
+                    <constraint firstItem="fdl-Zq-whF" firstAttribute="centerX" secondItem="N8D-OC-87M" secondAttribute="centerX" id="bmS-va-w8f"/>
+                    <constraint firstItem="b8B-jf-qpG" firstAttribute="leading" secondItem="6Fh-83-zAv" secondAttribute="trailing" constant="8" symbolic="YES" id="ghj-MR-1Pg"/>
+                    <constraint firstItem="6Fh-83-zAv" firstAttribute="leading" secondItem="gGg-SC-lwE" secondAttribute="trailing" constant="8" symbolic="YES" id="hRf-sN-zgH"/>
+                    <constraint firstItem="fdl-Zq-whF" firstAttribute="leading" secondItem="oAF-ja-ZOd" secondAttribute="leading" id="iNG-Ow-tnA"/>
+                    <constraint firstItem="6Fh-83-zAv" firstAttribute="firstBaseline" secondItem="b8B-jf-qpG" secondAttribute="firstBaseline" id="mdQ-02-p6k"/>
+                    <constraint firstAttribute="bottom" secondItem="oAF-ja-ZOd" secondAttribute="bottom" constant="21" id="oqv-Uf-VMm"/>
+                    <constraint firstItem="gGg-SC-lwE" firstAttribute="bottom" secondItem="6Fh-83-zAv" secondAttribute="bottom" id="pWc-bE-9Rd"/>
+                    <constraint firstItem="avk-Dg-OAC" firstAttribute="top" secondItem="N8D-OC-87M" secondAttribute="bottom" constant="8" symbolic="YES" id="qqe-CV-jZb"/>
+                    <constraint firstItem="gGg-SC-lwE" firstAttribute="leading" secondItem="oAF-ja-ZOd" secondAttribute="trailing" constant="8" symbolic="YES" id="rQJ-HI-tqk"/>
+                    <constraint firstItem="fdl-Zq-whF" firstAttribute="trailing" secondItem="b8B-jf-qpG" secondAttribute="trailing" id="sAs-cG-bTg"/>
+                    <constraint firstItem="iz0-WU-sHA" firstAttribute="top" secondItem="c2t-aF-fky" secondAttribute="top" constant="20" symbolic="YES" id="ssD-fT-boX"/>
+                    <constraint firstItem="iz0-WU-sHA" firstAttribute="leading" secondItem="qyp-pQ-IQh" secondAttribute="leading" id="vhT-fE-va8"/>
+                    <constraint firstItem="oAF-ja-ZOd" firstAttribute="top" secondItem="avk-Dg-OAC" secondAttribute="bottom" constant="8" symbolic="YES" id="wQU-ro-izC"/>
+                    <constraint firstItem="fdl-Zq-whF" firstAttribute="leading" secondItem="c2t-aF-fky" secondAttribute="leading" constant="20" symbolic="YES" id="ypn-R8-jnW"/>
+                </constraints>
             </view>
             <connections>
                 <outlet property="versionLabel" destination="qyp-pQ-IQh" id="gMy-9M-BbG"/>
@@ -413,57 +453,53 @@ Die Rocket Beans Entertainment GmbH ist weder für die Funktionalität noch den 
                 <rect key="frame" x="0.0" y="0.0" width="252" height="210"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pOc-JX-yO6">
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="pOc-JX-yO6">
                         <rect key="frame" x="18" y="174" width="216" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="check" title="Icon in der Menüleiste einfärben" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="hKO-Ru-DHe">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C3u-DN-QRr">
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C3u-DN-QRr">
                         <rect key="frame" x="22" y="112" width="44" height="22"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="mEL-Ja-ILR"/>
+                        </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="15" drawsBackground="YES" id="NiJ-e1-aKM">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8vg-1h-yr8">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8vg-1h-yr8">
                         <rect key="frame" x="20" y="142" width="214" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Zeitpunkt für Benachrichtungen:" id="1iG-4c-lVg">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="5Sv-5a-VZ7">
+                    <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="5Sv-5a-VZ7">
                         <rect key="frame" x="20" y="165" width="212" height="5"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </box>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V9U-km-bEv">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V9U-km-bEv">
                         <rect key="frame" x="72" y="115" width="162" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Minuten vor Beginn" id="gfu-dL-5kv">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MaB-9a-rfo">
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MaB-9a-rfo">
                         <rect key="frame" x="20" y="90" width="176" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Ton für Benachrichtigungen:" id="Q2v-5l-e53">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gfA-Az-dxg">
-                        <rect key="frame" x="20" y="58" width="215" height="26"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gfA-Az-dxg">
+                        <rect key="frame" x="20" y="58" width="215" height="25"/>
                         <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="w5Z-wq-6gH" id="1XI-DK-dbV">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -476,9 +512,8 @@ Die Rocket Beans Entertainment GmbH ist weder für die Funktionalität noch den 
                             </menu>
                         </popUpButtonCell>
                     </popUpButton>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SkZ-jG-K5b">
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SkZ-jG-K5b">
                         <rect key="frame" x="75" y="13" width="102" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Speichern" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mWJ-lm-N4S">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -488,6 +523,28 @@ Die Rocket Beans Entertainment GmbH ist weder für die Funktionalität noch den 
                         </connections>
                     </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="C3u-DN-QRr" firstAttribute="baseline" secondItem="V9U-km-bEv" secondAttribute="baseline" id="2Ka-MN-gcW"/>
+                    <constraint firstItem="pOc-JX-yO6" firstAttribute="leading" secondItem="7Da-a5-Ji1" secondAttribute="leading" constant="20" symbolic="YES" id="7Cy-Zn-tjq"/>
+                    <constraint firstItem="8vg-1h-yr8" firstAttribute="leading" secondItem="7Da-a5-Ji1" secondAttribute="leading" constant="22" id="AKN-PD-5gP"/>
+                    <constraint firstItem="MaB-9a-rfo" firstAttribute="leading" secondItem="gfA-Az-dxg" secondAttribute="leading" id="Car-CQ-0RA"/>
+                    <constraint firstItem="SkZ-jG-K5b" firstAttribute="top" secondItem="gfA-Az-dxg" secondAttribute="bottom" constant="20" symbolic="YES" id="EDb-BA-rDm"/>
+                    <constraint firstItem="C3u-DN-QRr" firstAttribute="leading" secondItem="MaB-9a-rfo" secondAttribute="leading" id="EdH-pq-gYj"/>
+                    <constraint firstItem="pOc-JX-yO6" firstAttribute="leading" secondItem="5Sv-5a-VZ7" secondAttribute="leading" id="LuZ-ab-BgE"/>
+                    <constraint firstItem="pOc-JX-yO6" firstAttribute="top" secondItem="7Da-a5-Ji1" secondAttribute="top" constant="20" symbolic="YES" id="Nqh-eO-SJ9"/>
+                    <constraint firstItem="8vg-1h-yr8" firstAttribute="leading" secondItem="C3u-DN-QRr" secondAttribute="leading" id="WZK-09-CWs"/>
+                    <constraint firstItem="MaB-9a-rfo" firstAttribute="top" secondItem="V9U-km-bEv" secondAttribute="bottom" constant="8" symbolic="YES" id="g9l-g4-Obe"/>
+                    <constraint firstItem="5Sv-5a-VZ7" firstAttribute="top" secondItem="pOc-JX-yO6" secondAttribute="bottom" constant="8" symbolic="YES" id="kIF-ag-p3U"/>
+                    <constraint firstItem="5Sv-5a-VZ7" firstAttribute="trailing" secondItem="8vg-1h-yr8" secondAttribute="trailing" id="ksD-XS-mEH"/>
+                    <constraint firstItem="gfA-Az-dxg" firstAttribute="top" secondItem="MaB-9a-rfo" secondAttribute="bottom" constant="8" symbolic="YES" id="oqQ-b2-0Ty"/>
+                    <constraint firstItem="8vg-1h-yr8" firstAttribute="top" secondItem="5Sv-5a-VZ7" secondAttribute="bottom" constant="8" symbolic="YES" id="vun-V2-tqp"/>
+                    <constraint firstItem="pOc-JX-yO6" firstAttribute="trailing" secondItem="5Sv-5a-VZ7" secondAttribute="trailing" id="wLH-2g-6Ot"/>
+                    <constraint firstItem="C3u-DN-QRr" firstAttribute="top" secondItem="8vg-1h-yr8" secondAttribute="bottom" constant="8" symbolic="YES" id="wdr-Ly-dQf"/>
+                    <constraint firstItem="5Sv-5a-VZ7" firstAttribute="centerX" secondItem="SkZ-jG-K5b" secondAttribute="centerX" id="weE-07-bEh"/>
+                    <constraint firstItem="V9U-km-bEv" firstAttribute="trailing" secondItem="gfA-Az-dxg" secondAttribute="trailing" id="wl4-oZ-yjj"/>
+                    <constraint firstItem="8vg-1h-yr8" firstAttribute="trailing" secondItem="V9U-km-bEv" secondAttribute="trailing" id="yLf-eV-4zq"/>
+                    <constraint firstItem="V9U-km-bEv" firstAttribute="leading" secondItem="C3u-DN-QRr" secondAttribute="trailing" constant="8" symbolic="YES" id="zgt-Zs-i3g"/>
+                </constraints>
             </view>
             <connections>
                 <outlet property="checkboxColoredIcon" destination="pOc-JX-yO6" id="qR2-QU-2my"/>
@@ -503,7 +560,7 @@ Die Rocket Beans Entertainment GmbH ist weder für die Funktionalität noch den 
         <image name="BellOn" width="32" height="32"/>
         <image name="FacebookIcon" width="32" height="32"/>
         <image name="GithubIcon" width="32" height="32"/>
-        <image name="MenuBarIcon" width="1024" height="1024"/>
+        <image name="MenuBarIcon" width="512" height="512"/>
         <image name="TwitterIcon" width="32" height="32"/>
     </resources>
 </document>

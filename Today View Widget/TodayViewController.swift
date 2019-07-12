@@ -22,13 +22,13 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
     @IBOutlet var programPlanNextScheduleItemDate: NSTextField!
     @IBOutlet var programPlanNextScheduleItemType: NSTextField!
     
-    var programPlanSchedule = Dictionary<String,AnyObject>()
-    var programPlanNextSchedule = Dictionary<String,AnyObject>()
+    var programPlanSchedule: Program!
+    var programPlanNextSchedule: Program!
     
     let programPlan = ProgramPlan()
     
     override var nibName: NSNib.Name? {
-        return NSNib.Name("TodayViewController")
+        return "TodayViewController"
     }
 
     var lastCompletionHandler: ((NCUpdateResult) -> Void)!
@@ -53,30 +53,30 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
         programPlan.refresh();
     }
     
-    func didFinishRefresh(_ data: [Dictionary<String,AnyObject>]) {
+    func didFinishRefresh(_ data: [Program]) {
         
         self.programPlanSchedule = data[0]
         self.programPlanNextSchedule = data[1]
         
         /* Item titles */
-        let scheduleItemTitle = "\((programPlanSchedule["title"] as! String))"
-        let nextScheduleItemTitle = "\((programPlanNextSchedule["title"] as! String))"
+        let scheduleItemTitle = programPlanSchedule.title
+        let nextScheduleItemTitle = programPlanNextSchedule.title
         
         /*  Item topics */
         var scheduleItemTopic: String
         var nextScheduleItemTopic: String
         
         /* Current */
-        if (programPlanSchedule["topic"] as! String == "") {
+        if (programPlanSchedule.topic == "") {
             scheduleItemTopic = ""
         } else {
-            scheduleItemTopic = "\((programPlanSchedule["topic"] as! String))"
+            scheduleItemTopic = programPlanSchedule.topic
         }
         /* Next */
-        if (programPlanNextSchedule["topic"] as! String == "") {
+        if (programPlanNextSchedule.topic == "") {
             nextScheduleItemTopic = ""
         } else {
-            nextScheduleItemTopic = "\((programPlanNextSchedule["topic"] as! String))"
+            nextScheduleItemTopic = programPlanNextSchedule.topic
         }
         
         /* Item types */
@@ -84,17 +84,17 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
         var nextScheduleItemType: String
         
         /* Current */
-        if (programPlanSchedule["type"] as! String == "") {
+        if (programPlanSchedule.type == "") {
             scheduleItemType = "WDH"
         } else {
-            scheduleItemType = "\((programPlanSchedule["type"] as! String).uppercased())"
+            scheduleItemType = programPlanSchedule.type.uppercased()
         }
         
         /* Next */
-        if (programPlanNextSchedule["type"] as! String == "") {
+        if (programPlanNextSchedule.type == "") {
             nextScheduleItemType = "WDH"
         } else {
-            nextScheduleItemType = "\((programPlanNextSchedule["type"] as! String).uppercased())"
+            nextScheduleItemType = programPlanNextSchedule.type.uppercased()
         }
         
         /* Item type colors */
@@ -102,7 +102,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
         var nextScheduleItemTypeColor: NSColor
         
         /* Current */
-        switch ((programPlanSchedule["type"] as! String).uppercased()) {
+        switch (programPlanSchedule.type.uppercased()) {
         case "LIVE":
             scheduleItemTypeColor = NSColor(red:0.99, green:0.08, blue:0.13, alpha:1.0)
             break
@@ -115,7 +115,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
         }
         
         /* Next */
-        switch ((programPlanNextSchedule["type"] as! String).uppercased()) {
+        switch (programPlanNextSchedule.type.uppercased()) {
         case "LIVE":
             nextScheduleItemTypeColor = NSColor(red:0.99, green:0.08, blue:0.13, alpha:1.0)
             break
@@ -127,26 +127,15 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
             break
         }
         
-        /* Item start and end dates */
-        let scheduleTimeStart: String = programPlanSchedule["timeStart"] as! String
-        let scheduleTimeEnd: String = programPlanSchedule["timeEnd"] as! String
-        let nextScheduleTimeStart: String = programPlanNextSchedule["timeStart"] as! String
-        let nextScheduleTimeEnd: String = programPlanNextSchedule["timeEnd"] as! String
-        
-        let timeStartParsed: Date = programPlan.convertDate(date: scheduleTimeStart)
-        let timeEndParsed: Date = programPlan.convertDate(date: scheduleTimeEnd)
-        let nextTimeStartParsed: Date = programPlan.convertDate(date: nextScheduleTimeStart)
-        let nextTimeEndParsed: Date = programPlan.convertDate(date: nextScheduleTimeEnd)
-        
         /* Current */
         programPlanScheduleItemTitle?.stringValue = scheduleItemTitle
         programPlanScheduleItemType?.stringValue = scheduleItemType
         programPlanScheduleItemType?.textColor = scheduleItemTypeColor
         programPlanScheduleItemSubtitle?.stringValue = scheduleItemTopic
-        programPlanScheduleItemDate?.stringValue = "\(programPlan.convertDoHumanDate(date: timeStartParsed)) Uhr - \(programPlan.convertDoHumanDate(date: timeEndParsed)) Uhr"
+        programPlanScheduleItemDate?.stringValue = "\(programPlan.convertDoHumanDate(date: programPlanSchedule.timeStart)) Uhr - \(programPlan.convertDoHumanDate(date: programPlanSchedule.timeEnd)) Uhr"
         
         /* Progress indicator */
-        progremPlanScheduleItemProgress?.doubleValue = programPlan.calculateProgress(startDate: timeStartParsed, endDate: timeEndParsed)
+        progremPlanScheduleItemProgress?.doubleValue = programPlan.calculateProgress(startDate: programPlanSchedule.timeStart, endDate: programPlanSchedule.timeEnd)
         progremPlanScheduleItemProgress?.isHidden = false
         
         /* Next */
@@ -154,7 +143,7 @@ class TodayViewController: NSViewController, NCWidgetProviding, ProgramPlanDeleg
         programPlanNextScheduleItemType?.stringValue = nextScheduleItemType
         programPlanNextScheduleItemType?.textColor = nextScheduleItemTypeColor
         programPlanNextScheduleItemSubtitle?.stringValue = nextScheduleItemTopic
-        programPlanNextScheduleItemDate?.stringValue = "\(programPlan.convertDoHumanDate(date: nextTimeStartParsed)) Uhr - \(programPlan.convertDoHumanDate(date: nextTimeEndParsed)) Uhr"
+        programPlanNextScheduleItemDate?.stringValue = "\(programPlan.convertDoHumanDate(date: programPlanNextSchedule.timeStart)) Uhr - \(programPlan.convertDoHumanDate(date: programPlanNextSchedule.timeEnd)) Uhr"
         
         self.lastCompletionHandler(.newData)
     }

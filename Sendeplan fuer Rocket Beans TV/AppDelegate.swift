@@ -17,14 +17,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     public var statusItem: NSStatusItem = NSStatusItem()
     var programPlanScheduleItems: Int = 0
-    var programPlanSchedule = [Dictionary<String,AnyObject>]()
+    var programPlanSchedule: [Program]!
     
     @IBOutlet weak var programPlanScrollView: NSScrollView!
     
     let programPlan = ProgramPlan()
     
-    var enabledNotifications = [Dictionary<String,AnyObject>]()
-    var currentEnabledNotifications: [Dictionary<String,AnyObject>] = []
+    var enabledNotifications = [Program]()
+    var currentEnabledNotifications = [Program]()
     
     override init() {
         /* Nothing for now */
@@ -32,13 +32,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
+        let buildString: String = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
+        let buildNumber: Int = Int(buildString) ?? 0
+                
         /* If there are no settings yet, set the default value */
         if (UserDefaults.standard.value(forKey: "coloredIcon") == nil) {
             UserDefaults.standard.setValue(1, forKey: "coloredIcon")
         }
-                
+        
         if (UserDefaults.standard.value(forKey: "enabledNotifications") == nil) {
-            UserDefaults.standard.setValue(enabledNotifications, forKey: "enabledNotifications")
+            UserDefaults.standard.set(try? PropertyListEncoder().encode(enabledNotifications), forKey:"enabledNotifications")
+        } else {
+            /* If there are user defaults, we have to check for the old type and remove initialize new ones */
+            if (buildNumber < 17) {
+                UserDefaults.standard.set(try? PropertyListEncoder().encode(enabledNotifications), forKey:"enabledNotifications")
+            }
         }
         
         if (UserDefaults.standard.value(forKey: "notificationSound") == nil) {
@@ -48,7 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let statusBar = NSStatusBar.system
         self.statusItem = statusBar.statusItem(withLength: 25.0)
         self.statusItem.toolTip = "Sendeplan für Rocket Beans TV"
-        self.statusItem.image = NSImage(named: NSImage.Name(rawValue: "StatusIcon"))
+        self.statusItem.image = NSImage(named: "StatusIcon")
         /* self.statusItem.image?.isTemplate = true */
         self.statusItem.highlightMode = true
         self.statusItem.menu = programPlanMenu
@@ -64,8 +72,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 
         UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions" : true])
         
-        currentEnabledNotifications = UserDefaults.standard.value(forKey: "enabledNotifications") as! [Dictionary<String, AnyObject>]
-        //Swift.print(currentEnabledNotifications)
+        if let data = UserDefaults.standard.value(forKey:"enabledNotifications") as? Data {
+            currentEnabledNotifications = try! PropertyListDecoder().decode([Program].self, from: data)
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
