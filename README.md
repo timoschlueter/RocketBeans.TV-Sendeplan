@@ -1,3 +1,12 @@
+# ⚠️ Projekt wird nicht weiterentwickelt
+
+Aus Zeitmangel wird dieses Projekt nicht weiterentwickelt. Durch die Umstellung von RBTV auf einen primär VoD fokussierten Sender ist der Bedarf nach einer Sendeplan App in den vergangenen Monaten zudem gesunken. Sollte jemand dennoch interesse haben, diese App weiter zu betreiben, so kann eine Übergabe erfolgen.
+Updates werden von mir nicht mehr entwickelt. 
+
+Ich danke euch für das Feedback in den vergangene Jahren. :)
+
+--- 
+
 # Sendeplan für Rocket Beans TV
 
 Diese App zeigt den aktuellen Wochenplan von [Rocket Beans TV](https://www.rocketbeans.tv) in der Menüleiste von macOS an.
